@@ -4,6 +4,9 @@ import type { FC, ReactNode } from "react";
 import ComicsWrapper from "./styled";
 import SvgIcon from "../SvgIcon";
 import { Swiper } from "antd-mobile";
+import Select from "../../view/Select";
+import Chapter from "../../view/Chapter";
+import Notify from "../../view/Notify";
 
 interface IProps {
   children?: ReactNode;
@@ -61,6 +64,10 @@ const Comics: FC<IProps> = () => {
           ))}
         </Swiper>
       </div>
+      {/* 四选择项 */}
+      <Select />
+      <Chapter />
+      <Notify />
     </ComicsWrapper>
   );
 };
