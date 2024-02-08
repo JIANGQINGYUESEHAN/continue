@@ -1,0 +1,19 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-undef */
+import { applyMiddleware, createStore } from "redux";
+import reduxLogger from 'redux-logger'
+import reducerPromise from 'redux-promise'
+import reduxThunk from 'redux-thunk'
+import reducer from "./reducer";
+const middleWare: any = [reducerPromise, reduxThunk]
+
+const env = process.env.NODE_ENV || 'development'
+if (env === 'development') {
+    middleWare.push(reduxLogger)
+}
+// 创建store容器
+const store = createStore(
+    reducer,
+    applyMiddleware(...middleWare)
+);
+export default store

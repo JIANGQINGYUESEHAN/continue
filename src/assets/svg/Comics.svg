@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="42px" height="39px" viewBox="0 0 42 39" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>动漫</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FF1370" offset="0%"></stop>
+            <stop stop-color="#FF61BF" offset="98.9697645%"></stop>
+            <stop stop-color="#FF2BA9" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="首页1备份-11" transform="translate(-50.000000, -2752.000000)">
+            <g id="编组-26" transform="translate(-1.000000, 2707.000000)">
+                <g id="编组-20" transform="translate(0.000000, 19.000000)">
+                    <g id="编组-18" transform="translate(50.000000, 19.112585)">
+                        <g id="动漫" transform="translate(1.000000, 7.000000)">
+                            <path d="M42,9.38035264 C42,4.2115869 37.6804601,0 32.3792065,0 C29.2377229,0 26.1944107,1.53148615 24.4273262,4.11586902 C22.1693848,3.6372796 19.8132721,3.6372796 17.5553308,4.11586902 C14.61019,-0.191435768 8.62173686,-1.24433249 4.20402556,1.62720403 C-0.213685735,4.49874055 -1.29357072,10.3375315 1.65157015,14.6448363 C2.24059832,15.5062972 3.02596922,16.2720403 3.90951148,16.8463476 C3.61499739,18.186398 3.41865467,19.5264484 3.41865467,20.8664987 C3.41865467,30.3425693 11.2723636,38 20.9913285,38 C30.7102933,38 38.5640023,30.3425693 38.5640023,20.8664987 C38.5640023,19.5264484 38.3676596,18.186398 38.0731455,16.8463476 C40.5274296,15.1234257 42,12.3476071 42,9.38035264 Z" id="形状" fill="url(#linearGradient-1)" fill-rule="nonzero"></path>
+                            <rect id="矩形" fill="#FFFFFF" x="19" y="19" width="4" height="12" rx="2"></rect>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

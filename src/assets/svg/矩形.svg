@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="10px" height="32px" viewBox="0 0 10 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>矩形</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FF2BA9" offset="0%"></stop>
+            <stop stop-color="#FF61BF" offset="1.03023547%"></stop>
+            <stop stop-color="#FF1370" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="首页1备份-11" transform="translate(-30.000000, -841.000000)" fill="url(#linearGradient-1)">
+            <g id="编组-17" transform="translate(30.000000, 834.000000)">
+                <rect id="矩形" x="0" y="7" width="10" height="32" rx="5"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

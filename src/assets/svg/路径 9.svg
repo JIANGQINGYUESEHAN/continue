@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="75px" height="28px" viewBox="0 0 75 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>路径 9</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FF8FC7" offset="0%"></stop>
+            <stop stop-color="#FF53A2" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round">
+        <g id="首页1备份-11" transform="translate(-38.000000, -136.000000)" stroke="url(#linearGradient-1)" stroke-width="14">
+            <g id="编组" transform="translate(32.000000, 95.000000)">
+                <path d="M13.5872096,48.5 C23.7674314,57.5 33.9050282,62 44,62 C54.0949718,62 63.957375,57.5 73.5872096,48.5" id="路径-9"></path>
+            </g>
+        </g>
+    </g>
+</svg>

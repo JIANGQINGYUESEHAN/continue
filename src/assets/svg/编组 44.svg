@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="58px" height="58px" viewBox="0 0 58 58" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 44</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FF1370" offset="0%"></stop>
+            <stop stop-color="#FF61BF" offset="98.9697645%"></stop>
+            <stop stop-color="#FF2BA9" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="首页1备份-11" transform="translate(-261.000000, -522.000000)">
+            <g id="编组-25" transform="translate(56.000000, 518.000000)">
+                <g id="编组-54" transform="translate(205.000000, 4.000000)">
+                    <rect id="矩形" fill="url(#linearGradient-1)" x="3.5" y="3.5" width="54" height="54" rx="6"></rect>
+                    <path d="M30.5,30.5 L57.5,30.5 L57.5,51.5 C57.5,54.8137085 54.8137085,57.5 51.5,57.5 L30.5,57.5 L30.5,57.5 L30.5,30.5 Z" id="矩形" fill="#FFAAD8"></path>
+                    <path d="M0,0 L25,0 C27.7614237,-5.07265313e-16 30,2.23857625 30,5 L30,24 C30,27.3137085 27.3137085,30 24,30 L5,30 C2.23857625,30 -5.50001544e-16,27.7614237 0,25 L0,0 L0,0 Z" id="矩形备份-10" fill="#B00047" transform="translate(15.000000, 15.000000) scale(-1, -1) translate(-15.000000, -15.000000) "></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

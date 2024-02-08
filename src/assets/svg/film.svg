@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="44px" height="45px" viewBox="0 0 44 45" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 57</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FF1370" offset="0%"></stop>
+            <stop stop-color="#FF61BF" offset="98.9697645%"></stop>
+            <stop stop-color="#FF2BA9" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="影片" transform="translate(-198.000000, -1784.000000)">
+            <g id="编组-26备份" transform="translate(0.000000, 1746.000000)">
+                <g id="编组-20" transform="translate(0.000000, 19.000000)">
+                    <g id="编组-18" transform="translate(50.000000, 19.112585)">
+                        <g id="编组-57" transform="translate(148.000000, 0.000000)">
+                            <path d="M10.3451599,9.88741456 L32.7317632,9.88741456 C37.5231824,9.88741456 41.4745608,13.6413505 41.7199522,18.4264818 L42.591747,35.4264818 C42.8463132,40.3905215 39.0285305,44.6210374 34.0644908,44.8756035 C33.9109727,44.8834763 33.757278,44.8874146 33.6035581,44.8874146 L9.47336501,44.8874146 C4.50280226,44.8874146 0.473365011,40.8579773 0.473365011,35.8874146 C0.473365011,35.7336946 0.477303312,35.58 0.485176039,35.4264818 L1.35697091,18.4264818 C1.60236226,13.6413505 5.55374066,9.88741456 10.3451599,9.88741456 Z" id="矩形" fill="url(#linearGradient-1)"></path>
+                            <g id="编组-52" transform="translate(11.703822, 0.000000)" fill="#FF1875">
+                                <rect id="矩形" transform="translate(5.062082, 6.601664) rotate(-31.000000) translate(-5.062082, -6.601664) " x="3.06208209" y="0.101663604" width="4" height="13" rx="2"></rect>
+                                <rect id="矩形备份-11" transform="translate(13.318794, 7.906422) scale(-1, 1) rotate(-35.000000) translate(-13.318794, -7.906422) " x="11.3187942" y="2.90642218" width="4" height="10" rx="2"></rect>
+                            </g>
+                            <polyline id="路径-10" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" points="11.4436882 29.1238113 16.5040707 29.1238113 20.0791347 21.3874146 23.3424986 32.3874146 26.3289465 29.1238113 32.4436882 29.1238113"></polyline>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

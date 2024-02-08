@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="36px" height="42px" viewBox="0 0 36 42" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 8</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FF1370" offset="0%"></stop>
+            <stop stop-color="#FF61BF" offset="98.9697645%"></stop>
+            <stop stop-color="#FF2BA9" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="小说" transform="translate(-512.000000, -1920.000000)">
+            <g id="编组-26备份" transform="translate(0.000000, 1877.000000)">
+                <g id="编组-8" transform="translate(512.000000, 43.000000)">
+                    <rect id="矩形" fill="url(#linearGradient-1)" x="0" y="0" width="36" height="42" rx="8"></rect>
+                    <path d="M8.64302856,2.30102851 L8.64302856,17.7915163 C8.64302856,18.343801 9.09074381,18.7915163 9.64302856,18.7915163 C9.85727158,18.7915163 10.0658509,18.7227098 10.2380415,18.5952324 L12.1000614,17.2167285 C12.4535697,16.9550167 12.9365789,16.9550167 13.2900872,17.2167285 L15.1521071,18.5952324 C15.5959872,18.923849 16.2222196,18.8304094 16.5508361,18.3865292 C16.6783135,18.2143386 16.74712,18.0057593 16.74712,17.7915163 L16.74712,2.30102851 L16.74712,2.30102851 L8.64302856,2.30102851 Z" id="路径-11" fill="#FFFFFF"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
