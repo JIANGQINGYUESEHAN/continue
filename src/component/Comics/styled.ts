@@ -64,5 +64,13 @@ const ComicsWrapper = styled.div`
       height: 100%;
     }
   }
+  .Content {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+  }
 `;
 export default ComicsWrapper;

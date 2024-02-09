@@ -9,7 +9,7 @@ const NotifyWrapper = styled.div`
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    margin: 10px 0px;
+
     width: 94%;
 
     height: 40px;

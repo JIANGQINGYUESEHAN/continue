@@ -7,6 +7,8 @@ import { Swiper } from "antd-mobile";
 import Select from "../../view/Select";
 import Chapter from "../../view/Chapter";
 import Notify from "../../view/Notify";
+import NavBar from "../../view/NavBar";
+import NovelsAndComicsItem from "../../view/NovelsAndComicsItem";
 
 interface IProps {
   children?: ReactNode;
@@ -66,8 +68,18 @@ const Comics: FC<IProps> = () => {
       </div>
       {/* 四选择项 */}
       <Select />
+      {/* 多重选择 */}
       <Chapter />
+      {/* 公告提示 */}
       <Notify />
+      {/* Navbar */}
+      <NavBar />
+      {/* 。例子 */}
+      <div className="Content">
+        <NovelsAndComicsItem />
+        <NovelsAndComicsItem />
+        <NovelsAndComicsItem />
+      </div>
     </ComicsWrapper>
   );
 };
