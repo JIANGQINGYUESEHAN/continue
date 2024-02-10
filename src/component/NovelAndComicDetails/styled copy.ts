@@ -5,10 +5,9 @@ const NovelAndComicDetailsWrapper = styled.div`
   min-height: 100vh;
   box-sizing: border-box;
   .card-container {
-    width: 100%;
-    height: 240px;
+    height: 280px;
     display: flex;
-
+    width: 200px;
     overflow: hidden;
 
     .left {
@@ -17,8 +16,8 @@ const NovelAndComicDetailsWrapper = styled.div`
 
       align-items: center;
       justify-content: center;
-      width: 200px;
-
+      width: 180px;
+      background-color: #ff4081;
       .image {
         width: 160px;
         height: 200px;
@@ -32,11 +31,10 @@ const NovelAndComicDetailsWrapper = styled.div`
     }
 
     .right {
-      box-sizing: border-box;
-      width: 250px;
+      width: 100px;
       padding: 30px 4px;
-
       height: 280px;
+      background-color: red;
       .topName {
         width: 200px;
         height: 50px;
@@ -88,74 +86,28 @@ const NovelAndComicDetailsWrapper = styled.div`
       }
       .Item {
         margin-top: 8px;
-        width: 250px;
+        width: 100%;
         height: 40px;
-
+        background-color: #ff4081;
         display: flex;
         .Icon {
-          width: 50px;
-          height: 40px;
-
           display: flex;
           align-items: center;
-          font-size: 10px;
-          color: RGBA(178, 142, 158, 1);
-        }
-        .Detail {
-          width: 80px;
+          width: 100px;
           height: 40px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-      }
-    }
-  }
-  .DetailTitle {
-    .Select {
-      padding: 20px 20px;
-      display: flex;
-      width: 100%;
-      height: 95px;
-      align-items: center;
-      justify-content: center;
-      .common {
-        width: 60px;
-        height: 60px;
-        margin-right: 20px;
-        text-align: center;
-        line-height: 60px;
-        position: relative;
-
-        .Comics {
-          font-size: 20px;
-          color: RGBA(121, 119, 120, 1);
-        }
-        .ContentTitle {
-          width: 100%;
-          height: 100%;
-          .Comics {
-            font-size: 20px;
-            font-weight: bolder;
-            color: black;
-            z-index: 9;
+          background-color: rebeccapurple;
+          .icon {
+            height: 40px;
+            width: 18px;
+            display: flex;
+            align-items: center;
+            background-color: red;
           }
         }
-        .ContentIcon {
+        .Love {
+          height: 40px;
           width: 100%;
-          height: 100%;
-          position: absolute;
-          top: -7px;
-          left: 4px;
-          z-index: 0;
-        }
-        .ContentIconPath {
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          top: 20px;
-          left: 4px;
-          z-index: 0;
+          background-color: black;
         }
       }
     }

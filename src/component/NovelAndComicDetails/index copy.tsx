@@ -14,13 +14,12 @@ const NovelAndComicDetails: FC<IProps> = () => {
       <NavBar IsShowChildren={false} middle="详情页" />
       <div className="card-container">
         <div className="left">
-          <div className="image">
+          {/* <div className="image">
             <img
               src="https://www.cooer.cc/uploads/arctimg/20230802/1690943123276..jpg"
               alt="漫画封面"
-              className="img"
             />
-          </div>
+          </div> */}
         </div>
         <div className="right">
           <div className="topName">
@@ -47,47 +46,21 @@ const NovelAndComicDetails: FC<IProps> = () => {
           </div>
           <div className="Item">
             <div className="Icon">
-              <SvgIcon name="eyes" size={12} />
-              <span> &nbsp;22222</span>
+              <div className="icon">
+                <SvgIcon name="eyes" size={14} />
+              </div>
             </div>
             <div className="Icon">
-              <SvgIcon name="dianzanIcon" size={12} />
-              <span> &nbsp;22222</span>
+              <div className="icon">
+                <SvgIcon name="eyes" size={14} />
+              </div>
             </div>
             <div className="Icon">
-              <SvgIcon name="love" size={12} />
-              <span> &nbsp;22222</span>
+              <div className="icon">
+                <SvgIcon name="eyes" size={14} />
+              </div>
             </div>
-            <div className="Detail">
-              <SvgIcon name="dianzan" size={100} />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="DetailTitle">
-        <div className="Select">
-          <div className="common">
-            <div className="ContentIcon">
-              <SvgIcon name="start" size={60} />
-            </div>
-            <div className="ContentIconPath">
-              <SvgIcon name="path" size={60} color="red" />
-            </div>
-            <div className="ContentTitle">
-              <span className="Comics">目录</span>
-            </div>
-          </div>
-          <div className="common">
-            <div className="ContentIcon">
-              <SvgIcon name="start" size={60} />
-            </div>
-            <div className="ContentIconPath">
-              <SvgIcon name="path" size={60} color="red" />
-            </div>
-            <div className="ContentTitle">
-              <span className="Comics">详情</span>
-            </div>
+            <div className="Love"></div>
           </div>
         </div>
       </div>
