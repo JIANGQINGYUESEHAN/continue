@@ -4,6 +4,7 @@ const NovelAndComicDetailsWrapper = styled.div`
   width: 100%;
   min-height: 100vh;
   box-sizing: border-box;
+  overflow: hidden;
   .card-container {
     width: 100%;
     height: 240px;
@@ -159,10 +160,53 @@ const NovelAndComicDetailsWrapper = styled.div`
         }
       }
     }
-    .Content {
+    .content {
       width: 100%;
-      height: 100px;
-      background-color: red;
+      height: 60px; // 设定高度
+      padding: 0 10px; // 增加两边的间隔
+      overflow: hidden;
+      margin-bottom: 10px;
+
+      .type {
+        width: 100%;
+        height: 60px; // 设定高度
+        overflow: hidden; // 隐藏溢出的内容
+        display: flex;
+        justify-content: flex-start; // 开始位置对齐
+        align-items: center;
+
+        .ul {
+          width: 100%;
+          .list {
+            min-width: 60px; // 最小宽度，根据内容调整
+            height: 60px; // 高度
+            background-color: #f2f2f2; // 设置为灰色背景
+            margin-right: 10px; // 项目间距
+            border-radius: 10px; // 圆角
+            text-align: center;
+            line-height: 60px; // 行高与高度相同，使文字垂直居中
+            color: #333; // 文字颜色
+            flex-shrink: 0; // 防止压缩
+            position: relative;
+            &.active {
+              background-color: #ff3a4d; // 激活状态的背景色
+              color: white; // 激活状态的文字颜色
+            }
+            .vip {
+              position: absolute;
+              top: -15px;
+              right: 5px;
+            }
+          }
+        }
+      }
+    }
+    .Content {
+      display: flex;
+      margin: 0px 14px;
+      align-items: flex-start;
+      width: 100%;
+      flex-wrap: wrap;
     }
   }
 `;

@@ -1,8 +1,13 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React, { memo, useState } from "react";
 import type { FC, ReactNode } from "react";
 import NovelAndComicDetailsWrapper from "./styled";
 import NavBar from "../../view/NavBar";
 import SvgIcon from "../SvgIcon";
+import { Swiper } from "antd-mobile";
+import NovelsAndComics from "../../view/NovelsAndComics";
 
 interface IProps {
   children?: ReactNode;
@@ -13,6 +18,19 @@ const NovelAndComicDetails: FC<IProps> = () => {
   function ClicikType(index: number) {
     SetisDetail(index);
   }
+
+  const SwiperArray: any = [
+    "全部",
+    "玩具",
+    "衣服",
+    "图书",
+    "家居",
+    "鞋帽",
+    "食品",
+    "电器",
+    "美妆",
+    "户外",
+  ]; // 假设这是你想展示的数据
   return (
     <NovelAndComicDetailsWrapper>
       <NavBar IsShowChildren={false} middle="详情页" />
@@ -107,7 +125,47 @@ const NovelAndComicDetails: FC<IProps> = () => {
             </div>
           )}
         </div>
-        <div className="Content"></div>
+        <div className="content">
+          {isDetail == 1 && (
+            <div className="type">
+              <Swiper
+                autoplay={false}
+                slideSize={20} // 根据视觉效果调整，保证两边有间隔
+                trackOffset={10} // 两边的间隔
+                indicator={() => null}
+                className="ul"
+              >
+                {SwiperArray.map((item: any, index: number) => {
+                  return (
+                    <Swiper.Item key={index}>
+                      <li className={`list ${index === 0 ? "active" : ""}`}>
+                        <div className="vip">
+                          <SvgIcon name="VIPDetail" size={24} />
+                        </div>
+                        <span className="title">{index}</span>
+                      </li>
+                    </Swiper.Item>
+                  );
+                })}
+              </Swiper>
+            </div>
+          )}
+        </div>
+        <NavBar left="猜你喜欢" />
+        <div className="Content">
+          <NovelsAndComics />
+          <NovelsAndComics />
+          <NovelsAndComics />
+          <NovelsAndComics />
+          <NovelsAndComics />
+          <NovelsAndComics />
+          <NovelsAndComics />
+          <NovelsAndComics />
+          <NovelsAndComics />
+          <NovelsAndComics />
+          <NovelsAndComics />
+          <NovelsAndComics />
+        </div>
       </div>
     </NovelAndComicDetailsWrapper>
   );
