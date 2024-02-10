@@ -12,6 +12,7 @@ const ComicsWrapper = styled.div`
   top: 0;
   box-sizing: border-box;
   position: relative;
+  margin-bottom: 40px;
   .Select {
     padding: 20px 20px;
     display: flex;
@@ -66,9 +67,8 @@ const ComicsWrapper = styled.div`
   }
   .Content {
     display: flex;
-    justify-content: flex-start;
+    margin: 0px 14px;
     align-items: flex-start;
-    justify-content: center;
     width: 100%;
     flex-wrap: wrap;
   }

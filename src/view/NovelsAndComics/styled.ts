@@ -1,15 +1,14 @@
 import styled from "styled-components";
 
-const NovelsAndComicsItemWrapper = styled.div`
+const NovelsWrapper = styled.div`
   .product-item {
     position: relative;
-    width: 90px;
-    margin: 4px;
+    width: 120px;
+    margin: 5px;
     height: 180px;
     border-radius: 4px;
     margin-top: 10px;
     margin-bottom: 10px;
-    /* background-color: #ffd77e; */
     overflow: hidden;
     position: relative;
     .product-image {
@@ -41,11 +40,10 @@ const NovelsAndComicsItemWrapper = styled.div`
     }
     .ItemFire {
       position: relative;
-      right: -55px;
+      right: -85px;
       bottom: 35px;
       width: 40px;
       height: 40px;
-
       .ItemNum {
         font-size: 10px;
         color: RGBA(255, 0, 0, 1);
@@ -59,7 +57,7 @@ const NovelsAndComicsItemWrapper = styled.div`
       width: 100%;
       height: 50px;
       /* background-color: red; */
-      z-index: 9999;
+
       position: relative;
       top: -40px;
       display: flex;
@@ -88,4 +86,4 @@ const NovelsAndComicsItemWrapper = styled.div`
     }
   }
 `;
-export default NovelsAndComicsItemWrapper;
+export default NovelsWrapper;

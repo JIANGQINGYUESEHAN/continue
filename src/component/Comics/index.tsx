@@ -9,6 +9,10 @@ import Chapter from "../../view/Chapter";
 import Notify from "../../view/Notify";
 import NavBar from "../../view/NavBar";
 import NovelsAndComicsItem from "../../view/NovelsAndComicsItem";
+import NovelsAndComics from "../../view/NovelsAndComics";
+import End from "../../view/End";
+import List from "../../view/List";
+import FloorComponents from "../../view/FloorComponents";
 
 interface IProps {
   children?: ReactNode;
@@ -75,11 +79,12 @@ const Comics: FC<IProps> = () => {
       {/* Navbar */}
       <NavBar />
       {/* 。例子 */}
-      <div className="Content">
-        <NovelsAndComicsItem />
-        <NovelsAndComicsItem />
-        <NovelsAndComicsItem />
-      </div>
+
+      <List />
+      <FloorComponents />
+      <FloorComponents />
+      <FloorComponents />
+      <End />
     </ComicsWrapper>
   );
 };

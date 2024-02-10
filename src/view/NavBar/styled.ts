@@ -42,7 +42,7 @@ const NavbarWrapper = styled.div`
 
       line-height: 40px;
       font-size: 16px;
-      font-weight: 400;
+      font-weight: bolder;
       text-align: center;
     }
     .right {

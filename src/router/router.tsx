@@ -105,6 +105,17 @@ const routers = [
       title: "app下载",
     },
   },
+  //NovelAndComicDetailsWrapper
+  {
+    path: "/NovelAndComicDetail",
+    name: "NovelAndComicDetail",
+    component: lazy(() => {
+      return import("../component/NovelAndComicDetails");
+    }),
+    meta: {
+      title: "详情页",
+    },
+  },
 ];
 
 export default routers;

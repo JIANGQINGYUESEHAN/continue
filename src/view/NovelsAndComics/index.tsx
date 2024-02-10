@@ -1,18 +1,19 @@
 import React, { memo } from "react";
 import type { FC, ReactNode } from "react";
-import NovelsAndComicsItemWrapper from "./styled";
+
 import SvgIcon from "../../component/SvgIcon/index";
 import { EyeFill } from "antd-mobile-icons";
+import NovelsWrapper from "./styled";
 import { useNavigate } from "react-router-dom";
 
 interface IProps {
   children?: ReactNode;
 }
 
-const NovelsAndComicsItem: FC<IProps> = () => {
+const NovelsAndComics: FC<IProps> = () => {
   const navigate = useNavigate();
   return (
-    <NovelsAndComicsItemWrapper>
+    <NovelsWrapper>
       <div
         className="product-item"
         onClick={() => {
@@ -45,8 +46,8 @@ const NovelsAndComicsItem: FC<IProps> = () => {
           </div>
         </div>
       </div>
-    </NovelsAndComicsItemWrapper>
+    </NovelsWrapper>
   );
 };
 
-export default memo(NovelsAndComicsItem);
+export default memo(NovelsAndComics);

@@ -3,13 +3,21 @@ import type { FC, ReactNode } from "react";
 import NavbarWrapper from "./styled";
 import SvgIcon from "../../component/SvgIcon";
 import { LeftOutline, RedoOutline, RightOutline } from "antd-mobile-icons";
+import { useNavigate } from "react-router-dom";
 
 interface IProps {
   children?: ReactNode;
   IsShowChildren?: boolean;
+  left?: string;
+  middle?: string;
 }
 
-const NavBar: FC<IProps> = ({ IsShowChildren = true }) => {
+const NavBar: FC<IProps> = ({
+  IsShowChildren = true,
+  left = "左边",
+  middle = "中间类容",
+}) => {
+  const navigate = useNavigate();
   return (
     <NavbarWrapper>
       <div className="Common">
@@ -19,7 +27,7 @@ const NavBar: FC<IProps> = ({ IsShowChildren = true }) => {
               <SvgIcon name="rectangle" size={24} />
             </div>
             <div className="left">
-              <span>左边</span>
+              <span>{left}</span>
             </div>
 
             <div className="right">
@@ -35,11 +43,16 @@ const NavBar: FC<IProps> = ({ IsShowChildren = true }) => {
           </>
         ) : (
           <>
-            <div className="leftIcon">
+            <div
+              className="leftIcon"
+              onClick={() => {
+                navigate(-1);
+              }}
+            >
               <LeftOutline />
             </div>
 
-            <div className="middle">中间内容</div>
+            <div className="middle">{middle}</div>
           </>
         )}
       </div>

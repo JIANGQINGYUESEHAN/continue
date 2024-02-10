@@ -3,6 +3,9 @@ import styled from "styled-components";
 const BottomNavigationWrapper = styled.div`
   width: 100%;
   box-sizing: border-box;
+  background-color: white;
+
+  opacity: 1;
   .bottom {
     position: fixed; /* 使用固定定位，相对于视窗 */
     bottom: 0; /* 把元素放置在视窗的底部 */
