@@ -116,7 +116,7 @@ const NovelAndComicDetailsWrapper = styled.div`
       padding: 20px 20px;
       display: flex;
       width: 100%;
-      height: 95px;
+      height: 80px;
       align-items: center;
       justify-content: center;
       .common {
@@ -128,7 +128,7 @@ const NovelAndComicDetailsWrapper = styled.div`
         position: relative;
 
         .Comics {
-          font-size: 20px;
+          font-size: 16px;
           color: RGBA(121, 119, 120, 1);
         }
         .ContentTitle {
@@ -158,6 +158,11 @@ const NovelAndComicDetailsWrapper = styled.div`
           z-index: 0;
         }
       }
+    }
+    .Content {
+      width: 100%;
+      height: 100px;
+      background-color: red;
     }
   }
 `;

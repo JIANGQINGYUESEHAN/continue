@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import type { FC, ReactNode } from "react";
 import NovelAndComicDetailsWrapper from "./styled";
 import NavBar from "../../view/NavBar";
@@ -9,6 +9,10 @@ interface IProps {
 }
 
 const NovelAndComicDetails: FC<IProps> = () => {
+  const [isDetail, SetisDetail] = useState(1);
+  function ClicikType(index: number) {
+    SetisDetail(index);
+  }
   return (
     <NovelAndComicDetailsWrapper>
       <NavBar IsShowChildren={false} middle="详情页" />
@@ -67,29 +71,43 @@ const NovelAndComicDetails: FC<IProps> = () => {
 
       <div className="DetailTitle">
         <div className="Select">
-          <div className="common">
-            <div className="ContentIcon">
-              <SvgIcon name="start" size={60} />
+          {isDetail == 1 ? (
+            <div className="common">
+              <div className="ContentIcon">
+                <SvgIcon name="start" size={60} />
+              </div>
+              <div className="ContentIconPath">
+                <SvgIcon name="path" size={60} color="red" />
+              </div>
+              <div className="ContentTitle">
+                <span className="Comics">目录</span>
+              </div>
             </div>
-            <div className="ContentIconPath">
-              <SvgIcon name="path" size={60} color="red" />
-            </div>
-            <div className="ContentTitle">
+          ) : (
+            <div className="common" onClick={() => ClicikType(1)}>
               <span className="Comics">目录</span>
             </div>
-          </div>
-          <div className="common">
-            <div className="ContentIcon">
-              <SvgIcon name="start" size={60} />
+          )}
+
+          {isDetail == 2 ? (
+            <div className="common">
+              <div className="ContentIcon">
+                <SvgIcon name="start" size={60} />
+              </div>
+              <div className="ContentIconPath">
+                <SvgIcon name="path" size={60} color="red" />
+              </div>
+              <div className="ContentTitle">
+                <span className="Comics">详情</span>
+              </div>
             </div>
-            <div className="ContentIconPath">
-              <SvgIcon name="path" size={60} color="red" />
-            </div>
-            <div className="ContentTitle">
+          ) : (
+            <div className="common" onClick={() => ClicikType(2)}>
               <span className="Comics">详情</span>
             </div>
-          </div>
+          )}
         </div>
+        <div className="Content"></div>
       </div>
     </NovelAndComicDetailsWrapper>
   );
