@@ -3,15 +3,22 @@ import type { FC, ReactNode } from "react";
 import VideoItemWrapper from "./styled";
 import SvgIcon from "../../component/SvgIcon";
 import { EyeFill } from "antd-mobile-icons";
+import { useNavigate } from "react-router-dom";
 
 interface IProps {
   children?: ReactNode;
 }
 
 const VideoItem: FC<IProps> = () => {
+  const navigate = useNavigate();
   return (
     <VideoItemWrapper>
-      <div className="videoItem">
+      <div
+        className="videoItem"
+        onClick={() => {
+          navigate("/videoDetail");
+        }}
+      >
         <div className="videoImag">
           <div className="video">
             <img

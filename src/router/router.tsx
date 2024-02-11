@@ -177,6 +177,16 @@ const routers = [
       title: "删选条件",
     },
   },
+  {
+    path: "/videoDetail",
+    name: "videoDetail",
+    component: lazy(() => {
+      return import("../component/VideoDetail");
+    }),
+    meta: {
+      title: "删选条件",
+    },
+  },
 ];
 
 export default routers;
