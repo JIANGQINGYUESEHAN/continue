@@ -116,6 +116,56 @@ const routers = [
       title: "详情页",
     },
   },
+  {
+    path: "/info",
+    name: "info",
+    component: lazy(() => {
+      return import("../component/Info");
+    }),
+    meta: {
+      title: "消息页",
+    },
+  },
+  {
+    path: "/collect",
+    name: "collect",
+    component: lazy(() => {
+      return import("../component/Collect");
+    }),
+    meta: {
+      title: "收藏页",
+    },
+  },
+  {
+    path: "/friend",
+    name: "friend",
+    component: lazy(() => {
+      return import("../component/Friend");
+    }),
+    meta: {
+      title: "邀请盆友",
+    },
+  },
+  {
+    path: "/bindPhone",
+    name: "bindPhone",
+    component: lazy(() => {
+      return import("../component/BindPhone");
+    }),
+    meta: {
+      title: "绑定手机",
+    },
+  },
+  {
+    path: "/set",
+    name: "set",
+    component: lazy(() => {
+      return import("../component/Set");
+    }),
+    meta: {
+      title: "绑定手机",
+    },
+  },
 ];
 
 export default routers;

@@ -37,7 +37,9 @@ const BottomNavigation: FC<IProps> = (props: any) => {
   });
 
   //选择框
-  const [Index, SetIndex] = useState(0);
+  const [Index, SetIndex] = useState(() => {
+    return location.pathname;
+  });
 
   const BorderBottomArray: any = [
     {
@@ -88,12 +90,11 @@ const BottomNavigation: FC<IProps> = (props: any) => {
                 className="selectIcon"
                 key={item.id}
                 onClick={() => {
-                  // console.log(index);
-                  SetIndex(index);
+                  SetIndex(item.path);
                   navigate(`${item.path}`);
                 }}
               >
-                {Index !== index ? (
+                {Index !== item.path ? (
                   <div className="icon">{item.UnSelectIcon}</div>
                 ) : (
                   <div className="icon">{item.SelectIcon}</div>
