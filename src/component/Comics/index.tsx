@@ -8,8 +8,7 @@ import Select from "../../view/Select";
 import Chapter from "../../view/Chapter";
 import Notify from "../../view/Notify";
 import NavBar from "../../view/NavBar";
-import NovelsAndComicsItem from "../../view/NovelsAndComicsItem";
-import NovelsAndComics from "../../view/NovelsAndComics";
+
 import End from "../../view/End";
 import List from "../../view/List";
 import FloorComponents from "../../view/FloorComponents";
@@ -19,7 +18,7 @@ interface IProps {
 }
 
 const Comics: FC<IProps> = () => {
-  const [isCartoon, SetIsCarToon] = useState(1);
+  const [isCartoon, SetIsCarToon] = useState<number>(1);
   function ClicikType(index: number) {
     SetIsCarToon(index);
   }
@@ -76,14 +75,26 @@ const Comics: FC<IProps> = () => {
       <Chapter />
       {/* 公告提示 */}
       <Notify />
+      {isCartoon == 1 ? (
+        <>
+          <List isCartoon={isCartoon} />
+          <FloorComponents isCartoon={isCartoon} />
+          <FloorComponents isCartoon={isCartoon} />
+          <FloorComponents isCartoon={isCartoon} />
+        </>
+      ) : (
+        <>
+          <List isCartoon={isCartoon} />
+          <FloorComponents isCartoon={isCartoon} />
+          <FloorComponents isCartoon={isCartoon} />
+          <FloorComponents isCartoon={isCartoon} />
+        </>
+      )}
+
       {/* Navbar */}
       <NavBar />
       {/* 。例子 */}
 
-      <List />
-      <FloorComponents />
-      <FloorComponents />
-      <FloorComponents />
       <End />
     </ComicsWrapper>
   );

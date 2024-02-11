@@ -166,6 +166,17 @@ const routers = [
       title: "绑定手机",
     },
   },
+  //FilterCriteria
+  {
+    path: "/FilterCriteria",
+    name: "FilterCriteria",
+    component: lazy(() => {
+      return import("../component/FilterCriteria");
+    }),
+    meta: {
+      title: "删选条件",
+    },
+  },
 ];
 
 export default routers;
