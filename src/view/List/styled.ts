@@ -5,7 +5,7 @@ const ListWrapper = styled.div`
     display: flex;
     align-items: flex-start;
     width: 100%;
-    margin: 0px 18px;
+    margin: 0px 7px;
     flex-wrap: wrap;
   }
   .ContentA {

@@ -2,167 +2,204 @@ import styled from "styled-components";
 
 const VideoDetailWrapper = styled.div`
   .videoItem {
-    background-color: #010f1f;
+    width: 100%;
+    height: 100vh;
 
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    overflow: hidden;
     .videoContent {
       width: 100%;
-      height: 100%;
-      position: relative;
-      background-color: #010f1f;
-      .content {
-        position: relative;
-        .video {
+      height: 220px;
+
+      .videoImag {
+        width: 100%;
+        height: 100%;
+        .img {
           width: 100%;
-          height: 220px;
-          background-color: #010f1f;
-        }
-        .open {
-          left: 165px;
-          top: -140px;
-          position: relative;
+          height: 100%;
         }
       }
+    }
+    .detail {
+      width: 100%;
+      height: 230px;
 
-      .detail {
-        position: relative;
-        top: -3px;
-        background-color: #010f1f;
+      .top {
         width: 100%;
-        height: 230px;
-        padding: 6px 10px;
-        color: #ffd682;
-        .top {
-          width: 100%;
-          height: 120px;
-          background-color: #010f1f;
-          display: flex;
+        height: 140px;
+        margin-top: 20px;
+        display: flex;
+        border-radius: 2px;
+
+        .imageTop {
+          flex: 1;
+          height: 100%;
+          width: 180px;
           border-radius: 10px;
-          .imageTop {
-            flex: 1;
-            height: 100%;
-            background-color: #010f1f;
-            border-radius: 10px;
-            color: #ffd682;
-            .image {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          .videoImag {
+            width: 160px;
+            height: 120px;
+            border-radius: 6px;
+            overflow: hidden;
+            .img {
               width: 100%;
               height: 100%;
-            }
-          }
-          .detailTop {
-            border-radius: 10px;
-            flex: 1;
-            background-color: #010f1f;
-            height: 100%;
-            border-radius: 15px;
-            padding: 0px 30px;
-            display: flex;
-            flex-direction: column;
-            margin-top: 0px;
-            align-items: flex-start;
-            justify-content: flex-start;
-            color: #ffd682;
-            .likes {
-              flex: 1;
-              font-size: 0.9em;
-              color: #ffd682;
-              display: flex;
-              justify-content: center;
-              .like-count,
-              .comment-count,
-              .heart-count {
-                margin-right: 5px;
-              }
-            }
-
-            .info {
-              flex: 1;
-              .username {
-                color: #ffd682;
-                font-size: 0.8em;
-                margin-top: 0px;
-                margin-bottom: 5px;
-              }
-
-              .like-button {
-                background-color: #ffc0cb;
-                border: none;
-                color: white;
-                padding: 5px 10px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 0.8em;
-                margin: 4px 2px;
-                cursor: pointer;
-                border-radius: 10px;
-              }
-
-              .like-buttonHover {
-                background-color: #ff69b4;
-              }
             }
           }
         }
-        .middle {
-          width: 100%;
-          height: 70px;
+        .detailTop {
+          box-sizing: border-box;
+          flex: 1;
+          width: 180px;
+          border-radius: 10px;
+          padding: 8px;
+          height: 100%;
+          border-radius: 6px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
 
-          .Title {
-            height: 30px;
-            width: 100%;
-
-            line-height: 30px;
-            padding: 0px 10px;
-            white-space: nowrap; /* 保持文本在一行内 */
-            overflow: hidden; /* 隐藏溢出的文本 */
-            text-overflow: ellipsis; /* 使用省略号表示文本溢出 */
-            display: block; /* 块级元素才能应用省略号 */
-            width: 100%; /* 设置一个宽度限制 */
-            .titleSpan {
-              font-size: 18px;
-              font-weight: 1000;
-              font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            }
-          }
-          .detailTitle {
+          .firstFloor {
             width: 100%;
             height: 40px;
-
             display: flex;
+            align-items: center; // 垂直居中
+            justify-content: space-between; // 两端对齐
 
-            .hah {
-              flex: 1;
-              height: 40px;
-              line-height: 40px;
-              text-align: center;
-            }
-            .haha {
-              flex: 1;
-              height: 100%;
-              width: 100%;
-              line-height: 40px;
-              text-align: center;
-              overflow: hidden;
-              .label {
-                display: inline-block;
-                margin: 0px 2px;
+            .counters {
+              display: flex;
+              align-items: center;
+
+              .counter {
+                display: flex;
+                align-items: center;
+                margin-left: 5px; // 两个计数器之间的间距
+
+                width: 60px;
+                .icon {
+                  display: flex;
+                  margin-right: 5px;
+                  align-items: center;
+                }
+
+                .number {
+                  // 数字的样式
+                  font-size: 10px;
+                  color: #666;
+                }
               }
+            }
+          }
+          .titleAuthor {
+            line-height: 50px;
+            height: 50px;
+            font-size: 12px;
+            margin-left: 5px;
+            color: #333;
+            white-space: nowrap; // 防止文本换行
+            overflow: hidden; // 隐藏溢出的文本
+            text-overflow: ellipsis; // 用省略号表示溢出的文本
+            max-width: 110px; // 确保标题不超过容器宽度
+            display: block; // 或者使用inline-block，取决于布局需求
+          }
+          .title {
+            margin-left: 5px;
+            height: 40px;
+            // 标题的样式
+            font-size: 20px;
+            color: #333;
+            white-space: nowrap; // 防止文本换行
+            overflow: hidden; // 隐藏溢出的文本
+            text-overflow: ellipsis; // 用省略号表示溢出的文本
+            max-width: 140px; // 确保标题不超过容器宽度
+            display: block; // 或者使用inline-block，取决于布局需求
+          }
+        }
+      }
+      .middle {
+        width: 100%;
+        height: 50px;
+
+        display: flex;
+        align-items: center;
+        padding: 0px 6px;
+        justify-content: space-between;
+        .Label {
+          width: 200px;
+          height: 30px;
+          font-size: 14px;
+          /* background-color: #ff4081; */
+          display: flex;
+          align-items: center;
+          .LabelItem {
+            margin-right: 8px;
+            width: 50px;
+            height: 25px;
+            background-color: rgb(255, 239, 246);
+            color: RGBA(178, 142, 158, 1);
+            text-align: center;
+            line-height: 25px;
+            border-radius: 6px;
+          }
+        }
+        .Collect {
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+    .content {
+      width: 100%;
+      height: 60px; // 设定高度
+      padding: 0 10px; // 增加两边的间隔
+      overflow: hidden;
+      margin-bottom: 10px;
+
+      .type {
+        width: 100%;
+        height: 60px; // 设定高度
+        overflow: hidden; // 隐藏溢出的内容
+        display: flex;
+        justify-content: flex-start; // 开始位置对齐
+        align-items: center;
+
+        .ul {
+          width: 100%;
+          .list {
+            min-width: 60px; // 最小宽度，根据内容调整
+            height: 60px; // 高度
+            background-color: #f2f2f2; // 设置为灰色背景
+            margin-right: 10px; // 项目间距
+            border-radius: 10px; // 圆角
+            text-align: center;
+            line-height: 60px; // 行高与高度相同，使文字垂直居中
+            color: #333; // 文字颜色
+            flex-shrink: 0; // 防止压缩
+            position: relative;
+            &.active {
+              background-color: #ff3a4d; // 激活状态的背景色
+              color: white; // 激活状态的文字颜色
+            }
+            .vip {
+              position: absolute;
+              top: -15px;
+              right: 5px;
             }
           }
         }
       }
     }
-    .other {
-      background-color: #010f1f;
+    .ContentA {
+      display: flex;
+      align-items: center;
+
       width: 100%;
-      min-height: 150px;
-      .videoList {
-        width: 100%;
-        display: flex;
-        justify-content: flex-start;
-        flex-wrap: wrap;
-        padding-top: 4px;
-      }
+      flex-wrap: wrap;
     }
   }
 `;

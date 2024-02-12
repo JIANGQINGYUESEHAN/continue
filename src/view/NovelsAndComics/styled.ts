@@ -3,7 +3,7 @@ import styled from "styled-components";
 const NovelsWrapper = styled.div`
   .product-item {
     position: relative;
-    width: 120px;
+    width: 30vw;
     margin: 5px;
     height: 180px;
     border-radius: 4px;
@@ -26,7 +26,7 @@ const NovelsWrapper = styled.div`
     }
     .ItemVip {
       position: absolute;
-      right: 10px;
+      right: 16px;
       top: 0px;
       width: 20px;
       height: 20px;

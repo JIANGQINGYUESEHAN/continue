@@ -1,6 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { memo } from "react";
 import type { FC, ReactNode } from "react";
 import VideoDetailWrapper from "./styled";
+import NavBar from "../../view/NavBar";
+import SvgIcon from "../SvgIcon";
+import { Swiper } from "antd-mobile";
 import VideoItem from "../../view/VideoItem";
 
 interface IProps {
@@ -8,62 +12,114 @@ interface IProps {
 }
 
 const VideoDetail: FC<IProps> = () => {
+  const SwiperArray: any = [
+    "全部",
+    "玩具",
+    "衣服",
+    "图书",
+    "家居",
+    "鞋帽",
+    "食品",
+    "电器",
+    "美妆",
+    "户外",
+  ];
   return (
     <VideoDetailWrapper>
+      <NavBar IsShowChildren={false} middle="视频" />
       <div className="videoItem">
         <div className="videoContent">
-          <div className="content">
-            <video className="video"></video>
-
-            <div className="open"></div>
+          <div className="videoImag">
+            <img
+              src="https://www.cooer.cc/uploads/arctimg/20230802/1690943123276..jpg"
+              alt=""
+              className="img"
+            />
           </div>
-
-          <div className="detail">
-            <div className="top">
-              <div className="imageTop"></div>
-              <div className="detailTop">
-                <div className="likes">
-                  <span className="like-count"></span>
-                  <span className="comment-count"></span>
-                  <span className="heart-count"></span>
-                </div>
-                <div className="info">
-                  <div className="username">作者</div>
-                </div>
-                <div className="info">
-                  <div>喜欢</div>
-                </div>
+        </div>
+        <div className="detail">
+          <div className="top">
+            <div className="imageTop">
+              <div className="videoImag">
+                <img
+                  src="https://www.cooer.cc/uploads/arctimg/20230802/1690943123276..jpg"
+                  alt=""
+                  className="img"
+                />
               </div>
             </div>
-            <div className="middle">
-              <div className="Title">
-                <span className="titleSpan"></span>
-              </div>
-              <div className="detailTitle">
-                <div className="hah">
-                  <span> 上线时间:</span>
-                  <span> </span>
+            <div className="detailTop">
+              <div className="firstFloor">
+                <div className="counters">
+                  <div className="counter">
+                    <span className="icon">
+                      <SvgIcon name="eyes" />
+                    </span>
+                    <span className="number">234</span>
+                  </div>
+                  <div className="counter">
+                    <span className="icon">
+                      <SvgIcon name="love" />
+                    </span>
+                    <span className="number">128</span>
+                  </div>
+                  <div className="counter">
+                    <span className="icon">
+                      <SvgIcon name="love" />
+                    </span>
+                    <span className="number">128</span>
+                  </div>
                 </div>
-                <div className="haha">
-                  <span> 相关标签:</span>
-                </div>
               </div>
+              <span className="titleAuthor">作者：统计概览</span>
+              <span className="title">统计概览 统计概览</span>
             </div>
           </div>
-          <div className="other" v-if="Detail?.resource_type == 4">
-            <div className="videoList">
-              <VideoItem />
+          <div className="middle">
+            <div className="Label">
+              <div className="LabelItem">
+                <span>都市</span>
+              </div>
+              <div className="LabelItem">
+                <span>都市</span>
+              </div>
+              <div className="LabelItem">
+                <span>都市</span>
+              </div>
+            </div>
+            <div className="Collect">
+              <SvgIcon name="dianzan" size={100} />
             </div>
           </div>
         </div>
-
-        <div className="other">
-          <div className="videoList">
-            <VideoItem />
-            <VideoItem />
-            <VideoItem />
-            <VideoItem />
+        <div className="content">
+          <div className="type">
+            <Swiper
+              autoplay={false}
+              slideSize={20} // 根据视觉效果调整，保证两边有间隔
+              trackOffset={10} // 两边的间隔
+              indicator={() => null}
+              className="ul"
+            >
+              {SwiperArray.map((item: any, index: number) => {
+                return (
+                  <Swiper.Item key={index}>
+                    <li className={`list ${index === 0 ? "active" : ""}`}>
+                      <div className="vip">
+                        <SvgIcon name="VIPDetail" size={24} />
+                      </div>
+                      <span className="title">{index}</span>
+                    </li>
+                  </Swiper.Item>
+                );
+              })}
+            </Swiper>
           </div>
+        </div>
+        <NavBar left="更多" />
+        <div className="ContentA">
+          <VideoItem />
+          <VideoItem />
         </div>
       </div>
     </VideoDetailWrapper>

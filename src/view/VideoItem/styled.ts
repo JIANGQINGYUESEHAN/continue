@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const VideoItemWrapper = styled.div`
   .videoItem {
-    width: 100%;
+    width: 47vw;
     height: 170px;
     margin: 0px 5px;
     display: flex;
@@ -10,11 +10,11 @@ const VideoItemWrapper = styled.div`
     justify-content: center;
     align-items: center;
     overflow: hidden;
-
+    /* background-color: red; */
     border-radius: 10px;
 
     .videoImag {
-      width: 200px;
+      width: 45vw;
       height: 120px;
       position: relative;
       border-radius: 10px;
@@ -44,7 +44,7 @@ const VideoItemWrapper = styled.div`
       }
       .ItemFire {
         position: relative;
-        right: -160px;
+        right: -140px;
         bottom: 55px;
         width: 40px;
         height: 40px;
@@ -66,6 +66,7 @@ const VideoItemWrapper = styled.div`
       top: 0px;
       display: flex;
       flex-direction: column;
+      padding: 0px 10px;
       .ItemName {
         width: 100%;
         flex: 1;
