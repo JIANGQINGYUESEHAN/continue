@@ -187,6 +187,36 @@ const routers = [
       title: "删选条件",
     },
   },
+  {
+    path: "/history",
+    name: "History",
+    component: lazy(() => {
+      return import("../component/History");
+    }),
+    meta: {
+      title: "删选条件",
+    },
+  },
+  {
+    path: "/fixpassword",
+    name: "fixpassword",
+    component: lazy(() => {
+      return import("../component/FixPassword");
+    }),
+    meta: {
+      title: "修改密码",
+    },
+  },
+  {
+    path: "/fixperson",
+    name: "fixperson",
+    component: lazy(() => {
+      return import("../component/FixPerson");
+    }),
+    meta: {
+      title: "修改用户信息",
+    },
+  },
 ];
 
 export default routers;

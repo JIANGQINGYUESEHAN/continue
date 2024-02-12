@@ -1,21 +1,21 @@
 import React, { memo, useState } from "react";
 import type { FC, ReactNode } from "react";
-import SvgIcon from "../SvgIcon";
-import CollectWrapper from "./styled";
 import NavBar from "../../view/NavBar";
+import SvgIcon from "../SvgIcon";
+import HistoryWrapper from "./styled";
 
 interface IProps {
   children?: ReactNode;
 }
 
-const Collect: FC<IProps> = () => {
+const History: FC<IProps> = () => {
   const [isDetail, SetisDetail] = useState(1);
   function ClicikType(index: number) {
     SetisDetail(index);
   }
   return (
-    <CollectWrapper>
-      <NavBar IsShowChildren={false} middle="收藏" />
+    <HistoryWrapper>
+      <NavBar IsShowChildren={false} middle="历史" />
       <div className="Select">
         {isDetail == 1 ? (
           <div className="common">
@@ -106,8 +106,8 @@ const Collect: FC<IProps> = () => {
           </div>
         )}
       </div>
-    </CollectWrapper>
+    </HistoryWrapper>
   );
 };
 
-export default memo(Collect);
+export default memo(History);
