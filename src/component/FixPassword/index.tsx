@@ -1,14 +1,27 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { memo } from "react";
 import type { FC, ReactNode } from "react";
 import FixPasswordWrapper from "./styled";
 
-import { Form, Input } from "antd-mobile";
+import { Form, Input } from "antd";
 import NavBar from "../../view/NavBar";
 
 interface IProps {
   children?: ReactNode;
 }
+const onFinish = (values: any) => {
+  console.log("Success:", values);
+};
 
+const onFinishFailed = (errorInfo: any) => {
+  console.log("Failed:", errorInfo);
+};
+
+type FieldType = {
+  username?: string;
+  password?: string;
+  remember?: string;
+};
 const FixPassword: FC<IProps> = () => {
   return (
     <FixPasswordWrapper>
@@ -37,18 +50,31 @@ const FixPassword: FC<IProps> = () => {
         </div>
       </div>
       <div className="Content">
-        <Form>
-          <div className="old common">
-            <Form.Item label="密码" name="password">
-              <Input placeholder="请输入密码" />
-            </Form.Item>
-          </div>
+        <Form
+          name="basic"
+          labelCol={{ span: 8 }}
+          wrapperCol={{ span: 16 }}
+          style={{ maxWidth: 600 }}
+          initialValues={{ remember: true }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          autoComplete="off"
+        >
+          <Form.Item<FieldType>
+            label="Username"
+            name="username"
+            rules={[{ required: true, message: "Please input your username!" }]}
+          >
+            <Input />
+          </Form.Item>
 
-          <div className="old common">
-            <Form.Item label="密码" name="password">
-              <Input placeholder="请输入密码" clearable type="password" />
-            </Form.Item>
-          </div>
+          <Form.Item<FieldType>
+            label="Password"
+            name="password"
+            rules={[{ required: true, message: "Please input your password!" }]}
+          >
+            <Input.Password />
+          </Form.Item>
         </Form>
       </div>
       <div className="Submit">
