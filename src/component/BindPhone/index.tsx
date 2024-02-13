@@ -65,7 +65,14 @@ const BindPhone: FC<IProps> = () => {
             name="username"
             rules={[{ required: true, message: "Please input your username!" }]}
           >
-            <Input />
+            <Input
+              size="large"
+              style={{
+                width: "300px",
+                height: " 50px",
+                backgroundColor: "rgb(246, 248, 255)",
+              }}
+            />
           </Form.Item>
 
           <Form.Item<FieldType>
@@ -73,12 +80,33 @@ const BindPhone: FC<IProps> = () => {
             name="password"
             rules={[{ required: true, message: "Please input your password!" }]}
           >
-            <Input.Password />
+            <Input.Password
+              size="large"
+              style={{
+                width: "300px",
+                height: " 50px",
+                backgroundColor: "rgb(246, 248, 255)",
+              }}
+            />
+          </Form.Item>
+          <Form.Item<FieldType>
+            label="Password"
+            name="password"
+            rules={[{ required: true, message: "Please input your password!" }]}
+          >
+            <Input.Password
+              size="large"
+              style={{
+                width: "300px",
+                height: " 50px",
+                backgroundColor: "rgb(246, 248, 255)",
+              }}
+            />
           </Form.Item>
         </Form>
       </div>
       <div className="Submit">
-        <span>修改密码</span>
+        <span>立即绑定</span>
       </div>
     </BindPhoneWrapper>
   );

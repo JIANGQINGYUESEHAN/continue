@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const BindPhoneWrapper = styled.div`
+const FixPersonWrapper = styled.div`
   overflow: hidden;
   min-height: 100vh;
   background: url(https://lanhu-dds-backend.oss-cn-beijing.aliyuncs.com/merge_image/imgs/2ec00cf1db6f4ed397b3167d105929b4_mergeImage.png)
@@ -10,6 +10,8 @@ const BindPhoneWrapper = styled.div`
   .userInfo {
     width: 100%;
     height: 180px;
+    margin-top: 10px;
+
     display: flex;
     align-items: center;
     padding: 0px 20px;
@@ -81,13 +83,81 @@ const BindPhoneWrapper = styled.div`
     left: 50%;
     transform: translateX(-50%);
     display: flex;
-    justify-content: center; /* 水平居中 */
+
     padding: 20px;
-    .Form {
+    flex-direction: column;
+    .nikename {
+      width: 100%;
+      height: 60px;
       display: flex;
-      justify-content: center; /* 水平居中 */
-      padding: 40px;
-      flex-direction: column;
+      justify-content: space-between;
+      .left {
+        width: 80px;
+        height: 60px;
+        line-height: 60px;
+        padding-left: 10px;
+        font-weight: 300;
+        font-size: 16px;
+      }
+      .right {
+        width: 160px;
+        height: 60px;
+        line-height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center; /* 新增：垂直居中所有子项 */
+        .image {
+          width: 60px;
+          height: 60px;
+          background-color: red;
+          border-radius: 50%;
+          overflow: hidden;
+          .img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+        .Input {
+          width: 160px;
+          height: 40px;
+          border: none !important;
+          font-size: 16px; /* 设置为你想要的大小 */
+          padding-left: 10px;
+        }
+      }
+    }
+    .nikenameA {
+      width: 100%;
+      height: 60px;
+      display: flex;
+      justify-content: space-between;
+      .left {
+        width: 80px;
+        height: 60px;
+        line-height: 60px;
+        padding-left: 10px;
+        font-weight: 300;
+        font-size: 16px;
+      }
+      .right {
+        width: 160px;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center; /* 新增：垂直居中所有子项 */
+        .people {
+          display: flex; /* 使用Flexbox对齐复选框和文本 */
+          align-items: center; /* 垂直居中对齐 */
+          margin-left: 10px; /* 维持原有的左边距 */
+          /* 如果需要，也可以直接为复选框和文本设置样式 */
+          .InputCheckbox,
+          .people span {
+            margin: 0;
+            display: flex;
+            align-items: center;
+          }
+        }
+      }
     }
   }
   .Submit {
@@ -105,4 +175,4 @@ const BindPhoneWrapper = styled.div`
     font-size: 20px;
   }
 `;
-export default BindPhoneWrapper;
+export default FixPersonWrapper;

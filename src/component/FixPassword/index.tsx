@@ -54,18 +54,19 @@ const FixPassword: FC<IProps> = () => {
           name="basic"
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
-          style={{ maxWidth: 600 }}
+          style={{ maxWidth: 400 }}
           initialValues={{ remember: true }}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
           autoComplete="off"
+          className="Form"
         >
           <Form.Item<FieldType>
             label="Username"
             name="username"
             rules={[{ required: true, message: "Please input your username!" }]}
           >
-            <Input />
+            <Input size="large" style={{ width: "300px", height: " 50px" }} />
           </Form.Item>
 
           <Form.Item<FieldType>
@@ -73,7 +74,10 @@ const FixPassword: FC<IProps> = () => {
             name="password"
             rules={[{ required: true, message: "Please input your password!" }]}
           >
-            <Input.Password />
+            <Input.Password
+              size="large"
+              style={{ width: "300px", height: " 50px" }}
+            />
           </Form.Item>
         </Form>
       </div>

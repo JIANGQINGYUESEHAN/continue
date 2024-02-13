@@ -25,7 +25,7 @@ const FixPasswordWrapper = styled.div`
         height: 140px;
         width: 140px;
         border-radius: 50%;
-        background-color: rebeccapurple;
+
         overflow: hidden;
         border: 1px solid #ccc;
         .img {
@@ -82,13 +82,14 @@ const FixPasswordWrapper = styled.div`
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    .common {
-      flex: 1;
-      padding: 0px 4px;
-      background-color: rebeccapurple;
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    padding: 20px;
+    .Form {
       display: flex;
-      align-items: center;
-      justify-content: center;
+      justify-content: center; /* 水平居中 */
+      padding: 40px;
+      flex-direction: column;
     }
   }
   .Submit {
