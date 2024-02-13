@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import type { FC, ReactNode } from "react";
 import UserWrapper from "./styled";
 import SvgIcon from "../SvgIcon";
 import { useNavigate } from "react-router-dom";
-
+import { Divider, Modal } from "antd-mobile";
+import qiandaoImage from "../../assets/img/qiandao.png";
 interface IProps {
   children?: ReactNode;
 }
@@ -68,6 +69,7 @@ const User: FC<IProps> = () => {
       name: "保存账号密码",
     },
   ];
+  const [visible, setVisible] = useState(false);
   return (
     <UserWrapper>
       <div className="content">
@@ -90,7 +92,12 @@ const User: FC<IProps> = () => {
                   <span>222222222222222</span>
                 </div>
               </div>
-              <div className="right">
+              <div
+                className="right"
+                onClick={() => {
+                  setVisible(true);
+                }}
+              >
                 <SvgIcon name="Signin" size={40} />
                 <h3>签到</h3>
               </div>
@@ -164,6 +171,29 @@ const User: FC<IProps> = () => {
           <SvgIcon width={110} height={150} name="friend" />
         </div>
       </div>
+      {/* 弹出框 */}
+      <Modal
+        visible={visible}
+        closeOnAction
+        onClose={() => {
+          setVisible(false);
+        }}
+        closeOnMaskClick={true}
+        content={
+          <>
+            <div
+              style={{
+                height: "65vh",
+                width: "70vw",
+                backgroundImage: `url(${qiandaoImage})`,
+                backgroundPosition: "center center",
+                backgroundRepeat: "no-repeat",
+              }}
+              className="bigger"
+            ></div>
+          </>
+        }
+      ></Modal>
     </UserWrapper>
   );
 };

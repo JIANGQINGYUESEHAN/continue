@@ -206,5 +206,13 @@ const UserWrapper = styled.div`
       margin: 0px 10px;
     }
   }
+
+  .bigger {
+    .big {
+      background-color: rebeccapurple;
+      height: 100px !important;
+      width: 100px !important;
+    }
+  }
 `;
 export default UserWrapper;
