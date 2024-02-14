@@ -183,14 +183,84 @@ const User: FC<IProps> = () => {
           <>
             <div
               style={{
-                height: "65vh",
-                width: "70vw",
+                height: "12rem",
+                width: "6.8rem",
                 backgroundImage: `url(${qiandaoImage})`,
                 backgroundPosition: "center center",
                 backgroundRepeat: "no-repeat",
               }}
               className="bigger"
-            ></div>
+            >
+              <div className="content">
+                <div className="big">
+                  <div className="item">
+                    <div className="day">
+                      <span className="title">第1 天</span>
+                    </div>
+
+                    <div className="bottoma">
+                      <span className="bottomTitle">已签到</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="big">
+                  <div className="item">
+                    <div className="day">
+                      <span className="title">第1 天</span>
+                    </div>
+
+                    <div className="bottoma">
+                      <span className="bottomTitle">已签到</span>
+                    </div>
+                  </div>
+                </div>{" "}
+                <div className="big">
+                  <div className="item">
+                    <div className="day">
+                      <span className="title">第1 天</span>
+                    </div>
+
+                    <div className="bottoma">
+                      <span className="bottomTitle">已签到</span>
+                    </div>
+                  </div>
+                </div>{" "}
+                <div className="big">
+                  <div className="item">
+                    <div className="day">
+                      <span className="title">第1 天</span>
+                    </div>
+
+                    <div className="bottoma">
+                      <span className="bottomTitle">已签到</span>
+                    </div>
+                  </div>
+                </div>{" "}
+                <div className="big">
+                  <div className="item">
+                    <div className="day">
+                      <span className="title">第1 天</span>
+                    </div>
+
+                    <div className="bottoma">
+                      <span className="bottomTitle">已签到</span>
+                    </div>
+                  </div>
+                </div>{" "}
+                <div className="big">
+                  <div className="item">
+                    <div className="day">
+                      <span className="title">第1 天</span>
+                    </div>
+
+                    <div className="bottoma">
+                      <span className="bottomTitle">已签到</span>
+                    </div>
+                  </div>
+                </div>
+                <div className="big"></div>
+              </div>
+            </div>
           </>
         }
       ></Modal>

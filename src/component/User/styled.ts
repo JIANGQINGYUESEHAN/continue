@@ -208,10 +208,71 @@ const UserWrapper = styled.div`
   }
 
   .bigger {
-    .big {
-      background-color: rebeccapurple;
-      height: 100px !important;
-      width: 100px !important;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    .content {
+      width: 6.5rem;
+      height: 8rem;
+      position: relative;
+      top: 61%;
+      /* left: 50%; */
+      transform: translateY(-50%);
+      /* transform: translateX(-50%); */
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      background-color: red;
+      .big {
+        height: 2.4rem !important;
+        width: 1.8rem !important;
+        margin: 0px 4px;
+        position: relative;
+        .item {
+          width: 100%;
+          height: 100%;
+          background-color: #1d2541;
+          background-image: url(https://mzsmsm03.com/static/images/decoration/signin-item.png);
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
+          border-radius: 10px;
+          position: relative;
+          overflow: hidden;
+          .day {
+            width: 100%;
+            height: 0.26rem;
+            text-align: center;
+            .title {
+              font-size: 12px;
+              color: black;
+              line-height: 30px;
+            }
+          }
+          .bottoma {
+            /* background-color: red; */
+            width: 1.8rem;
+            height: 0.4rem;
+            text-align: center;
+            line-height: 0.26rem;
+            position: absolute;
+            left: 0px;
+            bottom: 0px;
+            z-index: 99999;
+            .bottomTitle {
+              font-size: 12px;
+              color: red;
+            }
+          }
+        }
+      }
+      .big:nth-child(7) {
+        background-color: yellow;
+        height: 1.6rem !important;
+        width: 3rem !important;
+        margin: 0px 4px;
+      }
     }
   }
 `;
