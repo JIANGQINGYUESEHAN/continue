@@ -1,17 +1,33 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { memo, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import type { FC, ReactNode } from "react";
 import UserWrapper from "./styled";
 import SvgIcon from "../SvgIcon";
 import { useNavigate } from "react-router-dom";
 import { Divider, Modal } from "antd-mobile";
 import qiandaoImage from "../../assets/img/qiandao.png";
+import action from "../../store/action";
+import { connect, useDispatch } from "react-redux";
+import BaseAction from "../../store/action/BaseAction";
 interface IProps {
   children?: ReactNode;
+  info?: any;
 }
 
-const User: FC<IProps> = () => {
+const User: FC<IProps> = (props) => {
+  const Dispatch = useDispatch();
+  const Navigate = useNavigate();
+  //初始化用户信息
+  useEffect(() => {
+    (async () => {
+      const rea = await BaseAction.queryUserInfoAsyncAction();
+      Dispatch(rea);
+    })();
+  }, []);
+  const { info } = props;
+  console.log(info);
+
   const navigate = useNavigate();
   const IconArray: any = [
     {
@@ -74,22 +90,23 @@ const User: FC<IProps> = () => {
     <UserWrapper>
       <div className="content">
         <div className="vipInfo">
-          <div className="top">
+          <div
+            className="top"
+            onClick={() => {
+              navigate("/loginPassword");
+            }}
+          >
             <div className="imag">
-              <img
-                src="https://www.cooer.cc/uploads/arctimg/20230418/1681794793790..jpg"
-                alt="头像"
-                className="img"
-              />
+              <img src={info?.head_portrait} alt="头像" className="img" />
             </div>
             <div className="Info">
               <div className="left">
                 <div className="userName">
-                  <span> 啊哈哈哈啊哈哈哈</span>
+                  <span> {info?.nickname}</span>
                 </div>
                 <div className="userNikename">
                   <span>账号:</span>
-                  <span>222222222222222</span>
+                  <span>{info?.uid}</span>
                 </div>
               </div>
               <div
@@ -106,13 +123,19 @@ const User: FC<IProps> = () => {
           <div className="vipIcon">
             <div className="fire">
               <div className="FireIcon">
-                <span className="firenum"> 24</span>
+                <span className="firenum"> {info.spark_balance}</span>
                 <h4>火花</h4>
               </div>
             </div>
             <div className="vipRight">
               <div className="vipIcon">
-                <SvgIcon width={250} height={60} name="startVip" />
+                {info.is_vip == 2 ? (
+                  <SvgIcon width={250} height={60} name="startVip" />
+                ) : (
+                  <SvgIcon width={250} height={60} name="already" />
+                )}
+
+                {/* */}
               </div>
             </div>
           </div>
@@ -213,7 +236,7 @@ const User: FC<IProps> = () => {
                       <span className="bottomTitle">已签到</span>
                     </div>
                   </div>
-                </div>{" "}
+                </div>
                 <div className="big">
                   <div className="item">
                     <div className="day">
@@ -267,5 +290,6 @@ const User: FC<IProps> = () => {
     </UserWrapper>
   );
 };
-
-export default memo(User);
+const mapStateToProps = (state: any) => state.base;
+const mapDispatchToProps = action.Base;
+export default connect(mapStateToProps, mapDispatchToProps)(memo(User));

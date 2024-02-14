@@ -203,8 +203,7 @@ const NovelAndComicDetailsWrapper = styled.div`
     }
     .Content {
       display: flex;
-      margin: 0px 14px;
-      align-items: flex-start;
+      align-items: center;
       width: 100%;
       flex-wrap: wrap;
     }
