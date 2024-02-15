@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import hyRequest from "..";
 
 //注册非正式用户
@@ -92,6 +93,46 @@ export async function VerificationCodeLogin(
   };
   const res = await hyRequest.post({
     url: "/api/v1/auth/login",
+    data,
+  });
+  return res;
+}
+
+//修改密码
+export async function changePassword(newPassword: string, OldPassword: string) {
+  const data = {
+    new_password: newPassword,
+    old_password: OldPassword,
+  };
+  const res = await hyRequest.post({
+    url: "/api/v1/auth/resetPwd",
+    data,
+  });
+
+  return res;
+}
+//用户头像列表
+export async function AvatarList() {
+  const res = await hyRequest.get({
+    url: "/api/v1/common/headPortraitList",
+  });
+  return res;
+}
+//修改用户信息
+export async function ModifyUerInformation(
+  nickname: string,
+  sex: any,
+  head_portrait_id: string
+) {
+  const data = {
+    nickname,
+    sex: sex * 1,
+    head_portrait_id,
+  };
+  // console.log(data);
+
+  const res = await hyRequest.post({
+    url: "/api/v1/userinfo/updateBaseInfo",
     data,
   });
   return res;

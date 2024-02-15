@@ -76,7 +76,7 @@ const FixPersonWrapper = styled.div`
   }
   .Content {
     width: 94%;
-    height: 400px;
+    height: 500px;
     background: linear-gradient(to bottom, white, rgba(255, 255, 255, 0));
     border-radius: 10px;
     position: relative;
@@ -159,10 +159,51 @@ const FixPersonWrapper = styled.div`
         }
       }
     }
+    .headContent {
+      /* background-color: red; */
+      width: 100%;
+      /* height: 360px; */
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      .item {
+        width: 90px;
+        height: 90px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .dot {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background-color: rebeccapurple;
+          position: relative;
+          right: -59px;
+          top: -20px;
+          z-index: 99;
+        }
+        .image {
+          margin: 4px;
+          width: 60px;
+          height: 60px;
+          /* background-color: red; */
+          border-radius: 50%;
+          overflow: hidden;
+          position: relative;
+
+          .img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
   }
   .Submit {
-    position: fixed;
-    bottom: 50px;
+    position: relative;
+    bottom: 0px;
     left: 50%;
     transform: translateX(-50%);
     width: 300px;

@@ -25,7 +25,7 @@ const Set: FC<IProps> = () => {
           <div className="icon">
             <SvgIcon name="password" size={25} />
           </div>
-          <span className="text">ddd</span>
+          <span className="text">修改密码</span>
         </div>
       </div>
       <div
@@ -38,7 +38,7 @@ const Set: FC<IProps> = () => {
           <div className="icon">
             <SvgIcon name="person" size={25} />
           </div>
-          <span className="text">ddd</span>
+          <span className="text">修改用户信息</span>
         </div>
       </div>
     </SetWrapper>
