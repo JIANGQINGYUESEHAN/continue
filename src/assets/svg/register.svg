@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="691px" height="96px" viewBox="0 0 691 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 4</title>
+    <defs>
+        <path d="M20,0 L670,0 C681.045695,-2.02906125e-15 690,8.954305 690,20 L690,96 L690,96 L0,96 L0,20 C-1.3527075e-15,8.954305 8.954305,5.58177493e-15 20,0 Z" id="path-1"></path>
+        <filter x="-0.1%" y="-0.5%" width="100.1%" height="101.0%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="1" dy="1" in="SourceAlpha" result="shadowOffsetInner1"></feOffset>
+            <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
+            <feColorMatrix values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 1 0" type="matrix" in="shadowInnerInner1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="密码登陆" transform="translate(-30.000000, -389.000000)">
+            <g id="编组-4" transform="translate(30.000000, 389.000000)">
+                <g id="矩形">
+                    <use fill="#F9E8E8" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                </g>
+                <path d="M269,96 L269,20 C269,8.954305 277.954305,5.58177493e-15 289,0 L580.052385,0 C596.985902,1.82056454e-14 612.900027,8.09146625 622.876784,21.7738757 L671.411,88.335 L671.716813,88.656187 C674.400461,91.4546958 676.670027,93.1599013 678.52551,93.7718036 C680.455213,94.4081821 684.382505,95.1509142 690.307385,96 L269,96 Z" id="形状结合" fill="#FFFFFF" transform="translate(479.653693, 48.000000) scale(-1, 1) translate(-479.653693, -48.000000) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

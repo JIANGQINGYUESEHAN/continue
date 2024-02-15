@@ -12,3 +12,19 @@ export function getBaesInfo() {
     url: "/api/v1/userinfo/me",
   });
 }
+//获取验证码
+export async function getVerificationCodeBind(receiver: string) {
+  const data = {
+    scene: 3,
+    area_code: 86,
+    receiver: `${receiver}`,
+  };
+
+  const res = await hyRequest.post({
+    url: "/api/v1/auth/sendCode",
+    data,
+  });
+
+  return res;
+}
+//绑定手机号

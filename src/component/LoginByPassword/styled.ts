@@ -23,5 +23,90 @@ const LoginByPasswordWrapper = styled.div`
       line-height: 100px;
     }
   }
+  .change {
+    width: 100%;
+    height: 80px;
+    margin-top: 20px;
+    padding: 0px 20px;
+    display: flex;
+    justify-content: center;
+  }
+  .repeat {
+    padding: 0px 20px;
+    width: 100%;
+    height: 80px;
+    /* background-color: firebrick; */
+    position: relative;
+    top: -80px;
+    /* opacity: 0.4; */
+    display: flex;
+
+    .left {
+      flex: 1;
+      height: 100%;
+      /* background-color: red; */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 300;
+      display: flex;
+      flex-direction: column;
+      .active {
+        width: 20px;
+        height: 4px;
+        background-color: red;
+        border-radius: 4px;
+      }
+    }
+    .right {
+      flex: 1;
+      height: 100%;
+      /* background-color: rebeccapurple; */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 300;
+      flex-direction: column;
+      .active {
+        width: 20px;
+        height: 4px;
+        background-color: red;
+        border-radius: 4px;
+      }
+    }
+  }
+  .Content {
+    width: 90%;
+    height: 400px;
+    background: linear-gradient(to bottom, white, rgba(255, 255, 255, 0));
+    /* border-radius: 10px; */
+    position: relative;
+    left: 50%;
+    top: -96px;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    padding: 20px;
+    .Form {
+      display: flex;
+      justify-content: center; /* 水平居中 */
+      padding: 40px;
+      flex-direction: column;
+    }
+  }
+  .Submit {
+    position: relative;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 60px;
+    background-color: rgb(255, 49, 159);
+    border-radius: 60px;
+    text-align: center;
+    line-height: 60px;
+    color: white;
+    font-size: 20px;
+  }
 `;
 export default LoginByPasswordWrapper;

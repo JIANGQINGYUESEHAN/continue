@@ -1,16 +1,17 @@
+/* eslint-disable no-empty-pattern */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { memo } from "react";
+import React, { memo, useEffect, useState } from "react";
 import type { FC, ReactNode } from "react";
 import BindPhoneWrapper from "./styled";
 import { Form, Input } from "antd";
 import NavBar from "../../view/NavBar";
+import { connect } from "react-redux";
+import action from "../../store/action";
 
 interface IProps {
   children?: ReactNode;
+  info?: any;
 }
-const onFinish = (values: any) => {
-  console.log("Success:", values);
-};
 
 const onFinishFailed = (errorInfo: any) => {
   console.log("Failed:", errorInfo);
@@ -20,32 +21,82 @@ type FieldType = {
   username?: string;
   password?: string;
   remember?: string;
+  TestCode?: string;
 };
-const BindPhone: FC<IProps> = () => {
+const BindPhone: FC<IProps> = (props) => {
+  const { info } = props;
+  console.log(info);
+
+  //btn显示显示的文本
+  const [num, setNum] = useState(60);
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [btnText, setBtnText] = useState("点击发送验证码");
+  const [isRunning, setIsRunning] = useState(false);
+  const [isPhoneValid, setIsPhoneValid] = useState(false);
+  useEffect(() => {
+    setIsPhoneValid(/^1[3-9]\d{9}$/.test(phoneNumber));
+  }, [phoneNumber]);
+  useEffect(() => {
+    let timer: any;
+    if (isRunning) {
+      timer = setInterval(() => {
+        setNum((prevNum) => {
+          if (prevNum <= 1) {
+            clearInterval(timer);
+            setBtnText("点击发送验证码");
+            setIsRunning(false);
+            return 60; // 重置秒数
+          } else {
+            return prevNum - 1; // 更新秒数
+          }
+        });
+      }, 1000);
+    }
+    // 组件卸载时清理定时器
+    return () => clearInterval(timer);
+  }, [isRunning]);
+
+  const handleClick = () => {
+    if (!isPhoneValid) {
+      return console.log("请输入正确的收集号");
+    }
+    if (!isRunning) {
+      setIsRunning(true); // 开始倒计时
+      setBtnText(`${num}秒后重新发送`);
+    }
+    //发送请求
+    //提示请求验证码已经发送
+  };
+
+  // 更新按钮文本
+  useEffect(() => {
+    if (isRunning) {
+      setBtnText(`${num}秒后重新发送`);
+    }
+  }, [num, isRunning]);
+  //发送请求
+  const onFinish = (values: any) => {
+    console.log("Success:", values);
+  };
   return (
     <BindPhoneWrapper>
-      {" "}
       <NavBar IsShowChildren={false} middle="修改密码" />
       <div className="userInfo">
         <div className="avater">
           <div className="image">
             <div className="img">
-              <img
-                src="	https://www.cooer.cc/uploads/arctimg/20230418/1681794794781..jpg"
-                alt=""
-                className="img"
-              />
+              <img src={info!.head_portrait} alt="" className="img" />
             </div>
           </div>
         </div>
         <div className="title">
           <div className="info">
             <span className="user">账号:</span>&nbsp;
-            <span className="password">ssss</span>
+            <span className="password">{info!.nickname}</span>
           </div>
           <div className="infoA">
             <span className="userA">密码:</span>&nbsp;
-            <span className="passwordA">sssss</span>
+            <span className="passwordA">{info!.password}</span>
           </div>
         </div>
       </div>
@@ -59,11 +110,22 @@ const BindPhone: FC<IProps> = () => {
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
           autoComplete="off"
+          className="Form"
         >
           <Form.Item<FieldType>
-            label="Username"
+            label="手机号"
             name="username"
-            rules={[{ required: true, message: "Please input your username!" }]}
+            rules={[
+              { required: true, message: "Please input your username!" },
+              ({}) => ({
+                validator(_, value) {
+                  if (!value || /^1[3-9]\d{9}$/.test(value)) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(new Error("请输入正确的手机号"));
+                },
+              }),
+            ]}
           >
             <Input
               size="large"
@@ -72,13 +134,24 @@ const BindPhone: FC<IProps> = () => {
                 height: " 50px",
                 backgroundColor: "rgb(246, 248, 255)",
               }}
+              onChange={(e) => setPhoneNumber(e.target.value)}
             />
           </Form.Item>
 
           <Form.Item<FieldType>
-            label="Password"
+            label="密码"
             name="password"
-            rules={[{ required: true, message: "Please input your password!" }]}
+            rules={[
+              { required: true, message: "Please input your username!" },
+              ({}) => ({
+                validator(_, value) {
+                  if (!value || /^[a-zA-Z]{8}$/.test(value)) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(new Error("请输入正确的密码"));
+                },
+              }),
+            ]}
           >
             <Input.Password
               size="large"
@@ -90,26 +163,32 @@ const BindPhone: FC<IProps> = () => {
             />
           </Form.Item>
           <Form.Item<FieldType>
-            label="Password"
-            name="password"
+            label="验证码"
+            name="TestCode"
+            className="Input"
             rules={[{ required: true, message: "Please input your password!" }]}
           >
-            <Input.Password
+            <Input
               size="large"
               style={{
                 width: "300px",
-                height: " 50px",
+                height: "50px",
                 backgroundColor: "rgb(246, 248, 255)",
               }}
             />
           </Form.Item>
+          <button className="Submit" type="submit">
+            立即绑定
+          </button>
         </Form>
-      </div>
-      <div className="Submit">
-        <span>立即绑定</span>
+        <div className="SendCode" onClick={handleClick}>
+          <span>{btnText}</span>
+        </div>
       </div>
     </BindPhoneWrapper>
   );
 };
 
-export default memo(BindPhone);
+const mapStateToProps = (state: any) => state.base;
+const mapDispatchToProps = action.Base;
+export default connect(mapStateToProps, mapDispatchToProps)(memo(BindPhone));

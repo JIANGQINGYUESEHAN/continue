@@ -83,16 +83,28 @@ const BindPhoneWrapper = styled.div`
     display: flex;
     justify-content: center; /* 水平居中 */
     padding: 20px;
+    .SendCode {
+      width: 100px;
+      height: 40px;
+      position: absolute;
+      bottom: 57px;
+      right: 46px;
+      color: rgb(99, 165, 253);
+      border-radius: 20px;
+      text-align: center;
+      line-height: 40px;
+    }
     .Form {
       display: flex;
       justify-content: center; /* 水平居中 */
-      padding: 40px;
+      /* padding: 40px; */
+      margin: 0px 40px;
       flex-direction: column;
     }
   }
   .Submit {
     position: fixed;
-    bottom: 50px;
+    bottom: -120px;
     left: 50%;
     transform: translateX(-50%);
     width: 300px;
