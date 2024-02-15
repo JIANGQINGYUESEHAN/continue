@@ -87,8 +87,8 @@ const BindPhoneWrapper = styled.div`
       width: 100px;
       height: 40px;
       position: absolute;
-      bottom: 57px;
-      right: 46px;
+      bottom: 88px;
+      right: 52px;
       color: rgb(99, 165, 253);
       border-radius: 20px;
       text-align: center;
@@ -103,8 +103,8 @@ const BindPhoneWrapper = styled.div`
     }
   }
   .Submit {
-    position: fixed;
-    bottom: -120px;
+    position: relative;
+    bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
     width: 300px;

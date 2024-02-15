@@ -76,27 +76,39 @@ const LoginByPasswordWrapper = styled.div`
     }
   }
   .Content {
-    width: 90%;
+    width: 94%;
     height: 400px;
     background: linear-gradient(to bottom, white, rgba(255, 255, 255, 0));
-    /* border-radius: 10px; */
+    border-radius: 10px;
     position: relative;
     left: 50%;
-    top: -96px;
     transform: translateX(-50%);
     display: flex;
     justify-content: center; /* 水平居中 */
     padding: 20px;
+    .SendCode {
+      width: 100px;
+      height: 40px;
+      position: absolute;
+      bottom: 142px;
+      right: 56px;
+      color: rgb(99, 165, 253);
+      border-radius: 20px;
+      text-align: center;
+      line-height: 40px;
+    }
     .Form {
       display: flex;
       justify-content: center; /* 水平居中 */
-      padding: 40px;
+      /* padding: 40px; */
+      margin: 0px 40px;
       flex-direction: column;
     }
   }
+
   .Submit {
     position: relative;
-    bottom: 50px;
+    bottom: -10px;
     left: 50%;
     transform: translateX(-50%);
     width: 300px;

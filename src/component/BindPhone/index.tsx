@@ -7,6 +7,12 @@ import { Form, Input } from "antd";
 import NavBar from "../../view/NavBar";
 import { connect } from "react-redux";
 import action from "../../store/action";
+import {
+  BindMobilePhoneNumberCode,
+  getVerificationCodeBind,
+} from "../../service/static/common";
+import { Toast } from "antd-mobile";
+import { useNavigate } from "react-router-dom";
 
 interface IProps {
   children?: ReactNode;
@@ -25,9 +31,9 @@ type FieldType = {
 };
 const BindPhone: FC<IProps> = (props) => {
   const { info } = props;
-  console.log(info);
 
   //btn显示显示的文本
+  const Navigate = useNavigate();
   const [num, setNum] = useState(60);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [btnText, setBtnText] = useState("点击发送验证码");
@@ -56,16 +62,23 @@ const BindPhone: FC<IProps> = (props) => {
     return () => clearInterval(timer);
   }, [isRunning]);
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (!isPhoneValid) {
-      return console.log("请输入正确的收集号");
+      return Toast.show({
+        icon: "fail",
+        content: "请输入正确的手机号",
+      });
     }
     if (!isRunning) {
       setIsRunning(true); // 开始倒计时
       setBtnText(`${num}秒后重新发送`);
     }
     //发送请求
-    //提示请求验证码已经发送
+    await getVerificationCodeBind(phoneNumber);
+    Toast.show({
+      icon: "success",
+      content: "验证码成功",
+    });
   };
 
   // 更新按钮文本
@@ -75,8 +88,26 @@ const BindPhone: FC<IProps> = (props) => {
     }
   }, [num, isRunning]);
   //发送请求
-  const onFinish = (values: any) => {
-    console.log("Success:", values);
+  const onFinish = async (values: any) => {
+    // console.log("Success:", values);
+    const res = await BindMobilePhoneNumberCode(
+      values.TestCode,
+      values.password,
+      values.username
+    );
+    if (res.msg == "请求成功") {
+      Toast.show({
+        icon: "success",
+        content: "绑定手机号成功",
+      });
+    } else {
+      Toast.show({
+        icon: "fail",
+        content: "已经绑定",
+      });
+    }
+
+    Navigate("/user");
   };
   return (
     <BindPhoneWrapper>
@@ -103,6 +134,7 @@ const BindPhone: FC<IProps> = (props) => {
       <div className="Content">
         <Form
           name="basic"
+          requiredMark={false}
           labelCol={{ span: 8 }}
           wrapperCol={{ span: 16 }}
           style={{ maxWidth: 600 }}
@@ -116,7 +148,7 @@ const BindPhone: FC<IProps> = (props) => {
             label="手机号"
             name="username"
             rules={[
-              { required: true, message: "Please input your username!" },
+              { required: true, message: "请输入正确的手机号!" },
               ({}) => ({
                 validator(_, value) {
                   if (!value || /^1[3-9]\d{9}$/.test(value)) {
@@ -142,10 +174,10 @@ const BindPhone: FC<IProps> = (props) => {
             label="密码"
             name="password"
             rules={[
-              { required: true, message: "Please input your username!" },
+              { required: true, message: "请输入正确的密码!" },
               ({}) => ({
                 validator(_, value) {
-                  if (!value || /^[a-zA-Z]{8}$/.test(value)) {
+                  if (!value || /^[a-zA-Z0-9]{8}$/.test(value)) {
                     return Promise.resolve();
                   }
                   return Promise.reject(new Error("请输入正确的密码"));
@@ -166,7 +198,17 @@ const BindPhone: FC<IProps> = (props) => {
             label="验证码"
             name="TestCode"
             className="Input"
-            rules={[{ required: true, message: "Please input your password!" }]}
+            rules={[
+              { required: true, message: "请输入正确的验证码!" },
+              ({}) => ({
+                validator(_, value) {
+                  if (!value || /^\d{6}$/.test(value)) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(new Error("请输入正确的验证码!"));
+                },
+              }),
+            ]}
           >
             <Input
               size="large"
