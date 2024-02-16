@@ -5,7 +5,10 @@ import type { FC, ReactNode } from "react";
 import SvgIcon from "../SvgIcon";
 import CollectWrapper from "./styled";
 import NavBar from "../../view/NavBar";
-import { GetHistoricalInformation } from "../../service/static/common";
+import {
+  GetCollectList,
+  GetHistoricalInformation,
+} from "../../service/static/common";
 import VideoItem from "../../view/VideoItem";
 import NovelsAndComics from "../../view/NovelsAndComics";
 import { InfiniteScroll } from "antd-mobile";
@@ -28,7 +31,7 @@ const Collect: FC<IProps> = () => {
   }
   useEffect(() => {
     (async () => {
-      const res = await GetHistoricalInformation(1, 20);
+      const res = await GetCollectList(1, 20);
       // console.log(res.feed_key);
       SetfeedKey(res.feed_key);
     })();
@@ -46,7 +49,7 @@ const Collect: FC<IProps> = () => {
     SetisDetail(index);
 
     //发送请求
-    const res = await GetHistoricalInformation(index, 20, feedKey);
+    const res = await GetCollectList(index, 20, feedKey);
     // console.log(res);
     Setlist(res.list);
     // //点击时记录下一页的字符串

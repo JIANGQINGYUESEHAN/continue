@@ -154,3 +154,24 @@ export async function GetHistoricalInformation(
   res = CryptoJSA(res.data);
   return res;
 }
+
+//获取消息
+export async function GetUserNews() {
+  const res = await hyRequest.get({
+    url: "/api/v1/common/msgbox/list",
+  });
+
+  return res.data;
+}
+//收藏列表
+export async function GetCollectList(
+  navigation_type: number,
+  feed_size: number,
+  feedKey: string = ""
+) {
+  let res = await hyRequest.get({
+    url: `/api/v1/collect/list?navigation_type=${navigation_type}&feed_size=${feed_size}&feed_key=${feedKey}`,
+  });
+  let a = CryptoJSA(res.data);
+  return a;
+}
