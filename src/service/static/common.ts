@@ -1,5 +1,7 @@
+/* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import hyRequest from "..";
+import CryptoJSA from "../../utils/crypto";
 
 //注册非正式用户
 export function getBaseInfo() {
@@ -129,11 +131,26 @@ export async function ModifyUerInformation(
     sex: sex * 1,
     head_portrait_id,
   };
-  // console.log(data);
 
   const res = await hyRequest.post({
     url: "/api/v1/userinfo/updateBaseInfo",
     data,
   });
+  return res;
+}
+//获取历史信息
+export async function GetHistoricalInformation(
+  navigationType: number,
+  feedSize: number,
+  feedKey: string = ""
+) {
+  let b = navigationType * 1;
+  // console.log(typeof b);
+  let res = await hyRequest.get({
+    url: `/api/v1/history/list?navigation_type=${b}&feed_size=${feedSize}&feed_key=${feedKey}`,
+  });
+  // console.log(res);
+
+  res = CryptoJSA(res.data);
   return res;
 }

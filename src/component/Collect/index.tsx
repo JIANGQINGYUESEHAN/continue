@@ -1,8 +1,14 @@
-import React, { memo, useState } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { memo, useEffect, useState } from "react";
 import type { FC, ReactNode } from "react";
 import SvgIcon from "../SvgIcon";
 import CollectWrapper from "./styled";
 import NavBar from "../../view/NavBar";
+import { GetHistoricalInformation } from "../../service/static/common";
+import VideoItem from "../../view/VideoItem";
+import NovelsAndComics from "../../view/NovelsAndComics";
+import { InfiniteScroll } from "antd-mobile";
 
 interface IProps {
   children?: ReactNode;
@@ -10,8 +16,41 @@ interface IProps {
 
 const Collect: FC<IProps> = () => {
   const [isDetail, SetisDetail] = useState(1);
-  function ClicikType(index: number) {
+  const [List, Setlist] = useState([]);
+  const [feedKey, SetfeedKey] = useState("");
+  const [hasMore, setHasMore] = useState(true);
+  async function loadMore() {
+    const res = await GetHistoricalInformation(isDetail, 20, feedKey);
+    // console.log(res);
+    Setlist(res.list);
+    // //点击时记录下一页的字符串
+    SetfeedKey(res.feed_key);
+  }
+  useEffect(() => {
+    (async () => {
+      const res = await GetHistoricalInformation(1, 20);
+      // console.log(res.feed_key);
+      SetfeedKey(res.feed_key);
+    })();
+  });
+  //监听 feedKey变换
+  useEffect(() => {
+    if (feedKey !== "") {
+      setHasMore(true);
+    } else {
+      setHasMore(false);
+    }
+  }, [feedKey]);
+  //点击切换
+  async function ClicikType(index: number) {
     SetisDetail(index);
+
+    //发送请求
+    const res = await GetHistoricalInformation(index, 20, feedKey);
+    // console.log(res);
+    Setlist(res.list);
+    // //点击时记录下一页的字符串
+    SetfeedKey(res.feed_key);
   }
   return (
     <CollectWrapper>
@@ -106,6 +145,23 @@ const Collect: FC<IProps> = () => {
           </div>
         )}
       </div>
+      {isDetail == 5 || isDetail == 1 ? (
+        <div className="Content">
+          {List.map((item: any, index: any) => {
+            return <NovelsAndComics />;
+          })}
+          <NovelsAndComics />
+          <NovelsAndComics />
+        </div>
+      ) : (
+        <div className="ContentA">
+          <VideoItem />
+          <VideoItem />
+          <VideoItem />
+          <VideoItem />
+        </div>
+      )}
+      <InfiniteScroll loadMore={loadMore} hasMore={hasMore} threshold={10} />
     </CollectWrapper>
   );
 };

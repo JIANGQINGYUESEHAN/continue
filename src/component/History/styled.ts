@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const HistoryWrapper = styled.div`
+  overflow: hidden;
   .Select {
     padding: 20px 20px;
     display: flex;
@@ -47,6 +48,19 @@ const HistoryWrapper = styled.div`
         z-index: 0;
       }
     }
+  }
+  .Content {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    margin: 0px 7px;
+    flex-wrap: wrap;
+  }
+  .ContentA {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    flex-wrap: wrap;
   }
 `;
 export default HistoryWrapper;

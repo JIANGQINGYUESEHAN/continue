@@ -48,5 +48,18 @@ const CollectWrapper = styled.div`
       }
     }
   }
+  .Content {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    margin: 0px 7px;
+    flex-wrap: wrap;
+  }
+  .ContentA {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    flex-wrap: wrap;
+  }
 `;
 export default CollectWrapper;
