@@ -211,11 +211,12 @@ const UserWrapper = styled.div`
     position: relative;
     display: flex;
     justify-content: center;
+    flex-direction: column;
     .content {
       width: 6.5rem;
       height: 8rem;
       position: relative;
-      top: 61%;
+      top: 45%;
       /* left: 50%; */
       transform: translateY(-50%);
       /* transform: translateX(-50%); */
@@ -223,7 +224,7 @@ const UserWrapper = styled.div`
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
-      background-color: red;
+      /* background-color: red; */
       .big {
         height: 2.4rem !important;
         width: 1.8rem !important;
@@ -264,15 +265,63 @@ const UserWrapper = styled.div`
               font-size: 12px;
               color: red;
             }
+            .bottomTitleA {
+              font-size: 12px;
+              color: black;
+            }
           }
         }
       }
       .big:nth-child(7) {
         background-color: yellow;
         height: 1.6rem !important;
-        width: 3rem !important;
+        width: 2.9rem !important;
         margin: 0px 4px;
+        background-image: url(https://mzsmsm03.com/static/images/decoration/signin-item-big.png);
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        .day {
+          width: 100%;
+          height: 0.26rem;
+          text-align: center;
+          .title {
+            font-size: 12px;
+            color: black;
+            line-height: 0px;
+          }
+        }
+        .bottoma {
+          width: 100%;
+          height: 0.4rem;
+          text-align: center;
+          line-height: 0.26rem;
+          position: absolute;
+
+          bottom: 0px;
+          z-index: 99999;
+
+          .bottomTitle {
+            width: 1.8rem;
+            font-size: 12px;
+            color: red;
+            text-align: center;
+          }
+        }
       }
+    }
+    .Sign {
+      width: 3rem;
+      height: 1rem;
+      background-color: red;
+      position: relative;
+      left: 48%;
+      transform: translateX(-50%);
+      top: 12%;
+      background-color: rgb(255, 86, 166);
+      border-radius: 0.5rem;
+      text-align: center;
+      line-height: 1rem;
     }
   }
 `;

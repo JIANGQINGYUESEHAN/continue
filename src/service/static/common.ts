@@ -213,3 +213,25 @@ export async function GetPaymentInformation(
   });
   return res;
 }
+
+//获取签到记录
+export async function getSignInRecord() {
+  const res = await hyRequest.get({
+    url: "/api/v1/activity/punchRecord",
+  });
+
+  return res;
+}
+//签到
+export async function SignInAll(id: string) {
+  const data = {
+    punch_id: id,
+  };
+
+  const res = await hyRequest.post({
+    url: "/api/v1/activity/punch",
+    data,
+  });
+
+  return res;
+}
