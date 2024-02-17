@@ -9,7 +9,7 @@ const SpecialOfferWrapper = styled.div`
   .Content {
     width: 100%;
     height: 180px;
-    margin-top: 60px;
+    margin-top: 40px;
 
     display: flex;
     flex-direction: column;
@@ -33,81 +33,103 @@ const SpecialOfferWrapper = styled.div`
       line-height: 60px;
       font-size: 20px;
     }
-    .NameA {
-      width: 100%;
-      height: 30px;
-      text-align: center;
-      line-height: 30px;
-      font-size: 16px;
+  }
+  .change {
+    width: 100%;
+    height: 80px;
+    margin-top: 20px;
+    padding: 0px 20px;
+    display: flex;
+    justify-content: center;
+  }
+  .repeat {
+    padding: 0px 20px;
+    width: 100%;
+    height: 80px;
+    /* background-color: firebrick; */
+    position: relative;
+    top: -80px;
+    /* opacity: 0.4; */
+    display: flex;
+
+    .left {
+      flex: 1;
+      height: 100%;
+      /* background-color: red; */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 300;
+      display: flex;
+      flex-direction: column;
+      .active {
+        width: 20px;
+        height: 4px;
+        background-color: red;
+        border-radius: 4px;
+      }
+    }
+    .right {
+      flex: 1;
+      height: 100%;
+      /* background-color: rebeccapurple; */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 300;
+      flex-direction: column;
+      .active {
+        width: 20px;
+        height: 4px;
+        background-color: red;
+        border-radius: 4px;
+      }
     }
   }
   .Vip {
-    width: 94%;
-    height: 400px;
+    width: 90%;
+    height: 200;
     background: linear-gradient(to bottom, white, rgba(255, 255, 255, 0));
     border-radius: 10px;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
+    top: -95px;
 
-    .ContainAA {
-      position: relative; /* 相对定位 */
-      width: 100%; /* 容器宽度 */
-      height: 80px; /* 容器高度 */
-      overflow: hidden; /* 隐藏溢出内容 */
-      display: flex;
-      justify-content: center;
-      position: relative;
-      flex-direction: column;
-
-      .TitleContent {
-        position: absolute;
-
-        top: -70px;
-        /* opacity: 0; */
-
-        width: 400px; /* 容器宽度 */
-        height: 70px; /* 容器高度 */
-        position: relative;
-        left: 50%;
-        background-color: rgba(255, 255, 255, 0);
-        transform: translateX(-50%);
-        display: flex;
-        justify-content: center;
-        .left {
-          flex: 1;
-          /* background-color: rebeccapurple; */
-          height: 50px;
-          text-align: center;
-          line-height: 50px;
-          font-size: 20px;
-          .active {
-            padding-bottom: 8px;
-            border-bottom: 1px solid red;
-          }
-        }
-        .right {
-          flex: 1;
-          height: 100%;
-          /* background-color: red; */
-          text-align: center;
-          line-height: 50px;
-          font-size: 20px;
-          .active {
-            padding-bottom: 8px;
-            border-bottom: 1px solid red;
-          }
-        }
-      }
-    }
     .ContentA {
       width: 100%;
-      height: 440px;
-
       display: flex;
       justify-content: center;
       padding-top: 20px;
       flex-wrap: wrap;
+    }
+  }
+  .trade {
+    width: 100%;
+    height: 100px;
+
+    display: flex;
+    padding: 0px 20px;
+    align-items: center;
+    justify-content: space-around;
+    .left {
+      flex: 1;
+      height: 60px;
+      display: flex;
+
+      align-items: center;
+      .name {
+      }
+    }
+    .right {
+      flex: 1;
+      height: 60px;
+
+      display: flex;
+
+      align-items: center;
+      .name {
+      }
     }
   }
 `;

@@ -15,10 +15,10 @@ const Info: FC<IProps> = () => {
   useEffect(() => {
     (async () => {
       const res = await GetUserNews();
-      console.log(res);
+      // console.log(res);
       setList(res.list);
     })();
-  });
+  }, []);
   return (
     <InfoWrapper>
       <NavBar IsShowChildren={false} middle="消息" />

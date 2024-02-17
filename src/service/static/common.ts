@@ -149,7 +149,6 @@ export async function GetHistoricalInformation(
   let res = await hyRequest.get({
     url: `/api/v1/history/list?navigation_type=${b}&feed_size=${feedSize}&feed_key=${feedKey}`,
   });
-  // console.log(res);
 
   res = CryptoJSA(res.data);
   return res;
@@ -174,4 +173,43 @@ export async function GetCollectList(
   });
   let a = CryptoJSA(res.data);
   return a;
+}
+
+//获取邀请码
+export async function GetInvitationCode() {
+  const res = await hyRequest.get({
+    url: "/api/v1/activity/inviteCode",
+  });
+  return res;
+}
+
+//获取 火花 列表
+
+export async function SparkProductList() {
+  const res = await hyRequest.get({ url: "/api/v1/product/sparkList" });
+
+  return res;
+}
+//获取 vip 列表
+export async function ProductList() {
+  const res = await hyRequest.get({
+    url: "/api/v1/product/vipList",
+  });
+
+  return res;
+}
+//支付
+export async function GetPaymentInformation(
+  product_id: string,
+  payment_source: number
+) {
+  let data = {
+    product_id,
+    payment_source,
+  };
+  let res = await hyRequest.post({
+    url: "/api/v1/trade/order",
+    data,
+  });
+  return res;
 }

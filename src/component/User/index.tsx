@@ -26,7 +26,6 @@ const User: FC<IProps> = (props) => {
     })();
   }, []);
   const { info } = props;
-  console.log(info);
 
   const navigate = useNavigate();
   const IconArray: any = [
@@ -120,7 +119,12 @@ const User: FC<IProps> = (props) => {
               </div>
             </div>
           </div>
-          <div className="vipIcon">
+          <div
+            className="vipIcon"
+            onClick={() => {
+              navigate("/specialOffer");
+            }}
+          >
             <div className="fire">
               <div className="FireIcon">
                 <span className="firenum"> {info.spark_balance}</span>

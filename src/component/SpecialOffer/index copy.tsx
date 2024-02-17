@@ -9,11 +9,7 @@ import action from "../../store/action";
 import { connect } from "react-redux";
 import SvgIcon from "../SvgIcon";
 import FireCard from "../../view/FireCard";
-import {
-  GetPaymentInformation,
-  ProductList,
-  SparkProductList,
-} from "../../service/static/common";
+import { ProductList, SparkProductList } from "../../service/static/common";
 import { Skeleton } from "antd-mobile";
 
 interface IProps {
@@ -24,7 +20,7 @@ interface IProps {
 const SpecialOffer: FC<IProps> = (props) => {
   const { info } = props;
   const [VipList, setVipList] = useState<any>([]);
-  const [SparkList, setSparkList] = useState<any>([]);
+  const [SparkList, setSparkList] = useState([]);
   const [IsVip, SetIsVip] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
   useEffect(() => {
@@ -39,29 +35,6 @@ const SpecialOffer: FC<IProps> = (props) => {
   const handleCardClick = (index: number) => {
     setActiveIndex(index);
   };
-
-  //点击购买
-  async function trade(action: string) {
-    let item;
-    //先判断是购买会员还是购买火花
-    if (IsVip) {
-      //购买会员
-      item = VipList[activeIndex].product_id;
-    } else {
-      //购买火花
-      //购买哪一个
-      item = SparkList[activeIndex].product_id;
-    }
-    //哪种方式购买
-    let res = await GetPaymentInformation(action, item);
-    // if (action == '0') {
-    //   //支付宝购买
-
-    // }
-    // if (action == '1') {
-    //   //支付宝购买
-    // }
-  }
   return (
     <SpecialOfferWrapper>
       <div className="Content">
@@ -120,11 +93,9 @@ const SpecialOffer: FC<IProps> = (props) => {
               ))}
             </div>
           )
-        ) : SparkList.length == 0 ? (
-          <Skeleton.Paragraph lineCount={5} animated />
         ) : (
           <div className="ContentA">
-            {SparkList.map((item: any, index: any) => (
+            {SparkList.map((item, index) => (
               <FireCard
                 key={index}
                 item={item}
@@ -137,12 +108,12 @@ const SpecialOffer: FC<IProps> = (props) => {
         )}
       </div>
       <div className="trade">
-        <div className="left" onClick={() => trade("0")}>
+        <div className="left">
           <div className="name">
             <SvgIcon name="zhifubao" width={200} height={240} />
           </div>
         </div>
-        <div className="right" onClick={() => trade("1")}>
+        <div className="right">
           <div className="name">
             <SvgIcon name="weixin" width={200} height={240} />
           </div>

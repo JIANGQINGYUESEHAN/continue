@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const VipInfoWrapper = styled.div`
   .vip-card {
-    background-color: #fed8b1; /* 根据图片调整背景色 */
+    background-color: rgb(242, 244, 245);
     border-radius: 20px;
     padding: 15px;
     margin-bottom: 10px; /* 根据需要调整间距 */
@@ -41,6 +41,9 @@ const VipInfoWrapper = styled.div`
     color: #a52a2a; /* 根据图片调整文字颜色 */
     font-size: 0.9em;
     margin-top: 20px;
+  }
+  .active {
+    background-color: rgb(255, 248, 237);
   }
 `;
 export default VipInfoWrapper;
