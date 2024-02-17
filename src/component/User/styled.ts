@@ -214,9 +214,9 @@ const UserWrapper = styled.div`
     flex-direction: column;
     .content {
       width: 6.5rem;
-      height: 8rem;
+      /* height: 8rem; */
       position: relative;
-      top: 45%;
+      top: 20%;
       /* left: 50%; */
       transform: translateY(-50%);
       /* transform: translateX(-50%); */
@@ -226,9 +226,9 @@ const UserWrapper = styled.div`
       align-items: center;
       /* background-color: red; */
       .big {
-        height: 2.4rem !important;
-        width: 1.8rem !important;
-        margin: 0px 4px;
+        height: 1.8rem !important;
+        width: 1.4rem !important;
+        margin: 4px 4px;
         position: relative;
         .item {
           width: 100%;
@@ -248,15 +248,15 @@ const UserWrapper = styled.div`
             .title {
               font-size: 12px;
               color: black;
-              line-height: 30px;
+              line-height: 0.2rem;
             }
           }
           .bottoma {
             /* background-color: red; */
-            width: 1.8rem;
+            width: 100%;
             height: 0.4rem;
             text-align: center;
-            line-height: 0.26rem;
+            line-height: 0.2rem;
             position: absolute;
             left: 0px;
             bottom: 0px;
@@ -288,7 +288,7 @@ const UserWrapper = styled.div`
           .title {
             font-size: 12px;
             color: black;
-            line-height: 0px;
+            line-height: 0.2rem;
           }
         }
         .bottoma {
@@ -302,7 +302,7 @@ const UserWrapper = styled.div`
           z-index: 99999;
 
           .bottomTitle {
-            width: 1.8rem;
+            width: 100%;
             font-size: 12px;
             color: red;
             text-align: center;
@@ -323,6 +323,56 @@ const UserWrapper = styled.div`
       text-align: center;
       line-height: 1rem;
     }
+  }
+  .biggerA {
+    .tn-p-lg {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff; /* 文本颜色 */
+      text-align: center;
+      font-size: 18px;
+      padding: 20px;
+      box-sizing: border-box;
+      border-radius: 10px;
+    }
+  }
+
+  .title {
+    color: blue;
+    font-size: 1em;
+  }
+
+  .input-field {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    color: #1d2541;
+  }
+  .buttons {
+    display: flex;
+  }
+  .button {
+    width: 100px;
+    padding: 10px;
+    margin: 10px 0;
+
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    background-color: #ebeffd;
+    margin: 0px 6px;
+    color: white;
+    font-size: 12px;
+  }
+  .button1 {
+    background-color: rgb(255, 117, 116);
+  }
+  .button2 {
+    background-color: rgb(255, 39, 135);
   }
 `;
 export default UserWrapper;

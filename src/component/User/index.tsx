@@ -7,6 +7,7 @@ import SvgIcon from "../SvgIcon";
 import { useNavigate } from "react-router-dom";
 import { Divider, Modal, Toast } from "antd-mobile";
 import qiandaoImage from "../../assets/img/qiandao.png";
+import saveImag from "../../assets/img/save.png";
 import action from "../../store/action";
 import { connect, useDispatch } from "react-redux";
 import BaseAction from "../../store/action/BaseAction";
@@ -21,6 +22,7 @@ const User: FC<IProps> = (props) => {
   const Navigate = useNavigate();
   const [SignIn, setSignIn] = useState<any>([]);
   const [visible, setVisible] = useState(false);
+  const [visibleA, setVisibleA] = useState(false);
   const { info } = props;
 
   const navigate = useNavigate();
@@ -190,7 +192,11 @@ const User: FC<IProps> = (props) => {
                   className="category-item"
                   key={index}
                   onClick={() => {
-                    navigate(`${item.path}`);
+                    if (index < 3) {
+                      navigate(`${item.path}`);
+                    } else {
+                      setVisibleA(true);
+                    }
                   }}
                 >
                   <div className="icon">{item.SelectIcon}</div>
@@ -238,6 +244,7 @@ const User: FC<IProps> = (props) => {
                 backgroundImage: `url(${qiandaoImage})`,
                 backgroundPosition: "center center",
                 backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
               }}
               className="bigger"
             >
@@ -264,6 +271,61 @@ const User: FC<IProps> = (props) => {
               </div>
               <div className="Sign" onClick={SignInAction}>
                 <span> 立即签到</span>
+              </div>
+            </div>
+          </>
+        }
+      ></Modal>
+
+      <Modal
+        visible={visibleA}
+        closeOnAction
+        onClose={() => {
+          setVisibleA(false);
+        }}
+        closeOnMaskClick={true}
+        content={
+          <>
+            <div
+              style={{
+                height: "10rem",
+                width: "6.8rem",
+                backgroundImage: `url(${saveImag})`,
+                backgroundPosition: "center center",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+              }}
+              className="biggerA"
+            >
+              <div className="tn-p-lg">
+                <div className="container">
+                  <h2 className="title">您的账号ID:</h2>
+                  <div className="input-field">
+                    <span>{info.uid}</span>
+                  </div>
+                  <h2 className="title">您的账号密码:</h2>
+                  <div className="input-field">
+                    <span>{info.password}</span>
+                  </div>
+                  <div className="buttons">
+                    <div
+                      className="button button1"
+                      onClick={() => {
+                        Navigate("/bindPhone");
+                      }}
+                    >
+                      绑定手机号
+                    </div>
+                    <div
+                      className="button button2"
+                      onClick={() => {
+                        Navigate("fixpassword");
+                      }}
+                    >
+                      修改密码
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </>
