@@ -1,87 +1,129 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import React, { memo, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import type { FC, ReactNode } from "react";
 import NovelAndComicDetailsWrapper from "./styled";
 import NavBar from "../../view/NavBar";
 import SvgIcon from "../SvgIcon";
-import { Swiper } from "antd-mobile";
+import { Swiper, Toast } from "antd-mobile";
 import NovelsAndComics from "../../view/NovelsAndComics";
+import { WithRouter } from "../../router";
+import {
+  GetDetailsAboutNovelsAndComics,
+  gethandleCollect,
+} from "../../service/static/common";
+import toYearMonthDay from "../../utils/time";
 
 interface IProps {
   children?: ReactNode;
+  query?: any;
 }
 
-const NovelAndComicDetails: FC<IProps> = () => {
+const NovelAndComicDetails: FC<IProps> = ({ query }) => {
+  const { resource_id } = query;
+  const [Item, setItem] = useState<any>();
   const [isDetail, SetisDetail] = useState(1);
+  const [Index, setIndex] = useState(0);
+
+  const [SwiperArray, setSwiperArray] = useState([]);
   function ClicikType(index: number) {
     SetisDetail(index);
   }
 
-  const SwiperArray: any = [
-    "全部",
-    "玩具",
-    "衣服",
-    "图书",
-    "家居",
-    "鞋帽",
-    "食品",
-    "电器",
-    "美妆",
-    "户外",
-  ]; // 假设这是你想展示的数据
+  //点击
+  function ClickIndex(index: number) {
+    setIndex(index);
+  }
+  //收藏
+  async function Collect(item: any) {
+    console.log(item.collect_status);
+    const resourceId = item.resource_id;
+    if (item.collect_status == 2) {
+      //收藏
+
+      const res = await gethandleCollect(1, resourceId);
+      console.log(res);
+
+      if (res.msg == "请求成功") {
+        Toast.show({
+          icon: "success",
+          content: "收藏成功",
+        });
+      }
+    } else {
+      const res = await gethandleCollect(2, resourceId);
+      console.log(res);
+
+      if (res.msg == "请求成功") {
+        Toast.show({
+          icon: "success",
+          content: "取消收藏成功",
+        });
+      }
+    }
+    //切换
+    const res = await GetDetailsAboutNovelsAndComics(resourceId);
+    console.log(res);
+    setItem(res);
+  }
+  //获取数据
+  useEffect(() => {
+    (async () => {
+      const res = await GetDetailsAboutNovelsAndComics(resource_id);
+      // console.log(res);
+      setItem(res);
+      setSwiperArray(res.book_section_list);
+    })();
+  }, []);
+
   return (
     <NovelAndComicDetailsWrapper>
       <NavBar IsShowChildren={false} middle="详情页" />
       <div className="card-container">
         <div className="left">
           <div className="image">
-            <img
-              src="https://www.cooer.cc/uploads/arctimg/20230802/1690943123276..jpg"
-              alt="漫画封面"
-              className="img"
-            />
+            <img src={Item?.cover_url} alt="漫画封面" className="img" />
           </div>
         </div>
         <div className="right">
-          <div className="topName">
-            到南满哈哈哈哈 到南满哈哈哈哈到南满哈哈哈哈
-          </div>
+          <div className="topName">{Item?.title}</div>
           <div className="author">
             <span> 作者：</span>
-            <span> 哈哈哈哈哈哈哈哈</span>
+            <span> {Item?.author}</span>
           </div>
           <div className="time">
             <span> 上线时间：</span>
-            <span> 2023-06-23</span>
+            <span> {toYearMonthDay(Item?.release_time)}</span>
           </div>
           <div className="Label">
-            <div className="LabelItem">
-              <span>都市</span>
-            </div>
-            <div className="LabelItem">
-              <span>都市</span>
-            </div>{" "}
-            <div className="LabelItem">
-              <span>都市</span>
-            </div>
+            {Item?.labels.map((item: any, index: any) => {
+              return (
+                <div className="LabelItem" key={index}>
+                  <span>{item.label}</span>
+                </div>
+              );
+            })}
           </div>
           <div className="Item">
             <div className="Icon">
               <SvgIcon name="eyes" size={12} />
-              <span> &nbsp;22222</span>
+              <span> &nbsp;{Item?.total_view}</span>
             </div>
             <div className="Icon">
               <SvgIcon name="dianzanIcon" size={12} />
-              <span> &nbsp;22222</span>
+              <span> &nbsp;{Item?.total_praise}</span>
             </div>
             <div className="Icon">
               <SvgIcon name="love" size={12} />
-              <span> &nbsp;22222</span>
+              <span> &nbsp;{Item?.total_collect}</span>
             </div>
-            <div className="Detail">
-              <SvgIcon name="dianzan" size={100} />
+            <div className="Detail" onClick={() => Collect(Item)}>
+              {Item?.collect_status == 2 ? (
+                <SvgIcon name="dianzan" size={100} />
+              ) : (
+                <SvgIcon name="love-fill" size={100} />
+              )}
             </div>
           </div>
         </div>
@@ -137,11 +179,19 @@ const NovelAndComicDetails: FC<IProps> = () => {
               >
                 {SwiperArray.map((item: any, index: number) => {
                   return (
-                    <Swiper.Item key={index}>
-                      <li className={`list ${index === 0 ? "active" : ""}`}>
-                        <div className="vip">
-                          <SvgIcon name="VIPDetail" size={24} />
-                        </div>
+                    <Swiper.Item key={index} onClick={() => ClickIndex(index)}>
+                      <li className={`list ${Index === index ? "active" : ""}`}>
+                        {item.access_type == 2 && (
+                          <div className="vip">
+                            <SvgIcon name="VIPDetail" size={24} />
+                          </div>
+                        )}
+                        {item.access_type == 3 && (
+                          <div className="vipA">
+                            <SvgIcon name="detailNumber" size={30} />
+                            <span className="a">2</span>
+                          </div>
+                        )}
                         <span className="title">{index}</span>
                       </li>
                     </Swiper.Item>
@@ -158,4 +208,4 @@ const NovelAndComicDetails: FC<IProps> = () => {
   );
 };
 
-export default memo(NovelAndComicDetails);
+export default WithRouter(memo(NovelAndComicDetails));

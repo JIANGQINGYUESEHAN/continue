@@ -308,3 +308,23 @@ export async function CategoryListNextPage(
   let a = CryptoJSA(res.data);
   return a;
 }
+//获取小说和漫画的详细信息
+export async function GetDetailsAboutNovelsAndComics(id: string) {
+  let res = await hyRequest.get({
+    url: `/api/v1/resource/bookDetail?resource_id=${id}`,
+  });
+  let a = CryptoJSA(res.data);
+  return a;
+}
+//收藏
+export async function gethandleCollect(action: number, resource_id: string) {
+  let data = {
+    action,
+    resource_id,
+  };
+  let res = hyRequest.post({
+    url: "/api/v1/collect/put",
+    data,
+  });
+  return res;
+}
