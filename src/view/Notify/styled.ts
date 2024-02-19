@@ -48,7 +48,7 @@ const NotifyWrapper = styled.div`
         display: inline-block;
         white-space: nowrap; /* 确保文本不换行 */
 
-        animation: marquee 4s linear infinite; /* 应用动画 */
+        animation: marquee 10s linear infinite; /* 应用动画 */
       }
     }
   }

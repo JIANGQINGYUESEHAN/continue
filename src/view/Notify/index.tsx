@@ -1,14 +1,19 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { memo } from "react";
 import type { FC, ReactNode } from "react";
 import NotifyWrapper from "./styled";
 import SvgIcon from "../../component/SvgIcon";
+import action from "../../store/action";
+import { connect } from "react-redux";
 
 interface IProps {
   children?: ReactNode;
-  Announcements?: string;
+  InfoList?: string;
 }
 
-const Notify: FC<IProps> = ({ Announcements = "ahahahahahahah" }) => {
+const Notify: FC<IProps> = ({ InfoList }) => {
+  // console.log(InfoList);
+
   return (
     <NotifyWrapper>
       <div className="news">
@@ -19,12 +24,14 @@ const Notify: FC<IProps> = ({ Announcements = "ahahahahahahah" }) => {
         </div>
         <div className="right">
           <div className="right">
-            <span className="new"> {Announcements}</span>
+            <span className="new"> {InfoList}</span>
           </div>
         </div>
       </div>
     </NotifyWrapper>
   );
 };
+const mapStateToProps = (state: any) => state.base;
+const mapDispatchToProps = action.Base;
 
-export default memo(Notify);
+export default connect(mapStateToProps, mapDispatchToProps)(memo(Notify));

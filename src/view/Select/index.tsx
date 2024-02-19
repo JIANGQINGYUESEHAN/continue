@@ -14,25 +14,25 @@ const Select: FC<IProps> = () => {
   const navigate = useNavigate();
   const BorderBottomArray: any = [
     {
-      id: 1,
+      id: 0,
       SelectIcon: <SvgIcon name="rank" size={35} />,
       path: "/rank",
       name: "排名",
     },
     {
-      id: 2,
+      id: 1,
       SelectIcon: <SvgIcon name="classificon" size={35} />,
       path: "/classification",
-      name: "影片",
+      name: "分类",
     },
     {
-      id: 3,
+      id: 2,
       SelectIcon: <SvgIcon name="price" size={35} />,
       path: "/specialOffer",
       name: "特惠",
     },
     {
-      id: 4,
+      id: 3,
       SelectIcon: <SvgIcon name="download" size={35} />,
       path: "/apppdownload",
       name: "app",

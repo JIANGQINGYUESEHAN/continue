@@ -3,6 +3,8 @@
 import * as TYPES from "../action/action_type";
 const InitState = {
   info: null,
+  CarouselList: null,
+  InfoList: null,
 };
 const BaseReducer = function (state = InitState, action: any) {
   //浅克隆
@@ -11,7 +13,12 @@ const BaseReducer = function (state = InitState, action: any) {
     case TYPES.BASE_INFO:
       state.info = action.info;
       break;
-
+    case TYPES.IMAG_LIST:
+      state.CarouselList = action.CarouselList;
+      break;
+    case TYPES.INFO_LIST:
+      state.InfoList = action.InfoList;
+      break;
     default:
   }
 

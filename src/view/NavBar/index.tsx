@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { memo } from "react";
 import type { FC, ReactNode } from "react";
 import NavbarWrapper from "./styled";
@@ -10,12 +11,14 @@ interface IProps {
   IsShowChildren?: boolean;
   left?: string;
   middle?: string;
+  onClickA?: any;
 }
 
 const NavBar: FC<IProps> = ({
   IsShowChildren = true,
   left = "左边",
   middle = "中间类容",
+  onClickA,
 }) => {
   const navigate = useNavigate();
   return (
@@ -32,11 +35,19 @@ const NavBar: FC<IProps> = ({
 
             <div className="right">
               <div className="iconCircle">
-                <span> 换一换</span>
+                <span onClick={onClickA}> 换一换</span>
                 <RedoOutline />
               </div>
+
               <div className="iconRight">
-                <span> 更多</span>
+                &nbsp;
+                <span
+                  onClick={() => {
+                    navigate("/rank");
+                  }}
+                >
+                  更多
+                </span>
                 <RightOutline />
               </div>
             </div>

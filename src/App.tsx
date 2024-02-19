@@ -50,6 +50,12 @@ const App: FC<IProps> = (props) => {
       }
       let rea = await BaseAction.queryUserInfoAsyncAction();
       Dispatch(rea);
+      //请求轮播图
+      let rec = await BaseAction.queryCarouselData();
+
+      Dispatch(rec);
+      //请求公告
+      Dispatch(await BaseAction.queryAnnouncements());
     })();
   }, []);
   // console.log(props);

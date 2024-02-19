@@ -152,20 +152,7 @@ const NovelAndComicDetails: FC<IProps> = () => {
           )}
         </div>
         <NavBar left="猜你喜欢" />
-        <div className="Content">
-          <NovelsAndComics />
-          <NovelsAndComics />
-          <NovelsAndComics />
-          <NovelsAndComics />
-          <NovelsAndComics />
-          <NovelsAndComics />
-          <NovelsAndComics />
-          <NovelsAndComics />
-          <NovelsAndComics />
-          <NovelsAndComics />
-          <NovelsAndComics />
-          <NovelsAndComics />
-        </div>
+        <div className="Content"></div>
       </div>
     </NovelAndComicDetailsWrapper>
   );

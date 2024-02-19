@@ -53,7 +53,7 @@ const SpecialOffer: FC<IProps> = (props) => {
       item = SparkList[activeIndex].product_id;
     }
     //哪种方式购买
-    let res = await GetPaymentInformation(action, item);
+    const res = await GetPaymentInformation(action, item);
     // if (action == '0') {
     //   //支付宝购买
 

@@ -97,21 +97,7 @@ const List: FC<IProps> = ({ isCartoon }) => {
             <>
               <div className="Content">
                 {Detail.length == 0 ? (
-                  <div
-                    style={{
-                      width: "100%",
-                      height: "100px",
-                    }}
-                  >
-                    <div
-                      style={{
-                        width: "100%",
-                        height: "100px",
-                      }}
-                    >
-                      <Skeleton.Paragraph lineCount={5} animated />
-                    </div>
-                  </div>
+                  <Skeleton.Paragraph lineCount={5} animated />
                 ) : (
                   <>
                     {Detail.map((item: any, index: number) => {
@@ -131,14 +117,7 @@ const List: FC<IProps> = ({ isCartoon }) => {
             <>
               <div className="ContentA">
                 {Detail.length == 0 ? (
-                  <div
-                    style={{
-                      width: "100%",
-                      height: "100px",
-                    }}
-                  >
-                    <Skeleton.Paragraph lineCount={5} animated />
-                  </div>
+                  <Skeleton.Paragraph lineCount={5} animated />
                 ) : (
                   <>
                     {Detail.map((item: any, index: number) => {

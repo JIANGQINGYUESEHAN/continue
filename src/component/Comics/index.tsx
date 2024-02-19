@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { memo, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import type { FC, ReactNode } from "react";
 import ComicsWrapper from "./styled";
 import SvgIcon from "../SvgIcon";
@@ -12,17 +13,33 @@ import NavBar from "../../view/NavBar";
 import End from "../../view/End";
 import List from "../../view/List";
 import FloorComponents from "../../view/FloorComponents";
+import action from "../../store/action";
+import { connect } from "react-redux";
+import { ProjectList } from "../../service/static/common";
 
 interface IProps {
   children?: ReactNode;
+  CarouselList?: any;
 }
 
-const Comics: FC<IProps> = () => {
+const Comics: FC<IProps> = ({ CarouselList }) => {
+  const [Project, setProjectList] = useState([]);
   const [isCartoon, SetIsCarToon] = useState<number>(1);
   function ClicikType(index: number) {
     SetIsCarToon(index);
+    (async () => {
+      const res = await ProjectList(isCartoon);
+      // console.log(res);
+      setProjectList(res.list);
+    })();
   }
-  const colors = ["#ace0ff", "#bcffbd", "#e4fabd", "#ffcfac"];
+  useEffect(() => {
+    (async () => {
+      const res = await ProjectList(isCartoon);
+      // console.log(res.list);
+      setProjectList(res.list);
+    })();
+  }, []);
   return (
     <ComicsWrapper>
       {/* 漫画和动漫的切换 */}
@@ -60,10 +77,10 @@ const Comics: FC<IProps> = () => {
       {/* 轮播图 */}
       <div className="carousel">
         <Swiper className="Swiper" loop autoplay>
-          {colors.map((color, index) => (
+          {CarouselList?.map((color: any, index: number) => (
             <Swiper.Item key={index}>
               <div className="Swiper" style={{ background: color }}>
-                {index + 1}
+                <img src={color.img_url} alt="" className="imag" />
               </div>
             </Swiper.Item>
           ))}
@@ -78,26 +95,28 @@ const Comics: FC<IProps> = () => {
       {isCartoon == 1 ? (
         <>
           <List isCartoon={isCartoon} />
-          <FloorComponents isCartoon={isCartoon} />
-          <FloorComponents isCartoon={isCartoon} />
-          <FloorComponents isCartoon={isCartoon} />
+          {Project.map((item: any, index: number) => {
+            return (
+              <FloorComponents isCartoon={isCartoon} key={index} item={item} />
+            );
+          })}
         </>
       ) : (
         <>
           <List isCartoon={isCartoon} />
-          <FloorComponents isCartoon={isCartoon} />
-          <FloorComponents isCartoon={isCartoon} />
-          <FloorComponents isCartoon={isCartoon} />
+          {Project.map((item: any, index: number) => {
+            return (
+              <FloorComponents isCartoon={isCartoon} key={index} item={item} />
+            );
+          })}
         </>
       )}
-
-      {/* Navbar */}
-      <NavBar />
-      {/* 。例子 */}
 
       <End />
     </ComicsWrapper>
   );
 };
+const mapStateToProps = (state: any) => state.base;
+const mapDispatchToProps = action.Base;
 
-export default memo(Comics);
+export default connect(mapStateToProps, mapDispatchToProps)(memo(Comics));

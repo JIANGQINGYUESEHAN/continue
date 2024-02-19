@@ -235,3 +235,76 @@ export async function SignInAll(id: string) {
 
   return res;
 }
+//请求轮播图
+export async function GetCarouselImage() {
+  let res = await hyRequest.get({ url: "/api/v1/common/carousel/info" });
+  return res;
+}
+export async function GetAnnouncements() {
+  let res = await hyRequest.get({ url: "/api/v1/common/notice/list" });
+  return res;
+}
+//获取动漫排行榜的数据
+export async function GetComicRankingData(
+  navigation_type: number,
+  feed_size: number,
+  sorted?: number
+) {
+  const res = await hyRequest.get({
+    url: `/api/v1/resource/list?navigation_type=${navigation_type}&feed_size=${feed_size}&sorted=${sorted}`,
+  });
+
+  let a = CryptoJSA(res.data);
+  return a;
+}
+//下一页
+export async function GetDataForNextPage(
+  navigation_type: number,
+  feed_size: number,
+  sorted: number,
+  feed_key: string
+) {
+  const res = await hyRequest.get({
+    url: `/api/v1/resource/list?navigation_type=${navigation_type}&feed_size=${feed_size}&sorted=${sorted}&feed_key=${feed_key}`,
+  });
+
+  let a = CryptoJSA(res.data);
+  return a;
+}
+//获取每个项目的列表
+export async function ProjectList(navigation_type: number) {
+  let res = await hyRequest.get({
+    url: `/api/v1/category/list?navigation_type=${navigation_type}`,
+  });
+  // console.log(res);
+
+  let a = CryptoJSA(res.data);
+  return a;
+}
+//获取媒体种类
+export async function CategoryList(
+  navigation_type: number,
+  feed_size: number,
+  sorted: number,
+  category: string
+) {
+  const res = await hyRequest.get({
+    url: `/api/v1/resource/list?navigation_type=${navigation_type}&feed_size=${feed_size}&sorted=${sorted}&category=${category}`,
+  });
+  let a = CryptoJSA(res.data);
+  return a;
+}
+//获取媒体种类下一页
+export async function CategoryListNextPage(
+  navigation_type: number,
+  feed_size: number,
+  sorted: number,
+  category: string,
+  feed_key: string
+) {
+  const res = await hyRequest.get({
+    url: `/api/v1/resource/list?navigation_type=${navigation_type}&feed_size=${feed_size}&sorted=${sorted}&category=${category}&feed_key=${feed_key}`,
+  });
+  let a = CryptoJSA(res.data);
+  return a;
+}

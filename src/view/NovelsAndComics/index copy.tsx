@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { memo } from "react";
 import type { FC, ReactNode } from "react";
-import NovelsAndComicsItemWrapper from "./styled";
+
 import SvgIcon from "../../component/SvgIcon/index";
 import { EyeFill } from "antd-mobile-icons";
+import NovelsWrapper from "./styled";
 import { useNavigate } from "react-router-dom";
 
 interface IProps {
@@ -12,27 +13,26 @@ interface IProps {
   isCartoon?: number;
 }
 
-const NovelsAndComicsItem: FC<IProps> = ({ item, isCartoon }) => {
-  // console.log(item);
-
+const NovelsAndComics: FC<IProps> = ({ item, isCartoon }) => {
   const navigate = useNavigate();
   return (
-    <NovelsAndComicsItemWrapper>
+    <NovelsWrapper>
       <div
         className="product-item"
         onClick={() => {
           navigate(
-            `/NovelAndComicDetail?isCartoon=${isCartoon}&resource_id=${item.resource_id}`
+            `/NovelAndComicDetail?isCartoon=${isCartoon}&resource_id=${item?.resource_id}`
           );
         }}
       >
         <div className="product-image">
-          <img src={item.cover_url} alt="" className="image" />
+          <img src={item?.cover_url} alt="" className="image" />
         </div>
-        <div className="ItemVip">
-          {item.access_type == 2 && <SvgIcon name="vip" size={30} />}
-          {/* <SvgIcon name="vip" size={30} /> */}
-        </div>
+        {item.access_type == 2 && (
+          <div className="ItemVip">
+            <SvgIcon name="vip" size={30} />
+          </div>
+        )}
 
         <div className="ItemComputed">
           {item.serial_status == 1 ? (
@@ -41,26 +41,24 @@ const NovelsAndComicsItem: FC<IProps> = ({ item, isCartoon }) => {
             <SvgIcon name="linzai" size={30} />
           )}
         </div>
+        {item.access_type == 3 && (
+          <div className="ItemFire">
+            <SvgIcon name="fire" size={34} />
+            <span className="ItemNum">{item?.spark_count}</span>
+          </div>
+        )}
 
-        <div className="ItemFire">
-          {item.access_type == 3 && (
-            <>
-              <SvgIcon name="fire" size={34} />
-              <span className="ItemNum">23</span>
-            </>
-          )}
-        </div>
         <div className="ItemInfo">
-          <div className="ItemName">{item.title}</div>
+          <div className="ItemName">{item?.title}</div>
           <div className="VisitNum">
             <span>
-              <EyeFill /> {item.view_count}
+              <EyeFill /> {item?.view_count}
             </span>
           </div>
         </div>
       </div>
-    </NovelsAndComicsItemWrapper>
+    </NovelsWrapper>
   );
 };
 
-export default memo(NovelsAndComicsItem);
+export default memo(NovelsAndComics);
