@@ -70,38 +70,6 @@ const DetailWrapper = styled.div`
     display: flex;
     justify-content: space-around;
   }
-  .Popup {
-    .adm-popup-body {
-      .PopupA {
-        height: 100px;
-        background-color: rebeccapurple !important;
-
-        /* .Top {
-      width: 100%;
-      height: 60px;
-
-      text-align: center;
-      .TopSpan {
-        font-size: 20px;
-
-        line-height: 60px;
-      }
-    }
-    .Middle {
-      width: 100%;
-      height: 30px;
-      background-color: #f8f8f8;
-      padding: 0px 20px;
-      margin: 10px 0px;
-      .MiddleSpan {
-        font-size: 12px;
-
-        line-height: 30px;
-      }
-    } */
-      }
-    }
-  }
 
   .icon {
     font-size: 1.5em; /* 根据您的图片，图标较大 */
