@@ -228,5 +228,24 @@ const NovelAndComicDetailsWrapper = styled.div`
       flex-wrap: wrap;
     }
   }
+  .Bottom {
+    width: 100%;
+    height: 70px;
+    /* background-color: rebeccapurple; */
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    display: flex;
+    align-items: center;
+
+    justify-content: center;
+    .Icon {
+      width: 100px;
+      height: 70px;
+
+      text-align: center;
+      line-height: 70px;
+    }
+  }
 `;
 export default NovelAndComicDetailsWrapper;

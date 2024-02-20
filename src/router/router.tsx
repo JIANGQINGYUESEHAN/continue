@@ -237,6 +237,16 @@ const routers = [
       title: "二维码登录",
     },
   },
+  {
+    path: "/detail",
+    name: "detail",
+    component: lazy(() => {
+      return import("../component/Detail");
+    }),
+    meta: {
+      title: "小说和详情",
+    },
+  },
 ];
 
 export default routers;

@@ -253,6 +253,7 @@ export async function GetComicRankingData(
   const res = await hyRequest.get({
     url: `/api/v1/resource/list?navigation_type=${navigation_type}&feed_size=${feed_size}&sorted=${sorted}`,
   });
+  console.log(res);
 
   let a = CryptoJSA(res.data);
   return a;
@@ -327,4 +328,36 @@ export async function gethandleCollect(action: number, resource_id: string) {
     data,
   });
   return res;
+}
+//火花进行购买
+export async function BuyWithSpark(resourceId: any, itemId: string) {
+  let data = {
+    item_id: itemId,
+    resource_id: resourceId,
+  };
+  let res = await hyRequest.post({
+    url: "/api/v1/resource/purchase",
+    data,
+  });
+  let a = CryptoJSA(res.data);
+  return a;
+}
+
+//获取漫画小说章节详情
+export async function GetComicChapterDetails(
+  resource_id: string,
+  section_id: string
+) {
+  //console.log(resource_id, section_id);
+
+  let res = await hyRequest.get({
+    url: `/api/v1/resource/bookSection?resource_id=${resource_id}&section_id=${section_id}`,
+  });
+  //console.log(res.data.code);
+  if (res.data.code) {
+    return res.data;
+  }
+
+  let a = CryptoJSA(res.data);
+  return a;
 }

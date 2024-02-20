@@ -10,30 +10,106 @@ import { Swiper, Toast } from "antd-mobile";
 import NovelsAndComics from "../../view/NovelsAndComics";
 import { WithRouter } from "../../router";
 import {
+  BuyWithSpark,
+  CategoryList,
+  GetDataForNextPage,
   GetDetailsAboutNovelsAndComics,
   gethandleCollect,
 } from "../../service/static/common";
 import toYearMonthDay from "../../utils/time";
+import { PlayOutline } from "antd-mobile-icons";
+import action from "../../store/action";
+import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import NovelsAndComicsItem from "../../view/NovelsAndComicsItem";
 
 interface IProps {
   children?: ReactNode;
   query?: any;
+  info?: any;
 }
 
-const NovelAndComicDetails: FC<IProps> = ({ query }) => {
-  const { resource_id } = query;
+const NovelAndComicDetails: FC<IProps> = ({ query, info }) => {
+  const { resource_id, isCartoon } = query;
   const [Item, setItem] = useState<any>();
   const [isDetail, SetisDetail] = useState(1);
   const [Index, setIndex] = useState(0);
-
+  const Navigate = useNavigate();
+  const [OtherDetail, setOtherDetail] = useState<any>([]);
   const [SwiperArray, setSwiperArray] = useState([]);
+  const [feedKey, setFeedKey] = useState("");
   function ClicikType(index: number) {
     SetisDetail(index);
   }
 
   //点击
-  function ClickIndex(index: number) {
+  async function ClickIndex(index: number) {
     setIndex(index);
+
+    // 然后进行播放
+    //资源的所有详情
+    let accessType;
+    let sparkCount;
+    let resourceId;
+    let sectionId;
+    //判断 章节是否为数组
+
+    if (Array.isArray(Item.book_section_list)) {
+      accessType = Item.book_section_list[index].access_type;
+      sparkCount = Item.book_section_list[index].spark_count;
+      resourceId = Item.resource_id;
+      sectionId = Item.book_section_list[index].section_id;
+    } else {
+      accessType = Item.access_type;
+      sparkCount = Item.spark_count;
+      resourceId = Item.resource_id;
+      sectionId = Item.section_id;
+    }
+
+    //获取用户的详情
+    const Isvip = info.is_vip;
+
+    const sparkCountAll = info.spark_balance;
+    //不要会员就可以
+    if (accessType == 1) {
+      PlayDirectly(resourceId, sectionId);
+    }
+    //会员
+    if (accessType == 2) {
+      if (Isvip == 2) {
+        //跳转到充值界面
+        Navigate("/specialOffer");
+      }
+      if (Isvip == 1) {
+        PlayDirectly(resourceId, sectionId);
+      }
+    }
+    // //火花
+    if (accessType == 3) {
+      //不是会员火花不够
+      if (Isvip == 2 && sparkCountAll < sparkCount) {
+        //跳转到充值界面
+        Navigate("/specialOffer");
+      }
+      //不是会员火花够了
+      if (Isvip == 2 && sparkCountAll > sparkCount) {
+        //用火花进行购买
+        const rea = await BuyWithSpark(resourceId, sectionId);
+        if (rea.msg == "请求成功") {
+          PlayDirectly(resourceId, sectionId);
+        } else {
+          Toast.show({
+            icon: "fail",
+            content: "请重试",
+          });
+        }
+      }
+
+      //是会员
+      if (Isvip == 1) {
+        PlayDirectly(resourceId, sectionId);
+      }
+    }
   }
   //收藏
   async function Collect(item: any) {
@@ -43,7 +119,6 @@ const NovelAndComicDetails: FC<IProps> = ({ query }) => {
       //收藏
 
       const res = await gethandleCollect(1, resourceId);
-      console.log(res);
 
       if (res.msg == "请求成功") {
         Toast.show({
@@ -74,12 +149,99 @@ const NovelAndComicDetails: FC<IProps> = ({ query }) => {
       // console.log(res);
       setItem(res);
       setSwiperArray(res.book_section_list);
+      //获取相同的
+      const Category = res.category;
+      const rea = await CategoryList(isCartoon, 20, 0, Category);
+
+      setOtherDetail(rea.list);
+
+      setFeedKey(res.feed_key);
     })();
   }, []);
+  //点击播放
+  async function ClickPlay(Item: any) {
+    //资源的所有详情
+    let accessType;
+    let sparkCount;
+    let resourceId;
+    let sectionId;
+    //判断 章节是否为数组
 
+    if (Array.isArray(Item.book_section_list)) {
+      accessType = Item.book_section_list[0].access_type;
+      sparkCount = Item.book_section_list[0].spark_count;
+      resourceId = Item.resource_id;
+      sectionId = Item.book_section_list[0].section_id;
+    } else {
+      accessType = Item.access_type;
+      sparkCount = Item.spark_count;
+      resourceId = Item.resource_id;
+      sectionId = Item.section_id;
+    }
+
+    //获取用户的详情
+    const Isvip = info.is_vip;
+
+    const sparkCountAll = info.spark_balance;
+    //不要会员就可以
+    if (accessType == 1) {
+      PlayDirectly(resourceId, sectionId);
+    }
+    //会员
+    if (accessType == 2) {
+      if (Isvip == 2) {
+        //跳转到充值界面
+        Navigate("/specialOffer");
+      }
+      if (Isvip == 1) {
+        PlayDirectly(resourceId, sectionId);
+      }
+    }
+    // //火花
+    if (accessType == 3) {
+      //不是会员火花不够
+      if (Isvip == 2 && sparkCountAll < sparkCount) {
+        //跳转到充值界面
+        Navigate("/specialOffer");
+      }
+      //不是会员火花够了
+      if (Isvip == 2 && sparkCountAll > sparkCount) {
+        //用火花进行购买
+        const rea = await BuyWithSpark(resourceId, sectionId);
+        if (rea.msg == "请求成功") {
+          PlayDirectly(resourceId, sectionId);
+        } else {
+          Toast.show({
+            icon: "fail",
+            content: "请重试",
+          });
+        }
+      }
+
+      //是会员
+      if (Isvip == 1) {
+        PlayDirectly(resourceId, sectionId);
+      }
+    }
+  }
+
+  function PlayDirectly(resourceId: any, sectionId: any) {
+    Navigate(
+      `/Detail?Resource_id=${resourceId}&Section_id=${sectionId}&Index=${isCartoon}`
+    );
+  }
+
+  //切换下一页
+  async function ClickFeedKey() {
+    const res = await GetDataForNextPage(isCartoon!, 20, 0, feedKey);
+    //保存下一页的标识
+    setFeedKey(res.feed_key);
+    //保存内容
+    setOtherDetail(res.list);
+  }
   return (
     <NovelAndComicDetailsWrapper>
-      <NavBar IsShowChildren={false} middle="详情页" />
+      <NavBar IsShowChildren={false} middle="详情页" onClickA={ClickFeedKey} />
       <div className="card-container">
         <div className="left">
           <div className="image">
@@ -202,10 +364,27 @@ const NovelAndComicDetails: FC<IProps> = ({ query }) => {
           )}
         </div>
         <NavBar left="猜你喜欢" />
-        <div className="Content"></div>
+        <div className="Content">
+          {OtherDetail.map((item: any, index: number) => {
+            return (
+              <NovelsAndComics key={index} item={item} isCartoon={isCartoon} />
+            );
+          })}
+        </div>
+      </div>
+      <div className="Bottom">
+        <div className="Icon" onClick={() => ClickPlay(Item)}>
+          <PlayOutline fontSize={28} />
+        </div>
       </div>
     </NovelAndComicDetailsWrapper>
   );
 };
 
-export default WithRouter(memo(NovelAndComicDetails));
+const mapStateToProps = (state: any) => state.base;
+const mapDispatchToProps = action.Base;
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(WithRouter(memo(NovelAndComicDetails)));

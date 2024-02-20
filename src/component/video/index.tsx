@@ -5,8 +5,8 @@ import SvgIcon from "../SvgIcon";
 import { Swiper } from "antd-mobile";
 import Notify from "../../view/Notify";
 import ViedoChapter from "../../view/ViedoChapter";
-import FloorComponents from "../../view/FloorComponents";
-import List from "../../view/List";
+// import FloorComponents from "../../view/FloorComponents";
+// import List from "../../view/List";
 import End from "../../view/End";
 
 interface IProps {
@@ -66,10 +66,10 @@ const Video: FC<IProps> = () => {
       {/* 公告提示 */}
       <Notify />
       <ViedoChapter />
-      <List isCartoon={2} />
+      {/* <List isCartoon={2} />
       <FloorComponents isCartoon={2} />
       <FloorComponents isCartoon={2} />
-      <FloorComponents isCartoon={2} />
+      <FloorComponents isCartoon={2} /> */}
       <End />
     </VideoWrapper>
   );

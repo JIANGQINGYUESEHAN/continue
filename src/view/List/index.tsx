@@ -37,7 +37,7 @@ const tabs = [
 
 interface IProps {
   children?: ReactNode;
-  isCartoon: number;
+  isCartoon?: number;
 }
 
 const List: FC<IProps> = ({ isCartoon }) => {
@@ -50,9 +50,11 @@ const List: FC<IProps> = ({ isCartoon }) => {
   useEffect(() => {
     //获取排行榜内容
     (async () => {
-      console.log(activeTab);
+      // console.log(111);
 
-      const res = await GetComicRankingData(isCartoon, 20, activeTab * 1);
+      const res = await GetComicRankingData(1, 20, activeTab * 1);
+      // console.log(res);
+
       //保存下一页的标识
       setFeedKey(res.feed_key);
       //保存内容
@@ -62,7 +64,7 @@ const List: FC<IProps> = ({ isCartoon }) => {
   //点击切换
   async function ClickChange(key: any) {
     setActiveTab(key);
-    const res = await GetComicRankingData(isCartoon, 20, activeTab * 1);
+    const res = await GetComicRankingData(isCartoon!, 20, activeTab * 1);
     //保存下一页的标识
     setFeedKey(res.feed_key);
     //保存内容
@@ -70,7 +72,12 @@ const List: FC<IProps> = ({ isCartoon }) => {
   }
   //切换下一页
   async function ClickFeedKey() {
-    const res = await GetDataForNextPage(isCartoon, 20, activeTab * 1, feedKey);
+    const res = await GetDataForNextPage(
+      isCartoon!,
+      20,
+      activeTab * 1,
+      feedKey
+    );
     //保存下一页的标识
     setFeedKey(res.feed_key);
     //保存内容
@@ -93,20 +100,20 @@ const List: FC<IProps> = ({ isCartoon }) => {
           transition={{ duration: 0.2 }}
           style={{ minHeight: "200px", minWidth: "100%" }}
         >
-          {isCartoon == 1 ? (
+          {isCartoon == 1 || isCartoon == 5 ? (
             <>
               <div className="Content">
                 {Detail.length == 0 ? (
                   <div
                     style={{
                       width: "100%",
-                      height: "100px",
+                      height: "50px",
                     }}
                   >
                     <div
                       style={{
                         width: "100%",
-                        height: "100px",
+                        height: "50px",
                       }}
                     >
                       <Skeleton.Paragraph lineCount={5} animated />
@@ -142,7 +149,7 @@ const List: FC<IProps> = ({ isCartoon }) => {
                 ) : (
                   <>
                     {Detail.map((item: any, index: number) => {
-                      return <VideoItem />;
+                      return <VideoItem key={index} />;
                     })}
                   </>
                 )}

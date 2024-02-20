@@ -14,7 +14,7 @@ import {
 
 interface IProps {
   children?: ReactNode;
-  isCartoon: number;
+  isCartoon?: number;
   item?: any;
 }
 
@@ -25,7 +25,7 @@ const FloorComponents: FC<IProps> = ({ isCartoon, item }) => {
   //切换下一页
   async function ClickFeedKey() {
     const res = await CategoryListNextPage(
-      isCartoon,
+      isCartoon!,
       20,
       1,
       item.code,
@@ -38,7 +38,7 @@ const FloorComponents: FC<IProps> = ({ isCartoon, item }) => {
   }
   useEffect(() => {
     (async () => {
-      const res = await CategoryList(isCartoon, 20, 1, item.code);
+      const res = await CategoryList(isCartoon!, 20, 1, item.code);
       console.log(res);
       setDatail(res.list);
     })();
@@ -46,14 +46,14 @@ const FloorComponents: FC<IProps> = ({ isCartoon, item }) => {
   return (
     <FloorComponentsWrapper>
       <NavBar left={item.title} onClickA={ClickFeedKey} />
-      {isCartoon == 1 ? (
+      {isCartoon == 1 || isCartoon == 5 ? (
         <>
           <div className="Content">
             {Detail.length == 0 ? (
               <div
                 style={{
                   width: "100%",
-                  height: "100px",
+                  height: "50px",
                 }}
               >
                 <Skeleton.Paragraph lineCount={5} animated />
@@ -80,7 +80,7 @@ const FloorComponents: FC<IProps> = ({ isCartoon, item }) => {
               <div
                 style={{
                   width: "100%",
-                  height: "100px",
+                  height: "50px",
                 }}
               >
                 <Skeleton.Paragraph lineCount={5} animated />
@@ -88,7 +88,7 @@ const FloorComponents: FC<IProps> = ({ isCartoon, item }) => {
             ) : (
               <>
                 {Detail.map((item: any, index: number) => {
-                  return <VideoItem />;
+                  return <VideoItem key={index} />;
                 })}
               </>
             )}
