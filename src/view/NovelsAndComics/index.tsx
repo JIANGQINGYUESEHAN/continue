@@ -45,7 +45,7 @@ const NovelsAndComics: FC<IProps> = ({ isCartoon, item }) => {
           {item.access_type == 3 && (
             <>
               <SvgIcon name="fire" size={34} />
-              <span className="ItemNum">23</span>
+              <span className="ItemNum">{item?.spark_count}</span>
             </>
           )}
         </div>

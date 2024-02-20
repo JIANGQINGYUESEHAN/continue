@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { memo } from "react";
 import type { FC, ReactNode } from "react";
 import VideoItemWrapper from "./styled";
@@ -7,42 +8,50 @@ import { useNavigate } from "react-router-dom";
 
 interface IProps {
   children?: ReactNode;
+  item?: any;
+  isCartoon?: number;
 }
 
-const VideoItem: FC<IProps> = () => {
+const VideoItem: FC<IProps> = ({ item, isCartoon }) => {
   const navigate = useNavigate();
   return (
     <VideoItemWrapper>
       <div
         className="videoItem"
         onClick={() => {
-          navigate("/videoDetail");
+          navigate(
+            `/videoDetail?isCartoon=${isCartoon}&resource_id=${item.resource_id}`
+          );
         }}
       >
         <div className="videoImag">
           <div className="video">
-            <img
-              src="http://zy.img.qiuyue.space/QQ图片20230516221819.jpg"
-              alt=""
-              className="image"
-            />
+            <img src={item?.cover_url} alt="" className="image" />
           </div>
           <div className="ItemVip">
-            <SvgIcon name="vip" size={30} />
+            {item?.access_type == 2 && <SvgIcon name="vip" size={30} />}
           </div>
           <div className="ItemComputed">
-            <SvgIcon name="computed" size={30} />
+            {item?.serial_status == 1 ? (
+              <SvgIcon name="computed" size={30} />
+            ) : (
+              <SvgIcon name="linzai" size={30} />
+            )}
           </div>
           <div className="ItemFire">
-            <SvgIcon name="fire" size={34} />
-            <span className="ItemNum">23</span>
+            {item?.access_type == 3 && (
+              <>
+                <SvgIcon name="fire" size={34} />
+                <span className="ItemNum">{item?.spark_count}</span>
+              </>
+            )}
           </div>
         </div>
         <div className="ItemInfo">
-          <div className="ItemName">水水水水水水水水水水水水水</div>
+          <div className="ItemName">{item?.title}</div>
           <div className="VisitNum">
             <span>
-              <EyeFill /> 111
+              <EyeFill /> {item?.view_count}
             </span>
           </div>
         </div>

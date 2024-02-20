@@ -96,15 +96,27 @@ const VideoDetailWrapper = styled.div`
             }
           }
           .titleAuthor {
-            line-height: 50px;
-            height: 50px;
+            line-height: 30px;
+            height: 40px;
             font-size: 12px;
             margin-left: 5px;
             color: #333;
             white-space: nowrap; // 防止文本换行
             overflow: hidden; // 隐藏溢出的文本
             text-overflow: ellipsis; // 用省略号表示溢出的文本
-            max-width: 110px; // 确保标题不超过容器宽度
+            max-width: 140px; // 确保标题不超过容器宽度
+            display: block; // 或者使用inline-block，取决于布局需求
+          }
+          .titleAuthorA {
+            line-height: 30px;
+            height: 40px;
+            font-size: 12px;
+            margin-left: 5px;
+            color: #333;
+            white-space: nowrap; // 防止文本换行
+            overflow: hidden; // 隐藏溢出的文本
+            text-overflow: ellipsis; // 用省略号表示溢出的文本
+            max-width: 180px; // 确保标题不超过容器宽度
             display: block; // 或者使用inline-block，取决于布局需求
           }
           .title {

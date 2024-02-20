@@ -41,9 +41,12 @@ interface IProps {
 }
 
 const List: FC<IProps> = ({ isCartoon }) => {
+  console.log(isCartoon);
+
   const [activeTab, setActiveTab] = useState<any>(tabs[0].key);
   //基础内容
   const [Detail, setDatail] = useState([]);
+  // const [ isCartoon, SetIsCarToon] = useState<number>(isCartoon!);
   //下一页标识
   const [feedKey, setFeedKey] = useState("");
   //初始化获取数据
@@ -52,15 +55,15 @@ const List: FC<IProps> = ({ isCartoon }) => {
     (async () => {
       // console.log(111);
 
-      const res = await GetComicRankingData(1, 20, activeTab * 1);
-      // console.log(res);
+      const res = await GetComicRankingData(isCartoon!, 20, activeTab * 1);
+      console.log(res);
 
       //保存下一页的标识
       setFeedKey(res.feed_key);
       //保存内容
       setDatail(res.list);
     })();
-  }, []);
+  }, [isCartoon]);
   //点击切换
   async function ClickChange(key: any) {
     setActiveTab(key);
@@ -149,7 +152,13 @@ const List: FC<IProps> = ({ isCartoon }) => {
                 ) : (
                   <>
                     {Detail.map((item: any, index: number) => {
-                      return <VideoItem key={index} />;
+                      return (
+                        <VideoItem
+                          key={index}
+                          item={item}
+                          isCartoon={isCartoon}
+                        />
+                      );
                     })}
                   </>
                 )}

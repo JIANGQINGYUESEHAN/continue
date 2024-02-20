@@ -20,15 +20,13 @@ interface IProps {
 
 const VideoDetail: FC<IProps> = ({ query, info }) => {
   const { resource_id, isCartoon } = query;
-  const [VideoDetailA, setVideoDetailA] = useState<any>();
+  const [VideoDetailA, setVideoDetailA] = useState<any>({});
   //获取视频的信息
   useEffect(() => {
     (async () => {
       const res = await GetVideoDetails(resource_id);
       console.log(res);
       setVideoDetailA(res);
-      console.log(VideoDetailA.labels);
-      // console.log(VideoDetailA);
     })();
   }, [resource_id]);
   const SwiperArray: any = [
@@ -50,14 +48,14 @@ const VideoDetail: FC<IProps> = ({ query, info }) => {
       <div className="videoItem">
         <div className="videoContent">
           <div className="videoImag">
-            <img src={VideoDetailA?.cover_url} alt="" className="img" />
+            <img src={VideoDetailA.cover_url} alt="" className="img" />
           </div>
         </div>
         <div className="detail">
           <div className="top">
             <div className="imageTop">
               <div className="videoImag">
-                <img src={VideoDetailA?.cover_url} alt="" className="img" />
+                <img src={VideoDetailA.cover_url} alt="" className="img" />
               </div>
             </div>
             <div className="detailTop">
@@ -67,29 +65,27 @@ const VideoDetail: FC<IProps> = ({ query, info }) => {
                     <span className="icon">
                       <SvgIcon name="eyes" />
                     </span>
-                    <span className="number">{VideoDetailA?.total_view}</span>
+                    <span className="number">{VideoDetailA.total_view}</span>
                   </div>
                   <div className="counter">
                     <span className="icon">
                       <SvgIcon name="dianzanIcon" />
                     </span>
-                    <span className="number">{VideoDetailA?.total_praise}</span>
+                    <span className="number">{VideoDetailA.total_praise}</span>
                   </div>
                   <div className="counter">
                     <span className="icon">
                       <SvgIcon name="love" />
                     </span>
-                    <span className="number">
-                      {VideoDetailA?.total_collect}
-                    </span>
+                    <span className="number">{VideoDetailA.total_collect}</span>
                   </div>
                 </div>
               </div>
               <span className="titleAuthorA">
-                上线时间：{toYearMonthDay(VideoDetailA?.release_time)}
+                上线时间：{toYearMonthDay(VideoDetailA.release_time)}
               </span>
-              <span className="titleAuthor">作者：{VideoDetailA?.author}</span>
-              <span className="title">{VideoDetailA?.intro}</span>
+              <span className="titleAuthor">作者：{VideoDetailA.author}</span>
+              <span className="title">{VideoDetailA.intro}</span>
             </div>
           </div>
           <div className="middle">

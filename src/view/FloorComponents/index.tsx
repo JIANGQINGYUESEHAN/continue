@@ -39,10 +39,10 @@ const FloorComponents: FC<IProps> = ({ isCartoon, item }) => {
   useEffect(() => {
     (async () => {
       const res = await CategoryList(isCartoon!, 20, 1, item.code);
-      console.log(res);
+      // console.log(res);
       setDatail(res.list);
     })();
-  }, []);
+  }, [isCartoon]);
   return (
     <FloorComponentsWrapper>
       <NavBar left={item.title} onClickA={ClickFeedKey} />
@@ -88,7 +88,9 @@ const FloorComponents: FC<IProps> = ({ isCartoon, item }) => {
             ) : (
               <>
                 {Detail.map((item: any, index: number) => {
-                  return <VideoItem key={index} />;
+                  return (
+                    <VideoItem key={index} item={item} isCartoon={isCartoon} />
+                  );
                 })}
               </>
             )}

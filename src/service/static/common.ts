@@ -253,7 +253,7 @@ export async function GetComicRankingData(
   const res = await hyRequest.get({
     url: `/api/v1/resource/list?navigation_type=${navigation_type}&feed_size=${feed_size}&sorted=${sorted}`,
   });
-  console.log(res);
+  // console.log(res);
 
   let a = CryptoJSA(res.data);
   return a;
@@ -358,6 +358,14 @@ export async function GetComicChapterDetails(
     return res.data;
   }
 
+  let a = CryptoJSA(res.data);
+  return a;
+}
+//获取视频的详细信息
+export async function GetVideoDetails(resource_id: string) {
+  let res = await hyRequest.get({
+    url: `/api/v1/resource/videoDetail?resource_id=${resource_id}`,
+  });
   let a = CryptoJSA(res.data);
   return a;
 }
