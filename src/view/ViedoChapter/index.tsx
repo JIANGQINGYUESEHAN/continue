@@ -1,19 +1,38 @@
-import React, { memo } from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { memo, useEffect, useState } from "react";
 import type { FC, ReactNode } from "react";
 import VideoChapterWrapper from "./styled";
-import SvgIcon from "../../component/SvgIcon";
+// import SvgIcon from "../../component/SvgIcon";
 import NavBar from "../NavBar";
 import VideoItem from "../VideoItem";
+import { GetComicRankingData } from "../../service/static/common";
+import { Skeleton } from "antd-mobile";
 
 interface IProps {
   children?: ReactNode;
+  isCartoon?: number;
 }
 
-const VideoChapter: FC<IProps> = () => {
+const VideoChapter: FC<IProps> = ({ isCartoon }) => {
+  const [Detail, setDatail] = useState([]);
+  useEffect(() => {
+    //获取排行榜内容
+    (async () => {
+      // console.log(111);
+
+      const res = await GetComicRankingData(isCartoon!, 20, 0);
+      console.log(res);
+
+      //保存下一页的标识
+      // setFeedKey(res.feed_key);
+      //保存内容
+      setDatail(res.list);
+    })();
+  }, [isCartoon]);
   return (
     <VideoChapterWrapper>
-      <NavBar />
-      <div className="detail">
+      <NavBar left="更多" />
+      {/* <div className="detail">
         <div className="top">
           <div className="imageTop">
             <div className="videoImag">
@@ -67,10 +86,27 @@ const VideoChapter: FC<IProps> = () => {
             <SvgIcon name="dianzan" size={100} />
           </div>
         </div>
-      </div>
+      </div> */}
+
       <div className="ContentA">
-        <VideoItem />
-        <VideoItem />
+        {Detail.length == 0 ? (
+          <div
+            style={{
+              width: "100%",
+              height: "100px",
+            }}
+          >
+            <Skeleton.Paragraph lineCount={5} animated />
+          </div>
+        ) : (
+          <>
+            {Detail.map((item: any, index: number) => {
+              return (
+                <VideoItem key={index} item={item} isCartoon={isCartoon} />
+              );
+            })}
+          </>
+        )}
       </div>
     </VideoChapterWrapper>
   );

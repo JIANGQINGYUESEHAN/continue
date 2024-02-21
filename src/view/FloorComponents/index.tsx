@@ -39,6 +39,8 @@ const FloorComponents: FC<IProps> = ({ isCartoon, item }) => {
   useEffect(() => {
     (async () => {
       const res = await CategoryList(isCartoon!, 20, 1, item.code);
+      console.log(res);
+
       // console.log(res);
       setDatail(res.list);
     })();
@@ -80,7 +82,7 @@ const FloorComponents: FC<IProps> = ({ isCartoon, item }) => {
               <div
                 style={{
                   width: "100%",
-                  height: "50px",
+                  height: "40px",
                 }}
               >
                 <Skeleton.Paragraph lineCount={5} animated />
