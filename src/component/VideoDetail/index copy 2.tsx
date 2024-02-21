@@ -11,17 +11,13 @@ import { connect } from "react-redux";
 import action from "../../store/action";
 import {
   BuyWithSpark,
-  CategoryList,
-  GetDataForNextPage,
   GetVideoDetails,
   GetVideoDetailsAll,
-  gethandleCollect,
 } from "../../service/static/common";
 import toYearMonthDay from "../../utils/time";
-import { AddSquareOutline, PlayOutline } from "antd-mobile-icons";
+import { PlayOutline } from "antd-mobile-icons";
 import { flushSync } from "react-dom";
 import { useNavigate } from "react-router-dom";
-import VideoItem from "../../view/VideoItem";
 // import VideoItem from "../../view/VideoItem";
 
 interface IProps {
@@ -40,9 +36,6 @@ const VideoDetail: FC<IProps> = ({ query, info }) => {
   const Navigate = useNavigate();
   const [VideoEpisodeList, setVideoEpisodeList] = useState([]);
   const [DetailUrl, setDetailUrl] = useState<string>();
-  const [OtherDetail, setOtherDetail] = useState<any>([]);
-
-  const [feedKey, setFeedKey] = useState("");
   const [IshandleFullScreenPlay, setIshandleFullScreenPlay] = useState(false);
   //获取视频的信息
   useEffect(() => {
@@ -51,26 +44,15 @@ const VideoDetail: FC<IProps> = ({ query, info }) => {
 
       setVideoDetailA(res);
       setVideoEpisodeList(res?.video_episode_list);
-      const Category = res.category;
-      const rea = await CategoryList(isCartoon, 20, 0, Category);
-
-      setOtherDetail(rea.list);
-
-      setFeedKey(res.feed_key);
+      // console.log(VideoDetailA.labels);
+      // console.log(VideoDetailA);
       flushSync;
       if (VideoDetailA !== "") {
         setHasData(true);
       }
     })();
   }, [resource_id]);
-  //切换下一页
-  async function ClickFeedKey() {
-    const res = await GetDataForNextPage(isCartoon!, 20, 0, feedKey);
-    //保存下一页的标识
-    setFeedKey(res.feed_key);
-    //保存内容
-    setOtherDetail(res.list);
-  }
+
   //点击任意视频播放
   async function ClickIndex(index: number) {
     // console.log(index);
@@ -215,42 +197,10 @@ const VideoDetail: FC<IProps> = ({ query, info }) => {
       }
 
       // 添加横屏效果的CSS变换，根据实际情况调整
-      // video.style.transform = "rotate(90deg) scale(2)"; // 示例：旋转90度并缩放
+      video.style.transform = "rotate(90deg) scale(2)"; // 示例：旋转90度并缩放
       // 注意：缩放比例(scale)根据视频与视口的尺寸比例进行调整
     }
-    console.log(111);
   };
-
-  async function Collect(item: any) {
-    console.log(item.collect_status);
-    const resourceId = item.resource_id;
-    if (item.collect_status == 2) {
-      //收藏
-
-      const res = await gethandleCollect(1, resourceId);
-
-      if (res.msg == "请求成功") {
-        Toast.show({
-          icon: "success",
-          content: "收藏成功",
-        });
-      }
-    } else {
-      const res = await gethandleCollect(2, resourceId);
-      console.log(res);
-
-      if (res.msg == "请求成功") {
-        Toast.show({
-          icon: "success",
-          content: "取消收藏成功",
-        });
-      }
-    }
-    //切换
-    const res = await GetVideoDetails(resourceId);
-    console.log(res);
-    setVideoDetailA(res);
-  }
   return (
     <VideoDetailWrapper>
       <NavBar IsShowChildren={false} middle="视频" />
@@ -271,7 +221,6 @@ const VideoDetail: FC<IProps> = ({ query, info }) => {
                 <PlayOutline fontSize={24} onClick={StartPlay} />
               </div>
             )}
-
             <div className="videoImag">
               {IsPlay && (
                 <video
@@ -288,130 +237,106 @@ const VideoDetail: FC<IProps> = ({ query, info }) => {
               )}
             </div>
           </div>
-          {IshandleFullScreenPlay == false ? (
-            <>
-              <div className="detail">
-                <div className="top">
-                  <div className="imageTop">
-                    <div className="videoImag">
-                      <img
-                        src={VideoDetailA?.cover_url}
-                        alt=""
-                        className="img"
-                      />
-                    </div>
-                  </div>
-                  <div className="detailTop">
-                    <div className="firstFloor">
-                      <div className="counters">
-                        <div className="counter">
-                          <span className="icon">
-                            <SvgIcon name="eyes" />
-                          </span>
-                          <span className="number">
-                            {VideoDetailA?.total_view}
-                          </span>
-                        </div>
-                        <div className="counter">
-                          <span className="icon">
-                            <SvgIcon name="dianzanIcon" />
-                          </span>
-                          <span className="number">
-                            {VideoDetailA?.total_praise}
-                          </span>
-                        </div>
-                        <div className="counter">
-                          <span className="icon">
-                            <SvgIcon name="love" />
-                          </span>
-                          <span className="number">
-                            {VideoDetailA?.total_collect}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                    <span className="titleAuthorA">
-                      上线时间：{toYearMonthDay(VideoDetailA?.release_time)}
-                    </span>
-                    <span className="titleAuthor">
-                      作者：{VideoDetailA?.author}
-                    </span>
-                    <span className="title">{VideoDetailA?.intro}</span>
-                  </div>
-                </div>
-                <div className="middle">
-                  <div className="Label">
-                    {VideoDetailA?.labels.map((item: any, index: any) => {
-                      return (
-                        <div className="LabelItem" key={index}>
-                          <span>{item.label}</span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <div
-                    className="Collect"
-                    onClick={() => Collect(VideoDetailA)}
-                  >
-                    {VideoDetailA?.collect_status == 2 ? (
-                      <SvgIcon name="dianzan" size={100} />
-                    ) : (
-                      <SvgIcon name="love-fill" size={100} />
-                    )}
-                  </div>
+
+          <div className="detail">
+            <div className="top">
+              <div className="imageTop">
+                <div className="videoImag">
+                  <img src={VideoDetailA?.cover_url} alt="" className="img" />
                 </div>
               </div>
-              <div className="content">
-                <div className="type">
-                  <Swiper
-                    autoplay={false}
-                    slideSize={20} // 根据视觉效果调整，保证两边有间隔
-                    trackOffset={10} // 两边的间隔
-                    indicator={() => null}
-                    className="ul"
-                  >
-                    {VideoEpisodeList.map((item: any, index: number) => {
-                      return (
-                        <Swiper.Item
-                          key={index}
-                          onClick={() => ClickIndex(index)}
-                        >
-                          <li
-                            className={`list ${
-                              Index === index ? "active" : ""
-                            }`}
-                          >
-                            {item.access_type == 2 && (
-                              <div className="vip">
-                                <SvgIcon name="VIPDetail" size={24} />
-                              </div>
-                            )}
-                            {item.access_type == 3 && (
-                              <div className="vipA">
-                                <SvgIcon name="detailNumber" size={30} />
-                                <span className="a">2</span>
-                              </div>
-                            )}
-                            <span className="title">{index}</span>
-                          </li>
-                        </Swiper.Item>
-                      );
-                    })}
-                  </Swiper>
+              <div className="detailTop">
+                <div className="firstFloor">
+                  <div className="counters">
+                    <div className="counter">
+                      <span className="icon">
+                        <SvgIcon name="eyes" />
+                      </span>
+                      <span className="number">{VideoDetailA?.total_view}</span>
+                    </div>
+                    <div className="counter">
+                      <span className="icon">
+                        <SvgIcon name="dianzanIcon" />
+                      </span>
+                      <span className="number">
+                        {VideoDetailA?.total_praise}
+                      </span>
+                    </div>
+                    <div className="counter">
+                      <span className="icon">
+                        <SvgIcon name="love" />
+                      </span>
+                      <span className="number">
+                        {VideoDetailA?.total_collect}
+                      </span>
+                    </div>
+                  </div>
                 </div>
+                <span className="titleAuthorA">
+                  上线时间：{toYearMonthDay(VideoDetailA?.release_time)}
+                </span>
+                <span className="titleAuthor">
+                  作者：{VideoDetailA?.author}
+                </span>
+                <span className="title">{VideoDetailA?.intro}</span>
               </div>
-              <NavBar left="更多" onClickA={ClickFeedKey} />
-              <div className="ContentA">
-                {OtherDetail.map((item: any, index: number) => {
+            </div>
+            <div className="middle">
+              <div className="Label">
+                {VideoDetailA?.labels.map((item: any, index: any) => {
                   return (
-                    <VideoItem key={index} item={item} isCartoon={isCartoon} />
+                    <div className="LabelItem" key={index}>
+                      <span>{item.label}</span>
+                    </div>
                   );
                 })}
               </div>
-            </>
-          ) : (
-            ""
-          )}
+              <div className="Collect">
+                {VideoDetailA?.collect_status == 2 ? (
+                  <SvgIcon name="dianzan" size={100} />
+                ) : (
+                  <SvgIcon name="love-fill" size={100} />
+                )}
+              </div>
+            </div>
+          </div>
+          <div className="content">
+            <div className="type">
+              <Swiper
+                autoplay={false}
+                slideSize={20} // 根据视觉效果调整，保证两边有间隔
+                trackOffset={10} // 两边的间隔
+                indicator={() => null}
+                className="ul"
+              >
+                {VideoEpisodeList.map((item: any, index: number) => {
+                  return (
+                    <Swiper.Item key={index} onClick={() => ClickIndex(index)}>
+                      <li className={`list ${Index === index ? "active" : ""}`}>
+                        {item.access_type == 2 && (
+                          <div className="vip">
+                            <SvgIcon name="VIPDetail" size={24} />
+                          </div>
+                        )}
+                        {item.access_type == 3 && (
+                          <div className="vipA">
+                            <SvgIcon name="detailNumber" size={30} />
+                            <span className="a">2</span>
+                          </div>
+                        )}
+                        <span className="title">{index}</span>
+                      </li>
+                    </Swiper.Item>
+                  );
+                })}
+              </Swiper>
+            </div>
+          </div>
+          <NavBar left="更多" />
+          <div className="ContentA">
+            {/* <VideoItem />
+          <VideoItem /> */}
+          </div>
         </div>
       )}
     </VideoDetailWrapper>

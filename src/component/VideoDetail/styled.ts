@@ -21,6 +21,13 @@ const VideoDetailWrapper = styled.div`
         top: 50%;
         transform: translate(-50%, -50%);
       }
+      .IconA {
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        right: 50%;
+        bottom: 50%;
+      }
       .videoImag {
         width: 100%;
         height: 100%;
