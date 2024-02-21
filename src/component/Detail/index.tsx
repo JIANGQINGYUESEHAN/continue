@@ -132,17 +132,20 @@ const Detail: FC<IProps> = ({ query, info }) => {
     (async () => {
       const res = await GetComicChapterDetails(Resource_id, Section_id);
       console.log(res);
+      const rea = await GetDetailsAboutNovelsAndComics(Resource_id);
+      // console.log(rea);
+      setDetailInfo(rea);
+      setDetial(res.book_section_detail);
       if (Index == 5) {
         let url = res.book_section_detail[0].resource_url;
         let reb = await fetch(url);
         let red = await reb.text();
         setNovelContent(red);
+        const rea = await GetDetailsAboutNovelsAndComics(Resource_id);
+        console.log(rea);
+        setDetial(rea.book_section_detail);
         return;
       }
-      setDetial(res.book_section_detail);
-      const rea = await GetDetailsAboutNovelsAndComics(Resource_id);
-      // console.log(rea);
-      setDetailInfo(rea);
     })();
   }, []);
   return (
@@ -284,17 +287,15 @@ const Detail: FC<IProps> = ({ query, info }) => {
         style={{ background: Night ? "black" : "#ccc" }}
       >
         <div className="icon-section">
-          {Index == 1 && (
-            <div
-              className="icon menu"
-              onClick={() => {
-                setVisible3(true);
-              }}
-            >
-              {Night && <FileTwoTone twoToneColor="#cccc" />}
-              {!Night && <FileTwoTone twoToneColor="white" />}
-            </div>
-          )}
+          <div
+            className="icon menu"
+            onClick={() => {
+              setVisible3(true);
+            }}
+          >
+            {Night && <FileTwoTone twoToneColor="#cccc" />}
+            {!Night && <FileTwoTone twoToneColor="white" />}
+          </div>
 
           <div className="icon home" onClick={ReBack}>
             {Night && <HomeTwoTone twoToneColor="#cccc" />}
