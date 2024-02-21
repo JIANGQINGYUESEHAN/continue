@@ -147,18 +147,18 @@ const History: FC<IProps> = () => {
       </div>
       {isDetail == 5 || isDetail == 1 ? (
         <div className="Content">
-          {List.map((item: any, index: any) => {
-            return <NovelsAndComics />;
+          {/* {List.map((item: any, index: any) => {
+            return <NovelsAndComics  isCartoon={isDetail} />;
           })}
-          <NovelsAndComics />
-          <NovelsAndComics />
+          <NovelsAndComics isCartoon={isDetail} />
+          <NovelsAndComics  isCartoon={isDetail} /> */}
         </div>
       ) : (
         <div className="ContentA">
+          {/* <VideoItem />
           <VideoItem />
           <VideoItem />
-          <VideoItem />
-          <VideoItem />
+          <VideoItem /> */}
         </div>
       )}
       <InfiniteScroll loadMore={loadMore} hasMore={hasMore} threshold={10} />

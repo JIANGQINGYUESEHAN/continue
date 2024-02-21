@@ -12,10 +12,22 @@ const VideoDetailWrapper = styled.div`
     .videoContent {
       width: 100%;
       height: 220px;
-
+      position: relative;
+      .Icon {
+        width: 25px;
+        height: 25px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
       .videoImag {
         width: 100%;
         height: 100%;
+        .video {
+          width: 100%;
+          height: 100%;
+        }
         .img {
           width: 100%;
           height: 100%;
@@ -177,11 +189,14 @@ const VideoDetailWrapper = styled.div`
         height: 60px; // 设定高度
         overflow: hidden; // 隐藏溢出的内容
         display: flex;
-        justify-content: flex-start; // 开始位置对齐
-        align-items: center;
-
+        align-items: flex-start;
+        justify-content: flex-start;
         .ul {
           width: 100%;
+          display: flex;
+          align-items: flex-start;
+          justify-content: flex-start;
+
           .list {
             min-width: 60px; // 最小宽度，根据内容调整
             height: 60px; // 高度
@@ -201,6 +216,23 @@ const VideoDetailWrapper = styled.div`
               position: absolute;
               top: -15px;
               right: 5px;
+              .a {
+                position: absolute;
+                top: -15px;
+                right: 5px;
+                font-size: 10px;
+              }
+            }
+            .vipA {
+              position: absolute;
+              top: -10px;
+              right: 7px;
+              .a {
+                position: absolute;
+                top: -12px;
+                right: 18px;
+                font-size: 10px;
+              }
             }
           }
         }
