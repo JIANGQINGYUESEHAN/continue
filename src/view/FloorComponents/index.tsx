@@ -19,11 +19,19 @@ interface IProps {
 }
 
 const FloorComponents: FC<IProps> = ({ isCartoon, item }) => {
-  const [Detail, setDatail] = useState([]);
-  //下一页标识
+  const [Detail, setDetail] = useState([]);
   const [feedKey, setFeedKey] = useState("");
-  //切换下一页
-  async function ClickFeedKey() {
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await CategoryList(isCartoon!, 20, 1, item.code);
+      setDetail(res.list);
+      setFeedKey(res.feed_key);
+    };
+    fetchData();
+  }, [isCartoon, item.code]);
+
+  const ClickFeedKey = async () => {
     const res = await CategoryListNextPage(
       isCartoon!,
       20,
@@ -31,76 +39,45 @@ const FloorComponents: FC<IProps> = ({ isCartoon, item }) => {
       item.code,
       feedKey
     );
-    //保存下一页的标识
     setFeedKey(res.feed_key);
-    //保存内容
-    setDatail(res.list);
-  }
-  useEffect(() => {
-    (async () => {
-      const res = await CategoryList(isCartoon!, 20, 1, item.code);
-      console.log(res);
+    setDetail(res.list);
+  };
 
-      // console.log(res);
-      setDatail(res.list);
-    })();
-  }, [isCartoon]);
+  const renderContent = () => {
+    if (Detail.length === 0) {
+      return (
+        <div
+          style={{
+            width: "100%",
+            height: "50px",
+            marginBottom: "30px",
+          }}
+        >
+          <Skeleton.Paragraph lineCount={3} animated />
+        </div>
+      );
+    }
+
+    return Detail.map((item, index) => {
+      if (isCartoon === 1 || isCartoon === 5) {
+        return (
+          <NovelsAndComics key={index} item={item} isCartoon={isCartoon} />
+        );
+      } else {
+        return <VideoItem key={index} item={item} isCartoon={isCartoon} />;
+      }
+    });
+  };
+
   return (
     <FloorComponentsWrapper>
       <NavBar left={item.title} onClickA={ClickFeedKey} />
-      {isCartoon == 1 || isCartoon == 5 ? (
-        <>
-          <div className="Content">
-            {Detail.length == 0 ? (
-              <div
-                style={{
-                  width: "100%",
-                  height: "50px",
-                }}
-              >
-                <Skeleton.Paragraph lineCount={5} animated />
-              </div>
-            ) : (
-              <>
-                {Detail.map((item: any, index: number) => {
-                  return (
-                    <NovelsAndComics
-                      key={index}
-                      item={item}
-                      isCartoon={isCartoon}
-                    />
-                  );
-                })}
-              </>
-            )}
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="ContentA">
-            {Detail.length == 0 ? (
-              <div
-                style={{
-                  width: "100%",
-                  height: "40px",
-                }}
-              >
-                <Skeleton.Paragraph lineCount={5} animated />
-              </div>
-            ) : (
-              <>
-                {Detail.map((item: any, index: number) => {
-                  return (
-                    <VideoItem key={index} item={item} isCartoon={isCartoon} />
-                  );
-                })}
-              </>
-            )}
-          </div>
-        </>
-      )}
+      <div
+        className={isCartoon === 1 || isCartoon === 5 ? "Content" : "ContentA"}
+      >
+        {renderContent()}
+      </div>
     </FloorComponentsWrapper>
   );
 };
-
 export default memo(FloorComponents);

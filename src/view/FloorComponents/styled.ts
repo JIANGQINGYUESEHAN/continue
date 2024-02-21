@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 const FloorComponentsWrapper = styled.div`
+  min-height: 120px;
+  width: 100%;
+
   .Content {
     display: flex;
     margin: 0px 9px;

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const EndWrapper = styled.div`
+  margin-top: 30px;
   .button-group {
     display: flex;
     justify-content: center;

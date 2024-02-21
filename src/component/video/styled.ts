@@ -57,10 +57,14 @@ const VideoWrapper = styled.div`
     width: 94%;
     height: 200px;
     overflow: hidden;
-    margin-bottom: 10px;
+
     .Swiper {
       width: 100%;
       height: 100%;
+      .imag {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 `;

@@ -12,12 +12,15 @@ import End from "../../view/End";
 import FloorComponents from "../../view/FloorComponents";
 import List from "../../view/List";
 import { ProjectList } from "../../service/static/common";
+import { connect } from "react-redux";
+import action from "../../store/action";
 
 interface IProps {
   children?: ReactNode;
+  CarouselList?: any;
 }
 
-const Video: FC<IProps> = () => {
+const Video: FC<IProps> = ({ CarouselList }) => {
   const [isCartoon, SetIsCarToon] = useState<number>(3);
   const [Project, setProjectList] = useState([]);
   function ClicikType(index: number) {
@@ -36,7 +39,6 @@ const Video: FC<IProps> = () => {
     })();
   }, []);
 
-  const colors = ["#ace0ff", "#bcffbd", "#e4fabd", "#ffcfac"];
   return (
     <VideoWrapper>
       <div className="Select">
@@ -72,10 +74,10 @@ const Video: FC<IProps> = () => {
       </div>
       <div className="carousel">
         <Swiper className="Swiper" loop autoplay>
-          {colors.map((color, index) => (
+          {CarouselList?.map((color: any, index: number) => (
             <Swiper.Item key={index}>
               <div className="Swiper" style={{ background: color }}>
-                {index + 1}
+                <img src={color.img_url} alt="" className="imag" />
               </div>
             </Swiper.Item>
           ))}
@@ -84,7 +86,7 @@ const Video: FC<IProps> = () => {
       {/* 公告提示 */}
       <Notify />
 
-      {isCartoon == 2 ? (
+      {isCartoon == 3 ? (
         <>
           <ViedoChapter isCartoon={isCartoon} />
           <List isCartoon={isCartoon} />
@@ -111,5 +113,7 @@ const Video: FC<IProps> = () => {
     </VideoWrapper>
   );
 };
+const mapStateToProps = (state: any) => state.base;
+const mapDispatchToProps = action.Base;
 
-export default memo(Video);
+export default connect(mapStateToProps, mapDispatchToProps)(memo(Video));
