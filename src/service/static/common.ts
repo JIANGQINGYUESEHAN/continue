@@ -355,6 +355,8 @@ export async function GetComicChapterDetails(
   });
   //console.log(res.data.code);
   if (res.data.code) {
+    console.log(res);
+
     return res.data;
   }
 

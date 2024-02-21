@@ -4,16 +4,13 @@
 import React, { memo, useEffect, useState } from "react";
 import type { FC, ReactNode } from "react";
 import DetailWrapper from "./styled";
-import { Popup, Toast } from "antd-mobile";
+import { Popup, Slider, Toast } from "antd-mobile";
 import {
-  HomeOutlined,
-  SunOutlined,
-  ProfileOutlined,
-  MoonOutlined,
   FileTwoTone,
   HomeTwoTone,
   BulbTwoTone,
   EyeInvisibleTwoTone,
+  SettingTwoTone,
 } from "@ant-design/icons";
 import { WithRouter } from "../../router";
 import {
@@ -34,11 +31,15 @@ interface IProps {
 const Detail: FC<IProps> = ({ query, info }) => {
   const { Resource_id, Section_id, Index } = query;
   const [Detail, setDetial] = useState([]);
+  const [fontSize, setFontSize] = useState<any>(16);
   const [DetailInfo, setDetailInfo] = useState<any>([]);
   const Navigate = useNavigate();
+
   //弹出层
   const [visible3, setVisible3] = useState(false);
+  const [visible1, setVisible1] = useState(false);
   const [Night, setNight] = useState(false);
+  const [NovelContent, setNovelContent] = useState("");
   //返回上一页
   function ReBack() {
     Navigate(-1);
@@ -106,7 +107,7 @@ const Detail: FC<IProps> = ({ query, info }) => {
   //播放
   async function PlayDirectly(resourceId: any, sectionId: any) {
     const res = await GetComicChapterDetails(resourceId, sectionId);
-    // console.log(res);
+
     setDetial(res.book_section_detail);
     const rea = await GetDetailsAboutNovelsAndComics(resourceId);
     console.log(rea);
@@ -114,25 +115,48 @@ const Detail: FC<IProps> = ({ query, info }) => {
     setVisible3(false);
   }
 
+  const toastValue = (value: number | number[]) => {
+    let text = "";
+    if (typeof value === "number") {
+      text = `${value}`;
+    } else {
+      text = `[${value.join(",")}]`;
+    }
+    Toast.show(`当前字号为：${text}`);
+    // console.log(value);
+    setFontSize(value);
+    setVisible1(false);
+  };
   //获取详情
   useEffect(() => {
     (async () => {
       const res = await GetComicChapterDetails(Resource_id, Section_id);
-      // console.log(res);
+      console.log(res);
+      if (Index == 5) {
+        let url = res.book_section_detail[0].resource_url;
+        let reb = await fetch(url);
+        let red = await reb.text();
+        setNovelContent(red);
+        return;
+      }
       setDetial(res.book_section_detail);
       const rea = await GetDetailsAboutNovelsAndComics(Resource_id);
-      console.log(rea);
+      // console.log(rea);
       setDetailInfo(rea);
     })();
   }, []);
   return (
     <DetailWrapper>
       {Index == 5 && (
-        <div
-          className="contentA"
-          style={{ background: Night ? "black" : "#ccc" }}
-        >
-          <p></p>
+        <div className="contentA" style={{ background: Night ? "black" : "" }}>
+          <p
+            style={{
+              color: Night ? "white" : "black",
+              fontSize: `${fontSize}px`,
+            }}
+          >
+            {NovelContent}
+          </p>
         </div>
       )}
       {Index == 1 && (
@@ -208,21 +232,69 @@ const Detail: FC<IProps> = ({ query, info }) => {
           })}
         </div>
       </Popup>
-
+      <Popup
+        visible={visible1}
+        onMaskClick={() => {
+          setVisible1(false);
+        }}
+        onClose={() => {
+          setVisible1(false);
+        }}
+        bodyStyle={{
+          height: "10vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <div
+          className="left"
+          style={{
+            flex: 1,
+            height: "30px",
+            lineHeight: "30px",
+            textAlign: "center",
+          }}
+        >
+          <span> 字号 -</span>
+        </div>
+        <div
+          className="middle"
+          style={{
+            flex: 4,
+            height: "30px",
+          }}
+        >
+          <Slider onAfterChange={toastValue} defaultValue={fontSize} />
+        </div>
+        <div
+          className="right"
+          style={{
+            flex: 1,
+            height: "30px",
+            lineHeight: "30px",
+            textAlign: "center",
+          }}
+        >
+          <span> 字号 +</span>
+        </div>
+      </Popup>
       <div
         className="footer-navigation"
         style={{ background: Night ? "black" : "#ccc" }}
       >
         <div className="icon-section">
-          <div
-            className="icon menu"
-            onClick={() => {
-              setVisible3(true);
-            }}
-          >
-            {Night && <FileTwoTone twoToneColor="#cccc" />}
-            {!Night && <FileTwoTone twoToneColor="white" />}
-          </div>
+          {Index == 1 && (
+            <div
+              className="icon menu"
+              onClick={() => {
+                setVisible3(true);
+              }}
+            >
+              {Night && <FileTwoTone twoToneColor="#cccc" />}
+              {!Night && <FileTwoTone twoToneColor="white" />}
+            </div>
+          )}
 
           <div className="icon home" onClick={ReBack}>
             {Night && <HomeTwoTone twoToneColor="#cccc" />}
@@ -237,6 +309,17 @@ const Detail: FC<IProps> = ({ query, info }) => {
             {Night && <BulbTwoTone twoToneColor="#cccc" />}
             {!Night && <EyeInvisibleTwoTone twoToneColor="white" />}
           </div>
+          {Index == 5 && (
+            <div
+              className="icon bell"
+              onClick={() => {
+                setVisible1(true);
+              }}
+            >
+              {Night && <SettingTwoTone twoToneColor="#cccc" />}
+              {!Night && <SettingTwoTone twoToneColor="white" />}
+            </div>
+          )}
         </div>
       </div>
     </DetailWrapper>
