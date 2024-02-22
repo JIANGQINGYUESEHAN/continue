@@ -77,7 +77,7 @@ const ShortVideo: FC<IProps> = () => {
   };
 
   useEffect(() => {
-    videoRefs.current.forEach((video, index) => {
+    videoRefs.current.forEach((video: any, index: number) => {
       if (index === activeIndex) {
         // 尝试播放当前活动的视频并确保不是静音
         video.muted = false; // 确保视频不是静音的
@@ -88,7 +88,7 @@ const ShortVideo: FC<IProps> = () => {
             .then(() => {
               // 视频播放成功
             })
-            .catch((error) => {
+            .catch((error: any) => {
               console.error("视频播放失败: ", error);
               // 处理错误，比如因为用户没有交互而不能播放
               // 可以考虑在这里显示一个播放按钮，让用户手动触发播放

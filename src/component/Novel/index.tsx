@@ -88,7 +88,7 @@ const Novel: FC<IProps> = ({ CarouselList }) => {
           ))}
         </Swiper>
       </div>
-      <Select />
+      <Select isCartoon={isCartoon} />
       {/* 多重选择 */}
       <Chapter />
       {/* 公告提示 */}
@@ -99,7 +99,7 @@ const Novel: FC<IProps> = ({ CarouselList }) => {
           <FloorComponents isCartoon={isCartoon} key={index} item={item} />
         );
       })}
-      <End />
+      <End isCartoon={isCartoon} />
     </NovelWrapper>
   );
 };

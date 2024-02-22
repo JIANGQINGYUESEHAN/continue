@@ -25,7 +25,6 @@ const FloorComponents: FC<IProps> = ({ isCartoon, item }) => {
   useEffect(() => {
     const fetchData = async () => {
       const res = await CategoryList(isCartoon!, 20, 1, item.code);
-      console.log(res);
 
       setDetail(res.list);
       setFeedKey(res.feed_key);

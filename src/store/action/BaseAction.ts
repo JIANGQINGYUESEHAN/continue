@@ -11,8 +11,6 @@ const BaseAction = {
   async queryUserInfoAsyncAction() {
     const res = await getBaesInfo();
 
-    // console.log(res);
-
     return {
       type: TYPES.BASE_INFO,
       info: res.data,

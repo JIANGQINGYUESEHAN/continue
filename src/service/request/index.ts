@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
 import type { AxiosInstance } from "axios";
@@ -51,8 +52,14 @@ class HYRequest {
     this.instance.interceptors.response.use(
       (res) => {
         const data = res.data;
-        if (data.returnCode === "-1001") {
-          console.log("请求失败~, 错误信息");
+
+        if (data.code == "40002") {
+          //移除 ktoken,移除密码
+          //先清除原有的token
+          localStorage.removeItem("KpToken");
+          //清除原有的secret
+          localStorage.removeItem("secret");
+          // navigate("/loginPassword");
         } else {
           return data;
         }

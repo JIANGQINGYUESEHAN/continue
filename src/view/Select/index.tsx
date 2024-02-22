@@ -8,21 +8,22 @@ import { useNavigate } from "react-router-dom";
 
 interface IProps {
   children?: ReactNode;
+  isCartoon?: any;
 }
 
-const Select: FC<IProps> = () => {
+const Select: FC<IProps> = ({ isCartoon }) => {
   const navigate = useNavigate();
   const BorderBottomArray: any = [
     {
       id: 0,
       SelectIcon: <SvgIcon name="rank" size={35} />,
-      path: "/rank",
+      path: `/rank?isCartoon=${isCartoon}`,
       name: "排名",
     },
     {
       id: 1,
       SelectIcon: <SvgIcon name="classificon" size={35} />,
-      path: "/classification",
+      path: `/FilterCriteria?isCartoon=${isCartoon}`,
       name: "分类",
     },
     {

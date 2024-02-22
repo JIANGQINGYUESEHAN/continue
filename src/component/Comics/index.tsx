@@ -36,7 +36,7 @@ const Comics: FC<IProps> = ({ CarouselList }) => {
   useEffect(() => {
     (async () => {
       const res = await ProjectList(isCartoon);
-      // console.log(res.list);
+      console.log(res.list);
       setProjectList(res.list);
     })();
   }, []);
@@ -87,7 +87,7 @@ const Comics: FC<IProps> = ({ CarouselList }) => {
         </Swiper>
       </div>
       {/* 四选择项 */}
-      <Select />
+      <Select isCartoon={isCartoon} />
       {/* 多重选择 */}
       <Chapter />
       {/* 公告提示 */}
@@ -112,7 +112,7 @@ const Comics: FC<IProps> = ({ CarouselList }) => {
         </>
       )}
 
-      <End />
+      <End isCartoon={isCartoon} />
     </ComicsWrapper>
   );
 };

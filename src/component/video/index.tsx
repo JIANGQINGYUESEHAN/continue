@@ -14,6 +14,7 @@ import List from "../../view/List";
 import { ProjectList } from "../../service/static/common";
 import { connect } from "react-redux";
 import action from "../../store/action";
+import Select from "../../view/Select";
 
 interface IProps {
   children?: ReactNode;
@@ -84,6 +85,7 @@ const Video: FC<IProps> = ({ CarouselList }) => {
         </Swiper>
       </div>
       {/* 公告提示 */}
+      <Select isCartoon={isCartoon} />
       <Notify />
 
       {isCartoon == 3 ? (
@@ -109,7 +111,7 @@ const Video: FC<IProps> = ({ CarouselList }) => {
         </>
       )}
 
-      <End />
+      <End isCartoon={isCartoon} />
     </VideoWrapper>
   );
 };

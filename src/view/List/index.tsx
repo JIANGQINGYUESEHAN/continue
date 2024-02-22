@@ -56,7 +56,7 @@ const List: FC<IProps> = ({ isCartoon }) => {
       // console.log(111);
 
       const res = await GetComicRankingData(isCartoon!, 20, activeTab * 1);
-      console.log(res);
+      // console.log(res);
 
       //保存下一页的标识
       setFeedKey(res.feed_key);
