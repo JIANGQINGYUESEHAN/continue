@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 
 const FilterCriteriaWrapper = styled.div`
+  overflow: hidden;
   .Select {
     padding: 20px 20px;
     display: flex;
@@ -99,7 +100,7 @@ const FilterCriteriaWrapper = styled.div`
     flex-wrap: nowrap;
     align-items: center;
     box-sizing: border-box;
-    margin: 8px 0px;
+    margin-top: 8px;
     /* 隐藏滚动条的样式 */
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */

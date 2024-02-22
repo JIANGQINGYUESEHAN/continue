@@ -109,9 +109,6 @@ const FilterCriteria: FC<IProps> = ({ query }) => {
   }, [feedKey]);
   //获取各个榜
   function ClicikTypeA(index: number) {
-    console.log("====================================");
-    console.log(index);
-    console.log("====================================");
     setSelected(index);
   }
   return (
