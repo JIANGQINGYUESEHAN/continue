@@ -269,6 +269,8 @@ export async function GetDataForNextPage(
     url: `/api/v1/resource/list?navigation_type=${navigation_type}&feed_size=${feed_size}&sorted=${sorted}&feed_key=${feed_key}`,
   });
 
+  console.log(res);
+
   let a = CryptoJSA(res.data);
   return a;
 }
@@ -306,6 +308,8 @@ export async function CategoryListNextPage(
   const res = await hyRequest.get({
     url: `/api/v1/resource/list?navigation_type=${navigation_type}&feed_size=${feed_size}&sorted=${sorted}&category=${category}&feed_key=${feed_key}`,
   });
+  // console.log(res);
+
   let a = CryptoJSA(res.data);
   return a;
 }
