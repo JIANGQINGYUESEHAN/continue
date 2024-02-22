@@ -75,22 +75,31 @@ const ShortVideo: FC<IProps> = () => {
       // 执行下滑后的操作
     }
   };
-  // 当活动索引改变时，播放相应的视频
+
   useEffect(() => {
-    videoRefs.current.forEach((video: any, index: number) => {
+    videoRefs.current.forEach((video, index) => {
       if (index === activeIndex) {
-        // 省略播放逻辑...
+        // 尝试播放当前活动的视频并确保不是静音
+        video.muted = false; // 确保视频不是静音的
+        const playPromise = video.play(); // 尝试播放视频
+
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              // 视频播放成功
+            })
+            .catch((error) => {
+              console.error("视频播放失败: ", error);
+              // 处理错误，比如因为用户没有交互而不能播放
+              // 可以考虑在这里显示一个播放按钮，让用户手动触发播放
+            });
+        }
       } else {
-        video.pause(); // 暂停非当前视频
+        // 暂停非当前活动的视频
+        video.pause();
       }
     });
 
-    // 判断上滑还是下滑
-    // if (activeIndex > prevIndex) {
-    //   console.log("用户进行了上滑操作");
-    // } else if (activeIndex < prevIndex) {
-    //   console.log("用户进行了下滑操作");
-    // }
     // 更新前一个活动索引
     setPrevIndex(activeIndex);
   }, [activeIndex]);
@@ -116,7 +125,7 @@ const ShortVideo: FC<IProps> = () => {
   useEffect(() => {
     if (Detail.length > 0 && videoRefs.current[activeIndex]) {
       const video = videoRefs.current[activeIndex];
-      video.muted = true; // 默认静音，以应对自动播放策略
+      video.muted = false; // 默认静音，以应对自动播放策略
       const playPromise = video.play();
       if (playPromise !== undefined) {
         playPromise.catch((error: any) => {
@@ -143,10 +152,6 @@ const ShortVideo: FC<IProps> = () => {
       }
     }
   };
-  //点击切换
-  // function handVideoChange(index) {
-  //   console.log(index);
-  // }
 
   return (
     <ShortVideoWrapper
@@ -180,6 +185,7 @@ const ShortVideo: FC<IProps> = () => {
                 ref={(ref) => (videoRefs.current[index] = ref)}
                 className="Video"
                 src={item.video_url}
+                muted={false}
                 loop
                 controls // 移除了 muted 属性
               ></video>

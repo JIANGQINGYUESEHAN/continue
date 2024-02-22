@@ -2,18 +2,13 @@
 import React, { memo } from "react";
 import type { FC, ReactNode } from "react";
 import RankWrapper from "./styled";
-import { NavBar, SideBar, Tabs, Toast } from "antd-mobile";
+import NavBar from "../../view/NavBar";
 
 interface IProps {
   children?: ReactNode;
 }
 
 const Rank: FC<IProps> = () => {
-  const back = () =>
-    Toast.show({
-      content: "点击了返回区域",
-      duration: 1000,
-    });
   const tabs = [
     {
       key: "1",
@@ -60,60 +55,7 @@ const Rank: FC<IProps> = () => {
   ];
   return (
     <RankWrapper>
-      <NavBar onBack={back}>
-        <span className="title"> 排行版</span>
-      </NavBar>
-
-      <div className="adjust">
-        <div className="adjustTabs">
-          <Tabs>
-            {Tabsa.map((item) => {
-              return (
-                <Tabs.Tab title={item.key} key={item.id}>
-                  <div
-                    className="SideBarItem"
-                    style={{
-                      display: "flex",
-                    }}
-                  >
-                    <div
-                      className="Item"
-                      id="Item"
-                      style={{
-                        width: "64px",
-                        background: "red",
-                        flex: 1,
-                      }}
-                    >
-                      <SideBar>
-                        {tabs.map((item) => (
-                          <SideBar.Item key={item.key} title={item.title} />
-                        ))}
-                      </SideBar>
-                    </div>
-
-                    {/* 这里可以添加要显示的内容 */}
-                    <div
-                      className="tab-content"
-                      style={{
-                        flex: 3,
-                        backgroundColor: "red",
-                        marginTop: "0px",
-                        height: "100%",
-                      }}
-                    >
-                      <div
-                        className="ItemContent"
-                        style={{ height: "1000px" }}
-                      ></div>
-                    </div>
-                  </div>
-                </Tabs.Tab>
-              );
-            })}
-          </Tabs>
-        </div>
-      </div>
+      <NavBar IsShowChildren={false} middle="历史" />
     </RankWrapper>
   );
 };
