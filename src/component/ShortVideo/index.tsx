@@ -6,42 +6,126 @@ import ShortVideoWrapper from "./styled";
 import action from "../../store/action";
 import { connect } from "react-redux";
 import { Swiper } from "antd-mobile";
+import { GetShortVideo } from "../../service/static/common";
+import { useNavigate } from "react-router-dom";
+import { flushSync } from "react-dom";
 
 interface IProps {
   children?: ReactNode;
 }
 
 const ShortVideo: FC<IProps> = () => {
+  const navigate = useNavigate();
+
   const videoRefs = useRef<any>([]);
   const [isPlaying, setIsPlaying] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
-  //
+  const [Detail, setDatail] = useState<any>(() => {
+    const a = {
+      video_url:
+        "https://xjc.demo.hongcd.com/uploads/20230214/84e165388f5bfdb1550522f50f5a57bb.mp4",
+      author: "短视频1作者",
+      duration: 11,
+      episode_id: "9111111",
+      feed_key: "2a3KYgDnJgW",
+      intro: "短视频1描述",
+      labels: [],
+      next_status: 1,
+      release_time: 1704367003,
+      resource_id: "911111111111",
+      title: "短视频1标题",
+    };
+    return [a];
+  });
+  const [nextstatus, setNextStatus] = useState();
+  const [prevIndex, setPrevIndex] = useState(0); // 新增状态来存储前一个活动索引
+  // const [ isCartoon, SetIsCarToon] = useState<number>(isCartoon!);
+  //下一页标识
+  const [feedKey, setFeedKey] = useState("");
+  //初始化获取数据
+  const [startY, setStartY] = useState(0); // 触摸开始的Y坐标
+  const [endY, setEndY] = useState(0); // 触摸结束的Y坐标
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setStartY(e.touches[0].clientY); // 记录触摸开始的Y坐标
+  };
+
+  const handleTouchEnd = async (e: React.TouchEvent) => {
+    setEndY(e.changedTouches[0].clientY); // 记录触摸结束的Y坐标
+    // 判断滑动方向
+    if (startY - endY > 0 && activeIndex === Detail.length - 2) {
+      console.log("上滑操作，并且是倒数第二个视频");
+      if (nextstatus == 1) {
+        try {
+          const res = await GetShortVideo(feedKey);
+          if (res) {
+            const updatedVideos = [...Detail, res];
+            setDatail(updatedVideos);
+            setFeedKey(res.feed_key);
+            setNextStatus(res.next_status);
+          }
+        } catch (error) {
+          console.error("请求新视频数据失败", error);
+        }
+      } else {
+        cleanUpAndNavigate();
+      }
+    } else if (startY - endY < 0) {
+      console.log("下滑操作");
+      // 执行下滑后的操作
+    }
+  };
   // 当活动索引改变时，播放相应的视频
   useEffect(() => {
     videoRefs.current.forEach((video: any, index: number) => {
       if (index === activeIndex) {
-        const playPromise = video.play();
-        if (playPromise !== undefined) {
-          playPromise
-            .then(() => {
-              // 自动播放开始
-            })
-            .catch((error: any) => {
-              console.error("自动播放被阻止", error);
-            });
-        }
+        // 省略播放逻辑...
       } else {
         video.pause(); // 暂停非当前视频
       }
     });
+
+    // 判断上滑还是下滑
+    // if (activeIndex > prevIndex) {
+    //   console.log("用户进行了上滑操作");
+    // } else if (activeIndex < prevIndex) {
+    //   console.log("用户进行了下滑操作");
+    // }
+    // 更新前一个活动索引
+    setPrevIndex(activeIndex);
   }, [activeIndex]);
 
   // 初始化组件时自动播放第一个视频
   useEffect(() => {
+    //获取第一个视频 将他放到数组中
+    (async () => {
+      const rea = await GetShortVideo();
+      console.log(rea);
+      setFeedKey(rea.feed_key);
+      setNextStatus(rea.next_status);
+      const a = Detail;
+      a.push(rea);
+      setDatail(a);
+    })();
     setIsPlaying(true);
   }, []);
+  const cleanUpAndNavigate = () => {
+    navigate("/specialOffer");
+  };
 
+  useEffect(() => {
+    if (Detail.length > 0 && videoRefs.current[activeIndex]) {
+      const video = videoRefs.current[activeIndex];
+      video.muted = true; // 默认静音，以应对自动播放策略
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((error: any) => {
+          console.error("视频自动播放失败", error);
+        });
+      }
+    }
+  }, [Detail, activeIndex]);
+  //点击停止
   const handleVideoClick = (event: any, index: any) => {
     event.stopPropagation(); // 阻止事件传播
     const videoElement = videoRefs.current[index];
@@ -59,20 +143,28 @@ const ShortVideo: FC<IProps> = () => {
       }
     }
   };
+  //点击切换
+  // function handVideoChange(index) {
+  //   console.log(index);
+  // }
 
-  const colors = ["#ace0ff", "#bcffbd", "#e4fabd", "#ffcfac"];
   return (
-    <ShortVideoWrapper>
+    <ShortVideoWrapper
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+    >
       <Swiper
         direction="vertical"
         className="verticalContent"
         indicator={() => null}
         onIndexChange={(index) => {
+          //切换播放
+          // handVideoChange(index);
           setActiveIndex(index);
           setIsPlaying(true); // 滑动到新视频时自动播放
         }}
       >
-        {colors.map((color, index) => (
+        {Detail.map((item: any, index: number) => (
           <Swiper.Item
             key={index}
             className="verticalContent"
@@ -87,7 +179,7 @@ const ShortVideo: FC<IProps> = () => {
               <video
                 ref={(ref) => (videoRefs.current[index] = ref)}
                 className="Video"
-                src="https://xjc.demo.hongcd.com/uploads/20210128/0c64cbeea28b10c06eee8728c762449e.mp4"
+                src={item.video_url}
                 loop
                 controls // 移除了 muted 属性
               ></video>
@@ -113,8 +205,8 @@ const ShortVideo: FC<IProps> = () => {
               </div>
               <div className="video-bottom-areaA">
                 <div className="video-bottom-area">
-                  <div className="shop-nameA"> @ hahaha </div>
-                  <div className="shop-cardA">111111</div>
+                  <div className="shop-nameA"> @ {item.author} </div>
+                  <div className="shop-cardA">{item.intro}</div>
                 </div>
               </div>
             </div>

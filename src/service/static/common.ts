@@ -379,3 +379,11 @@ export async function GetVideoDetailsAll(resource_id: any, episode_id: any) {
   let a = CryptoJSA(res.data);
   return a;
 }
+//获取短视频
+export async function GetShortVideo(feed_key: string = "") {
+  let res = await hyRequest.get({
+    url: `/api/v1/resource/shortVideo?feed_key=${feed_key}`,
+  });
+  let a = CryptoJSA(res.data);
+  return a;
+}
