@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { memo } from "react";
+import React, { memo, useEffect, useRef, useState } from "react";
 import type { FC, ReactNode } from "react";
 import ShortVideoWrapper from "./styled";
 import action from "../../store/action";
@@ -11,6 +12,54 @@ interface IProps {
 }
 
 const ShortVideo: FC<IProps> = () => {
+  const videoRefs = useRef<any>([]);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [activeIndex, setActiveIndex] = useState(0);
+  //
+
+  // 当活动索引改变时，播放相应的视频
+  useEffect(() => {
+    videoRefs.current.forEach((video: any, index: number) => {
+      if (index === activeIndex) {
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              // 自动播放开始
+            })
+            .catch((error: any) => {
+              console.error("自动播放被阻止", error);
+            });
+        }
+      } else {
+        video.pause(); // 暂停非当前视频
+      }
+    });
+  }, [activeIndex]);
+
+  // 初始化组件时自动播放第一个视频
+  useEffect(() => {
+    setIsPlaying(true);
+  }, []);
+
+  const handleVideoClick = (event: any, index: any) => {
+    event.stopPropagation(); // 阻止事件传播
+    const videoElement = videoRefs.current[index];
+    if (videoElement) {
+      if (videoElement.muted) {
+        videoElement.muted = false; // 取消静音
+        videoElement.play(); // 尝试播放视频
+      } else {
+        // 如果已经取消静音，则根据当前播放状态切换播放或暂停
+        if (videoElement.paused) {
+          videoElement.play();
+        } else {
+          videoElement.pause();
+        }
+      }
+    }
+  };
+
   const colors = ["#ace0ff", "#bcffbd", "#e4fabd", "#ffcfac"];
   return (
     <ShortVideoWrapper>
@@ -18,16 +67,29 @@ const ShortVideo: FC<IProps> = () => {
         direction="vertical"
         className="verticalContent"
         indicator={() => null}
+        onIndexChange={(index) => {
+          setActiveIndex(index);
+          setIsPlaying(true); // 滑动到新视频时自动播放
+        }}
       >
         {colors.map((color, index) => (
-          <Swiper.Item key={index} className="verticalContent">
-            <div style={{ background: color, width: "100%", height: "100%" }}>
+          <Swiper.Item
+            key={index}
+            className="verticalContent"
+            onClick={() => {
+              console.log(1111);
+            }}
+          >
+            <div
+              className="videoItem"
+              onClick={(event) => handleVideoClick(event, index)}
+            >
               <video
+                ref={(ref) => (videoRefs.current[index] = ref)}
                 className="Video"
                 src="https://xjc.demo.hongcd.com/uploads/20210128/0c64cbeea28b10c06eee8728c762449e.mp4"
                 loop
-                muted
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                controls // 移除了 muted 属性
               ></video>
               <div className="video-side-right">
                 <div className="action-item action-item-user">
@@ -49,9 +111,11 @@ const ShortVideo: FC<IProps> = () => {
                   <span className="action-item-span">分享</span>
                 </div>
               </div>
-              <div className="video-bottom-area">
-                <div className="shop-name"> @ hahaha </div>
-                <div className="shop-card">111111</div>
+              <div className="video-bottom-areaA">
+                <div className="video-bottom-area">
+                  <div className="shop-nameA"> @ hahaha </div>
+                  <div className="shop-cardA">111111</div>
+                </div>
               </div>
             </div>
           </Swiper.Item>

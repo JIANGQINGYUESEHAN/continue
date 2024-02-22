@@ -41,7 +41,7 @@ interface IProps {
 }
 
 const List: FC<IProps> = ({ isCartoon }) => {
-  console.log(isCartoon);
+  // console.log(isCartoon);
 
   const [activeTab, setActiveTab] = useState<any>(tabs[0].key);
   //基础内容

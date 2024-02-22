@@ -27,7 +27,7 @@ const Novel: FC<IProps> = ({ CarouselList }) => {
   useEffect(() => {
     (async () => {
       const rea = await ProjectList(5);
-      console.log(rea);
+      // console.log(rea);
       //title
       setCategoryListAllNovel(rea.list);
     })();
