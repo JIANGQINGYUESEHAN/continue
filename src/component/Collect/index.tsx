@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { memo, useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import type { FC, ReactNode } from "react";
 import SvgIcon from "../SvgIcon";
 import CollectWrapper from "./styled";
@@ -9,9 +9,10 @@ import {
   GetCollectList,
   GetHistoricalInformation,
 } from "../../service/static/common";
-import VideoItem from "../../view/VideoItem";
-import NovelsAndComics from "../../view/NovelsAndComics";
+
 import { InfiniteScroll } from "antd-mobile";
+import NovelsAndComics from "../../view/NovelsAndComics";
+import VideoItem from "../../view/VideoItem";
 
 interface IProps {
   children?: ReactNode;
@@ -150,18 +151,17 @@ const Collect: FC<IProps> = () => {
       </div>
       {isDetail == 5 || isDetail == 1 ? (
         <div className="Content">
-          {/* {List.map((item: any, index: any) => {
-            return <NovelsAndComics   isCartoon={isDetail}/>;
+          {List.map((item: any, index: any) => {
+            return (
+              <NovelsAndComics isCartoon={isDetail} key={index} item={item} />
+            );
           })}
-          <NovelsAndComics  isCartoon={isDetail} />
-          <NovelsAndComics  isCartoon={isDetail} /> */}
         </div>
       ) : (
         <div className="ContentA">
-          {/* <VideoItem />
-          <VideoItem />
-          <VideoItem />
-          <VideoItem /> */}
+          {List.map((item: any, index: any) => {
+            return <VideoItem isCartoon={isDetail} key={index} item={item} />;
+          })}
         </div>
       )}
       <InfiniteScroll loadMore={loadMore} hasMore={hasMore} threshold={10} />

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { memo } from "react";
+import { memo } from "react";
 import type { FC, ReactNode } from "react";
 import RankWrapper from "./styled";
 import { NavBar, SideBar, Tabs, Toast } from "antd-mobile";

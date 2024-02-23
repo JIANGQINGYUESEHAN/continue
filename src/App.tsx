@@ -2,7 +2,7 @@
 /* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { memo, useEffect } from "react";
+import { memo, useEffect } from "react";
 import type { FC, ReactNode } from "react";
 import { RouterContent } from "./router";
 import { HashRouter } from "react-router-dom";
@@ -19,7 +19,7 @@ interface IProps {
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
-const App: FC<IProps> = (props) => {
+const App: FC<IProps> = () => {
   let Dispatch = useDispatch();
   //初始化用户信息
   useEffect(() => {

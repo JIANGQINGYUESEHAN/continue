@@ -227,16 +227,7 @@ const routers = [
       title: "密码登录",
     },
   },
-  {
-    path: "/loginTestCode",
-    name: "loginTestCode",
-    component: lazy(() => {
-      return import("../component/LoginByTestCode");
-    }),
-    meta: {
-      title: "二维码登录",
-    },
-  },
+
   {
     path: "/detail",
     name: "detail",

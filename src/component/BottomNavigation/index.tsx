@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { memo, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import type { FC, ReactNode } from "react";
 import BottomNavigationWrapper from "./styled";
 
@@ -13,7 +13,7 @@ interface IProps {
   children?: ReactNode;
 }
 
-const BottomNavigation: FC<IProps> = (props: any) => {
+const BottomNavigation: FC<IProps> = () => {
   const navigate = useNavigate();
   // 需要显示底部导航的路径数组
   const BottomNavPaths = [
@@ -84,7 +84,7 @@ const BottomNavigation: FC<IProps> = (props: any) => {
     <BottomNavigationWrapper>
       {IsShow && (
         <div className="bottom">
-          {BorderBottomArray.map((item: any, index: any) => {
+          {BorderBottomArray.map((item: any) => {
             return (
               <div
                 className="selectIcon"

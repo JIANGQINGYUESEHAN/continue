@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { memo, useEffect, useRef, useState } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import type { FC, ReactNode } from "react";
 import VideoDetailWrapper from "./styled";
 import NavBar from "../../view/NavBar";
@@ -18,7 +18,7 @@ import {
   gethandleCollect,
 } from "../../service/static/common";
 import toYearMonthDay from "../../utils/time";
-import { AddSquareOutline, PlayOutline } from "antd-mobile-icons";
+import { PlayOutline } from "antd-mobile-icons";
 import { flushSync } from "react-dom";
 import { useNavigate } from "react-router-dom";
 import VideoItem from "../../view/VideoItem";
@@ -43,7 +43,7 @@ const VideoDetail: FC<IProps> = ({ query, info }) => {
   const [OtherDetail, setOtherDetail] = useState<any>([]);
 
   const [feedKey, setFeedKey] = useState("");
-  const [IshandleFullScreenPlay, setIshandleFullScreenPlay] = useState(false);
+  const [IshandleFullScreenPlay] = useState(false);
   //获取视频的信息
   useEffect(() => {
     (async () => {
@@ -201,25 +201,25 @@ const VideoDetail: FC<IProps> = ({ query, info }) => {
     setDetailUrl(res.video_url);
   }
   //横屏
-  const handleFullScreenPlay = () => {
-    const video = videoRef.current;
-    if (video) {
-      if (video.requestFullscreen) {
-        video.requestFullscreen();
-      } else if (video.webkitRequestFullscreen) {
-        // Safari
-        video.webkitRequestFullscreen();
-      } else if (video.msRequestFullscreen) {
-        // IE11
-        video.msRequestFullscreen();
-      }
+  // const handleFullScreenPlay = () => {
+  //   const video = videoRef.current;
+  //   if (video) {
+  //     if (video.requestFullscreen) {
+  //       video.requestFullscreen();
+  //     } else if (video.webkitRequestFullscreen) {
+  //       // Safari
+  //       video.webkitRequestFullscreen();
+  //     } else if (video.msRequestFullscreen) {
+  //       // IE11
+  //       video.msRequestFullscreen();
+  //     }
 
-      // 添加横屏效果的CSS变换，根据实际情况调整
-      // video.style.transform = "rotate(90deg) scale(2)"; // 示例：旋转90度并缩放
-      // 注意：缩放比例(scale)根据视频与视口的尺寸比例进行调整
-    }
-    console.log(111);
-  };
+  //     // 添加横屏效果的CSS变换，根据实际情况调整
+  //     // video.style.transform = "rotate(90deg) scale(2)"; // 示例：旋转90度并缩放
+  //     // 注意：缩放比例(scale)根据视频与视口的尺寸比例进行调整
+  //   }
+  //   console.log(111);
+  // };
 
   async function Collect(item: any) {
     console.log(item.collect_status);

@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import * as TYPES from "./action_type";
 
 const StoreAction = {
   // //一个个方法

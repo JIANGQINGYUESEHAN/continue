@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { memo, useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import type { FC, ReactNode } from "react";
 import RankWrapper from "./styled";
 import NavBar from "../../view/NavBar";
@@ -15,7 +15,7 @@ import {
 } from "../../service/static/common";
 import { InfiniteScroll, Skeleton } from "antd-mobile";
 import NovelsAndComics from "../../view/NovelsAndComics";
-import VideoItem from "../../view/VideoItem";
+
 import VideoItemA from "../../view/VideoItemA";
 
 interface IProps {

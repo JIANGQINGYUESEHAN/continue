@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useState, memo, ReactNode, FC, useEffect } from "react";
+import { useState, memo, ReactNode, FC, useEffect } from "react";
 import { Skeleton, TabBar } from "antd-mobile";
 import { AnimatePresence, motion } from "framer-motion";
 import ListWrapper from "./styled";

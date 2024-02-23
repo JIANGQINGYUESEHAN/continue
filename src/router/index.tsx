@@ -23,12 +23,23 @@ const Element = function (props: any) {
   const obj = { query, params, location, navigate };
   document.title = title;
   useEffect(() => {
-    const token = localStorage.getItem("KpToken"); // 或者其他获取token的方法
-    if (!token) {
-      navigate("/loginPassword"); // 如果 token 不存在，则跳转到登录页面
+    document.title = title;
+
+    const token = localStorage.getItem("KpToken");
+    const isFirstEntry = localStorage.getItem("isFirstEntry") === null;
+
+    if (isFirstEntry) {
+      // 如果是第一次进入应用
+      localStorage.setItem("isFirstEntry", "false"); // 设置标记，表示用户已经访问过
+
+      navigate("/home"); // 如果 token 不存在，则跳转到 /home
+    } else {
+      // 如果不是第一次进入应用
+      if (!token) {
+        navigate("/loginPassword"); // 如果 token 不存在，则跳转到登录页面
+      }
     }
-    // 依赖项数组中包含 navigate 以确保它的变化不会触发此副作用
-  }, [navigate]);
+  }, [navigate, title]);
   return <Component {...obj} />;
 };
 

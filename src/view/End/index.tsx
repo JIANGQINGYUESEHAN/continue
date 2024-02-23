@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable prefer-const */
-import React, { memo } from "react";
+import { memo } from "react";
 import type { FC, ReactNode } from "react";
 import EndWrapper from "./styled";
 import { Divider } from "antd-mobile";

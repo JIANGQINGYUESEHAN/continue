@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { memo } from "react";
+import { memo } from "react";
 import type { FC, ReactNode } from "react";
 import NotifyWrapper from "./styled";
 import SvgIcon from "../../component/SvgIcon";

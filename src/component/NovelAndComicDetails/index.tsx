@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import React, { memo, useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import type { FC, ReactNode } from "react";
 import NovelAndComicDetailsWrapper from "./styled";
 import NavBar from "../../view/NavBar";
@@ -21,7 +21,6 @@ import { PlayOutline } from "antd-mobile-icons";
 import action from "../../store/action";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import NovelsAndComicsItem from "../../view/NovelsAndComicsItem";
 import { flushSync } from "react-dom";
 
 interface IProps {

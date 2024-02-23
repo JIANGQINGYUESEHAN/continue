@@ -97,7 +97,7 @@ const UserWrapper = styled.div`
           .FireIcon {
             width: 100px;
             height: 60px;
-            background-color: rgb(255, 235, 238);
+            /* background-color: rgb(255, 235, 238); */
             text-align: center;
             padding-top: 8px;
             .firenum {

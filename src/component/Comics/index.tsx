@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { memo, useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import type { FC, ReactNode } from "react";
 import ComicsWrapper from "./styled";
 import SvgIcon from "../SvgIcon";
@@ -8,7 +8,6 @@ import { Swiper } from "antd-mobile";
 import Select from "../../view/Select";
 import Chapter from "../../view/Chapter";
 import Notify from "../../view/Notify";
-import NavBar from "../../view/NavBar";
 
 import End from "../../view/End";
 import List from "../../view/List";

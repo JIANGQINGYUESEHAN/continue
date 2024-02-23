@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { memo } from "react";
+import { memo } from "react";
 import type { FC, ReactNode } from "react";
 import SelectWrapper from "./styled";
 import SvgIcon from "../../component/SvgIcon";
@@ -42,7 +42,7 @@ const Select: FC<IProps> = ({ isCartoon }) => {
   return (
     <SelectWrapper>
       <div className="bottom">
-        {BorderBottomArray.map((item: any, index: any) => {
+        {BorderBottomArray.map((item: any) => {
           return (
             <div
               className="selectIcon"

@@ -8,7 +8,6 @@ import { connect } from "react-redux";
 import { Swiper } from "antd-mobile";
 import { GetShortVideo } from "../../service/static/common";
 import { useNavigate } from "react-router-dom";
-import { flushSync } from "react-dom";
 
 interface IProps {
   children?: ReactNode;
@@ -18,7 +17,7 @@ const ShortVideo: FC<IProps> = () => {
   const navigate = useNavigate();
 
   const videoRefs = useRef<any>([]);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [_, setIsPlaying] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
   const [Detail, setDatail] = useState<any>(() => {
     const a = {
@@ -38,7 +37,7 @@ const ShortVideo: FC<IProps> = () => {
     return [a];
   });
   const [nextstatus, setNextStatus] = useState();
-  const [prevIndex, setPrevIndex] = useState(0); // 新增状态来存储前一个活动索引
+
   // const [ isCartoon, SetIsCarToon] = useState<number>(isCartoon!);
   //下一页标识
   const [feedKey, setFeedKey] = useState("");
@@ -101,7 +100,6 @@ const ShortVideo: FC<IProps> = () => {
     });
 
     // 更新前一个活动索引
-    setPrevIndex(activeIndex);
   }, [activeIndex]);
 
   // 初始化组件时自动播放第一个视频
@@ -109,7 +107,7 @@ const ShortVideo: FC<IProps> = () => {
     //获取第一个视频 将他放到数组中
     (async () => {
       const rea = await GetShortVideo();
-      console.log(rea);
+      // console.log(rea);
       setFeedKey(rea.feed_key);
       setNextStatus(rea.next_status);
       const a = Detail;
@@ -174,7 +172,7 @@ const ShortVideo: FC<IProps> = () => {
             key={index}
             className="verticalContent"
             onClick={() => {
-              console.log(1111);
+              // console.log(1111);
             }}
           >
             <div

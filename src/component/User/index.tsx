@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { memo, useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import type { FC, ReactNode } from "react";
 import UserWrapper from "./styled";
 import SvgIcon from "../SvgIcon";
 import { useNavigate } from "react-router-dom";
-import { Divider, Modal, Toast } from "antd-mobile";
+import { Modal, Toast } from "antd-mobile";
 import qiandaoImage from "../../assets/img/qiandao.png";
 import saveImag from "../../assets/img/save.png";
 import action from "../../store/action";
@@ -99,6 +99,7 @@ const User: FC<IProps> = (props) => {
     //重新初始化用户数据
     const rea = await BaseAction.queryUserInfoAsyncAction();
     Dispatch(rea);
+    setVisible(false);
   }
   //初始化用户信息
   useEffect(() => {
@@ -169,7 +170,7 @@ const User: FC<IProps> = (props) => {
             </div>
           </div>
           <div className="bottom">
-            {IconArray.map((item: any, index: any) => {
+            {IconArray.map((item: any) => {
               return (
                 <div
                   className="selectIcon"

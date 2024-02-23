@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { memo, useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import type { FC, ReactNode } from "react";
 import SpecialOfferWrapper from "./styled";
 // import SvgIcon from "../SvgIcon";
@@ -54,6 +54,10 @@ const SpecialOffer: FC<IProps> = (props) => {
     }
     //哪种方式购买
     const res = await GetPaymentInformation(action, item);
+
+    if (res.msg == "请求成功") {
+      console.log("其他处理");
+    }
     // if (action == '0') {
     //   //支付宝购买
 

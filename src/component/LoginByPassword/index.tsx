@@ -1,6 +1,6 @@
 /* eslint-disable no-empty-pattern */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { memo, useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import type { FC, ReactNode } from "react";
 import LoginByPasswordWrapper from "./styled";
 import SvgIcon from "../SvgIcon/index";
@@ -123,7 +123,7 @@ const LoginByPassword: FC<IProps> = () => {
     localStorage.setItem("KpToken", token);
     const rea = await BaseAction.queryUserInfoAsyncAction();
     Dispatch(rea);
-    // Navigate("/user");
+    Navigate("/user");
   };
   return (
     <LoginByPasswordWrapper>
