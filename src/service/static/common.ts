@@ -171,6 +171,8 @@ export async function GetCollectList(
   let res = await hyRequest.get({
     url: `/api/v1/collect/list?navigation_type=${navigation_type}&feed_size=${feed_size}&feed_key=${feedKey}`,
   });
+  console.log(res);
+
   let a = CryptoJSA(res.data);
   return a;
 }

@@ -15,6 +15,7 @@ import {
   SparkProductList,
 } from "../../service/static/common";
 import { Skeleton } from "antd-mobile";
+import { motion } from "framer-motion";
 
 interface IProps {
   children?: ReactNode;
@@ -25,7 +26,7 @@ const SpecialOffer: FC<IProps> = (props) => {
   const { info } = props;
   const [VipList, setVipList] = useState<any>([]);
   const [SparkList, setSparkList] = useState<any>([]);
-  const [IsVip, SetIsVip] = useState(true);
+  const [IsVip, SetIsVip] = useState(1);
   const [activeIndex, setActiveIndex] = useState(0);
   useEffect(() => {
     (async () => {
@@ -66,6 +67,30 @@ const SpecialOffer: FC<IProps> = (props) => {
     //   //支付宝购买
     // }
   }
+
+  const variants = {
+    enter: (direction: any) => {
+      return {
+        x: direction > 0 ? 1000 : -1000,
+        opacity: 0,
+      };
+    },
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction: any) => {
+      return {
+        zIndex: 0,
+        x: direction < 0 ? 1000 : -1000,
+        opacity: 0,
+      };
+    },
+  };
+
+  // 切换方向
+  const swipe = IsVip ? -1 : 1;
   return (
     <SpecialOfferWrapper>
       <div className="Content">
@@ -91,55 +116,69 @@ const SpecialOffer: FC<IProps> = (props) => {
         <div
           className="left"
           onClick={() => {
-            SetIsVip(true);
+            SetIsVip(1);
           }}
         >
           <span>会员购买</span>
-          {IsVip == true && <span className="active"></span>}
+          {IsVip == 1 && <span className="active"></span>}
         </div>
         <div
           className="right"
           onClick={() => {
-            SetIsVip(false);
+            SetIsVip(2);
           }}
         >
           <span>火花购买</span>
-          {IsVip == false && <span className="active"></span>}
+          {IsVip == 2 && <span className="active"></span>}
         </div>
       </div>
-      <div className="Vip">
-        {IsVip ? (
-          VipList.length === 0 ? (
+      <motion.div
+        key={IsVip}
+        custom={swipe}
+        variants={variants}
+        initial="enter"
+        animate="center"
+        exit="exit"
+        transition={{
+          x: { type: "spring", stiffness: 300, damping: 30 },
+          opacity: { duration: 0.2 },
+        }}
+        style={{ width: "100%" }}
+      >
+        <div className="Vip">
+          {IsVip ? (
+            VipList.length === 0 ? (
+              <Skeleton.Paragraph lineCount={5} animated />
+            ) : (
+              <div className="ContentA">
+                {VipList.map((item: any, index: any) => (
+                  <VipInfo
+                    key={index}
+                    Index={index}
+                    isActive={activeIndex === index}
+                    onClick={() => handleCardClick(index)}
+                    item={item}
+                  />
+                ))}
+              </div>
+            )
+          ) : SparkList.length == 0 ? (
             <Skeleton.Paragraph lineCount={5} animated />
           ) : (
             <div className="ContentA">
-              {VipList.map((item: any, index: any) => (
-                <VipInfo
+              {SparkList.map((item: any, index: any) => (
+                <FireCard
                   key={index}
+                  item={item}
                   Index={index}
                   isActive={activeIndex === index}
                   onClick={() => handleCardClick(index)}
-                  item={item}
                 />
               ))}
             </div>
-          )
-        ) : SparkList.length == 0 ? (
-          <Skeleton.Paragraph lineCount={5} animated />
-        ) : (
-          <div className="ContentA">
-            {SparkList.map((item: any, index: any) => (
-              <FireCard
-                key={index}
-                item={item}
-                Index={index}
-                isActive={activeIndex === index}
-                onClick={() => handleCardClick(index)}
-              />
-            ))}
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      </motion.div>
       <div className="trade">
         <div className="left" onClick={() => trade("0")}>
           <div className="name">

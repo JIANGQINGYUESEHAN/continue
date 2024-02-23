@@ -90,7 +90,7 @@ const SpecialOfferWrapper = styled.div`
     width: 90%;
     height: 200;
     background: linear-gradient(to bottom, white, rgba(255, 255, 255, 0));
-    border-radius: 10px;
+
     position: relative;
     left: 50%;
     transform: translateX(-50%);

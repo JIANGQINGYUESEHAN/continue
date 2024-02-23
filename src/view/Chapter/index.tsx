@@ -6,6 +6,7 @@ import { Swiper } from "antd-mobile";
 
 interface IProps {
   children?: ReactNode;
+  isCartoon?: any;
 }
 
 const Chapter: FC<IProps> = () => {

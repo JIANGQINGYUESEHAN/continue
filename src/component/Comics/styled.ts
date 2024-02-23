@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const ComicsWrapper = styled.div`
+const ComicsWrapperStyled = styled.div`
   overflow: hidden;
   min-height: 100vh;
   background: url(https://lanhu-dds-backend.oss-cn-beijing.aliyuncs.com/merge_image/imgs/2ec00cf1db6f4ed397b3167d105929b4_mergeImage.png)
@@ -13,6 +13,9 @@ const ComicsWrapper = styled.div`
   box-sizing: border-box;
   position: relative;
   margin-bottom: 40px;
+  position: relative;
+  overflow: hidden; /* 防止过渡期间内容溢出 */
+
   .Select {
     padding: 20px 20px;
     display: flex;
@@ -50,7 +53,6 @@ const ComicsWrapper = styled.div`
       }
     }
   }
-
   .carousel {
     border-radius: 16px;
     position: relative;
@@ -76,4 +78,4 @@ const ComicsWrapper = styled.div`
     flex-wrap: wrap;
   }
 `;
-export default ComicsWrapper;
+export default ComicsWrapperStyled;

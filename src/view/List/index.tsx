@@ -11,6 +11,7 @@ import {
   GetDataForNextPage,
 } from "../../service/static/common";
 import NavBar from "../NavBar";
+import SvgIcon from "../../component/SvgIcon";
 
 const tabs = [
   {
@@ -42,8 +43,15 @@ interface IProps {
 
 const List: FC<IProps> = ({ isCartoon }) => {
   // console.log(isCartoon);
-
-  const [activeTab, setActiveTab] = useState<any>(tabs[0].key);
+  const [selected, setSelected] = useState<number>(0);
+  async function ClicikTypeA(index: number) {
+    setSelected(index);
+    const res = await GetComicRankingData(isCartoon!, 20, selected);
+    //保存下一页的标识
+    setFeedKey(res.feed_key);
+    //保存内容
+    setDatail(res.list);
+  }
   //基础内容
   const [Detail, setDatail] = useState([]);
   // const [ isCartoon, SetIsCarToon] = useState<number>(isCartoon!);
@@ -55,7 +63,7 @@ const List: FC<IProps> = ({ isCartoon }) => {
     (async () => {
       // console.log(111);
 
-      const res = await GetComicRankingData(isCartoon!, 20, activeTab * 1);
+      const res = await GetComicRankingData(isCartoon!, 20, selected);
       // console.log(res);
 
       //保存下一页的标识
@@ -65,43 +73,114 @@ const List: FC<IProps> = ({ isCartoon }) => {
     })();
   }, [isCartoon]);
   //点击切换
-  async function ClickChange(key: any) {
-    setActiveTab(key);
-    const res = await GetComicRankingData(isCartoon!, 20, activeTab * 1);
-    //保存下一页的标识
-    setFeedKey(res.feed_key);
-    //保存内容
-    setDatail(res.list);
-  }
+
   //切换下一页
   async function ClickFeedKey() {
-    const res = await GetDataForNextPage(
-      isCartoon!,
-      20,
-      activeTab * 1,
-      feedKey
-    );
+    const res = await GetDataForNextPage(isCartoon!, 20, selected, feedKey);
     //保存下一页的标识
     setFeedKey(res.feed_key);
     //保存内容
     setDatail(res.list);
   }
+
+  const variants = {
+    enter: (direction: any) => {
+      return {
+        x: direction > 0 ? 1000 : -1000,
+        opacity: 0,
+      };
+    },
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction: any) => {
+      return {
+        zIndex: 0,
+        x: direction < 0 ? 1000 : -1000,
+        opacity: 0,
+      };
+    },
+  };
+
+  // 切换方向
+  const swipe = isCartoon ? -1 : 1;
   return (
     <ListWrapper>
       <NavBar left="排行榜" onClickA={ClickFeedKey} />
-      <TabBar onChange={(key) => ClickChange(key)}>
-        {tabs.map((item) => (
-          <TabBar.Item key={item.key} title={item.title} />
-        ))}
-      </TabBar>
+      <div className="SelectAA">
+        {selected == 0 ? (
+          <div className="common" onClick={() => ClicikTypeA(0)}>
+            <div className="ContentIcon">
+              <SvgIcon name="CheckCircle" size={55} />
+            </div>
+            <div className="ContentTitle">
+              <span className="Comics">人气榜</span>
+            </div>
+          </div>
+        ) : (
+          <div className="common" onClick={() => ClicikTypeA(0)}>
+            <span className="Comics">人气榜</span>
+          </div>
+        )}
+
+        {selected == 1 ? (
+          <div className="common" onClick={() => ClicikTypeA(1)}>
+            <div className="ContentIcon">
+              <SvgIcon name="CheckCircle" size={55} />
+            </div>
+            <div className="ContentTitle">
+              <span className="Comics">推荐榜</span>
+            </div>
+          </div>
+        ) : (
+          <div className="common" onClick={() => ClicikTypeA(1)}>
+            <span className="Comics">推荐榜</span>
+          </div>
+        )}
+        {selected == 2 ? (
+          <div className="common" onClick={() => ClicikTypeA(2)}>
+            <div className="ContentIcon">
+              <SvgIcon name="CheckCircle" size={55} />
+            </div>
+            <div className="ContentTitle">
+              <span className="Comics">收藏榜</span>
+            </div>
+          </div>
+        ) : (
+          <div className="common" onClick={() => ClicikTypeA(2)}>
+            <span className="Comics">收藏榜</span>
+          </div>
+        )}
+        {selected == 3 ? (
+          <div className="common" onClick={() => ClicikTypeA(3)}>
+            <div className="ContentIcon">
+              <SvgIcon name="CheckCircle" size={55} />
+            </div>
+            <div className="ContentTitle">
+              <span className="Comics"> 今日榜</span>
+            </div>
+          </div>
+        ) : (
+          <div className="common" onClick={() => ClicikTypeA(3)}>
+            <span className="Comics">今日榜</span>
+          </div>
+        )}
+      </div>
       <AnimatePresence mode="wait">
         <motion.div
-          key={activeTab}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-          style={{ minHeight: "200px", minWidth: "100%" }}
+          key={selected}
+          custom={swipe}
+          variants={variants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={{
+            x: { type: "spring", stiffness: 300, damping: 30 },
+            opacity: { duration: 0.1 },
+          }}
+          style={{ width: "100%" }}
         >
           {isCartoon == 1 || isCartoon == 5 ? (
             <>

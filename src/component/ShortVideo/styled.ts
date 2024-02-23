@@ -30,7 +30,7 @@ const ShortVideoWrapper = styled.div`
 
         .video-bottom-area {
           width: 100%;
-          height: 120px;
+          height: 110px;
           position: absolute;
           left: 0px;
           bottom: -20px;
@@ -58,7 +58,7 @@ const ShortVideoWrapper = styled.div`
         z-index: 999;
         .action-item {
           position: relative;
-          margin-bottom: 20px;
+          margin-bottom: 30px;
           text-align: center;
           .shop-logo {
             width: 40px;
@@ -68,7 +68,7 @@ const ShortVideoWrapper = styled.div`
           }
           .iconfont {
             display: block;
-            font-size: 28px;
+            font-size: 25px;
           }
           .action-item-text {
             display: block;

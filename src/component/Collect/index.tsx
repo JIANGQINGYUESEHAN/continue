@@ -5,14 +5,12 @@ import type { FC, ReactNode } from "react";
 import SvgIcon from "../SvgIcon";
 import CollectWrapper from "./styled";
 import NavBar from "../../view/NavBar";
-import {
-  GetCollectList,
-  GetHistoricalInformation,
-} from "../../service/static/common";
+import { GetCollectList } from "../../service/static/common";
 
 import { InfiniteScroll } from "antd-mobile";
 import NovelsAndComics from "../../view/NovelsAndComics";
 import VideoItem from "../../view/VideoItem";
+import { motion } from "framer-motion";
 
 interface IProps {
   children?: ReactNode;
@@ -24,7 +22,7 @@ const Collect: FC<IProps> = () => {
   const [feedKey, SetfeedKey] = useState("");
   const [hasMore, setHasMore] = useState(true);
   async function loadMore() {
-    const res = await GetHistoricalInformation(isDetail, 20, feedKey);
+    const res = await GetCollectList(isDetail, 20, feedKey);
     // console.log(res);
     Setlist(res.list);
     // //点击时记录下一页的字符串
@@ -48,14 +46,39 @@ const Collect: FC<IProps> = () => {
   //点击切换
   async function ClicikType(index: number) {
     SetisDetail(index);
+    console.log(index);
 
     //发送请求
     const res = await GetCollectList(index, 20, feedKey);
+
     // console.log(res);
     Setlist(res.list);
     // //点击时记录下一页的字符串
     SetfeedKey(res.feed_key);
   }
+  const variants = {
+    enter: (direction: any) => {
+      return {
+        x: direction > 0 ? 1000 : -1000,
+        opacity: 0,
+      };
+    },
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction: any) => {
+      return {
+        zIndex: 0,
+        x: direction < 0 ? 1000 : -1000,
+        opacity: 0,
+      };
+    },
+  };
+
+  // 切换方向
+  const swipe = isDetail ? -1 : 1;
   return (
     <CollectWrapper>
       <NavBar IsShowChildren={false} middle="收藏" />
@@ -149,22 +172,36 @@ const Collect: FC<IProps> = () => {
           </div>
         )}
       </div>
-      {isDetail == 5 || isDetail == 1 ? (
-        <div className="Content">
-          {List.map((item: any, index: any) => {
-            return (
-              <NovelsAndComics isCartoon={isDetail} key={index} item={item} />
-            );
-          })}
-        </div>
-      ) : (
-        <div className="ContentA">
-          {List.map((item: any, index: any) => {
-            return <VideoItem isCartoon={isDetail} key={index} item={item} />;
-          })}
-        </div>
-      )}
-      <InfiniteScroll loadMore={loadMore} hasMore={hasMore} threshold={10} />
+      <motion.div
+        key={isDetail}
+        custom={swipe}
+        variants={variants}
+        initial="enter"
+        animate="center"
+        exit="exit"
+        transition={{
+          x: { type: "spring", stiffness: 300, damping: 30 },
+          opacity: { duration: 0.2 },
+        }}
+        style={{ width: "100%" }}
+      >
+        {isDetail == 5 || isDetail == 1 ? (
+          <div className="Content">
+            {List.map((item: any, index: any) => {
+              return (
+                <NovelsAndComics isCartoon={isDetail} key={index} item={item} />
+              );
+            })}
+          </div>
+        ) : (
+          <div className="ContentA">
+            {List.map((item: any, index: any) => {
+              return <VideoItem isCartoon={isDetail} key={index} item={item} />;
+            })}
+          </div>
+        )}
+        <InfiniteScroll loadMore={loadMore} hasMore={hasMore} threshold={10} />
+      </motion.div>
     </CollectWrapper>
   );
 };

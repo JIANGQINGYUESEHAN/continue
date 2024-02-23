@@ -25,10 +25,10 @@ const End: FC<IProps> = ({ EndComponent = "没有更多了", isCartoon }) => {
     <EndWrapper>
       <div className="button-group">
         <div className="button left-button" onClick={Clickclassification}>
-          全部订单
+          全部分类
         </div>
         <div className="button right-button" onClick={ClickFilterCriteria}>
-          全部分类
+          单个分类
         </div>
       </div>
       <div className="end">
