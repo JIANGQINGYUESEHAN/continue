@@ -1,31 +1,26 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { memo, useEffect, useState } from "react";
-import type { FC, ReactNode } from "react";
-import VideoWrapper from "./styled";
+import { FC, ReactNode, memo, useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { ProjectList } from "../../service/static/common";
 import SvgIcon from "../SvgIcon";
-import { Swiper } from "antd-mobile";
-import Notify from "../../view/Notify";
-import ViedoChapter from "../../view/ViedoChapter";
-// import FloorComponents from "../../view/FloorComponents";
-// import List from "../../view/List";
-import End from "../../view/End";
+import ComicsWrapperStyled from "./styled";
+import action from "../../store/action";
+import { connect } from "react-redux";
 import FloorComponents from "../../view/FloorComponents";
 import List from "../../view/List";
-import { ProjectList } from "../../service/static/common";
-import { connect } from "react-redux";
-import action from "../../store/action";
-import Select from "../../view/Select";
-import { motion } from "framer-motion";
 import Chapter from "../../view/Chapter";
-
+import Select from "../../view/Select";
+import Notify from "../../view/Notify";
+import { Swiper } from "antd-mobile";
+import End from "../../view/End";
 interface IProps {
   children?: ReactNode;
-  CarouselList?: any;
+  CarouselList: any[];
 }
 
-const Video: FC<IProps> = ({ CarouselList }) => {
-  const [isCartoon, SetIsCarToon] = useState<number>(3);
+const Comics: FC<IProps> = ({ CarouselList }) => {
   const [Project, setProjectList] = useState([]);
+  const [isCartoon, SetIsCarToon] = useState<number>(1);
   function ClicikType(index: number) {
     SetIsCarToon(index);
     (async () => {
@@ -37,10 +32,18 @@ const Video: FC<IProps> = ({ CarouselList }) => {
   useEffect(() => {
     (async () => {
       const res = await ProjectList(isCartoon);
-      // console.log(res.list);
+      console.log(res.list);
       setProjectList(res.list);
     })();
   }, []);
+  useEffect(() => {
+    (async () => {
+      const res = await ProjectList(isCartoon);
+
+      setProjectList(res.list);
+    })();
+  }, [isCartoon]);
+  // 定义动画变化
   const variants = {
     enter: (direction: any) => {
       return {
@@ -64,8 +67,9 @@ const Video: FC<IProps> = ({ CarouselList }) => {
 
   // 切换方向
   const swipe = isCartoon ? -1 : 1;
+
   return (
-    <VideoWrapper>
+    <ComicsWrapperStyled>
       <motion.div
         key={isCartoon}
         custom={swipe}
@@ -80,36 +84,37 @@ const Video: FC<IProps> = ({ CarouselList }) => {
         style={{ width: "100%" }}
       >
         <div className="Select">
-          {isCartoon == 3 ? (
-            <div className="common" onClick={() => ClicikType(4)}>
+          {isCartoon == 1 ? (
+            <div className="common" onClick={() => ClicikType(2)}>
               <div className="ContentIcon">
                 <SvgIcon name="CheckCircle" size={55} />
               </div>
               <div className="ContentTitle">
-                <span className="Comics">视频</span>
+                <span className="Comics">漫画</span>
               </div>
             </div>
           ) : (
-            <div className="common" onClick={() => ClicikType(3)}>
-              <span className="Comics">视频</span>
+            <div className="common" onClick={() => ClicikType(1)}>
+              <span className="Comics">漫画</span>
             </div>
           )}
 
-          {isCartoon == 4 ? (
-            <div className="common" onClick={() => ClicikType(3)}>
+          {isCartoon == 2 ? (
+            <div className="common" onClick={() => ClicikType(1)}>
               <div className="ContentIcon">
                 <SvgIcon name="CheckCircle" size={55} />
               </div>
               <div className="ContentTitle">
-                <span className="Comics">黑料</span>
+                <span className="Comics">动漫</span>
               </div>
             </div>
           ) : (
-            <div className="common" onClick={() => ClicikType(4)}>
-              <span className="Comics">黑料</span>
+            <div className="common" onClick={() => ClicikType(2)}>
+              <span className="Comics">动漫</span>
             </div>
           )}
         </div>
+        {/* 轮播图 */}
         <div className="carousel">
           <Swiper className="Swiper" loop autoplay>
             {CarouselList?.map((color: any, index: number) => (
@@ -121,15 +126,17 @@ const Video: FC<IProps> = ({ CarouselList }) => {
             ))}
           </Swiper>
         </div>
-        {/* 公告提示 */}
+        {/* 四选择项 */}
         <Select isCartoon={isCartoon} />
+        {/* 多重选择 */}
+
         <Chapter isCartoon={isCartoon}>
           <Notify />
         </Chapter>
+        {/* 公告提示 */}
 
-        {isCartoon == 3 ? (
+        {isCartoon == 1 ? (
           <>
-            <ViedoChapter isCartoon={isCartoon} />
             <List isCartoon={isCartoon} />
             {Project.map((item: any, index: number) => {
               return (
@@ -143,9 +150,7 @@ const Video: FC<IProps> = ({ CarouselList }) => {
           </>
         ) : (
           <>
-            <ViedoChapter isCartoon={isCartoon} />
             <List isCartoon={isCartoon} />
-
             {Project.map((item: any, index: number) => {
               return (
                 <FloorComponents
@@ -160,10 +165,11 @@ const Video: FC<IProps> = ({ CarouselList }) => {
 
         <End isCartoon={isCartoon} />
       </motion.div>
-    </VideoWrapper>
+    </ComicsWrapperStyled>
   );
 };
+
 const mapStateToProps = (state: any) => state.base;
 const mapDispatchToProps = action.Base;
 
-export default connect(mapStateToProps, mapDispatchToProps)(memo(Video));
+export default connect(mapStateToProps, mapDispatchToProps)(memo(Comics));

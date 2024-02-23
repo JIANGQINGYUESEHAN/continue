@@ -91,9 +91,9 @@ const Novel: FC<IProps> = ({ CarouselList }) => {
       </div>
       <Select isCartoon={isCartoon} />
       {/* 多重选择 */}
-      <Chapter />
-      {/* 公告提示 */}
-      <Notify />
+      <Chapter isCartoon={isCartoon}>
+        <Notify />
+      </Chapter>
       <List isCartoon={isCartoon} />
       {CategoryListAllNovel.map((item: any, index: number) => {
         return (

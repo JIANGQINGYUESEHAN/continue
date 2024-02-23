@@ -13,14 +13,19 @@ import Select from "../../view/Select";
 import Notify from "../../view/Notify";
 import { Swiper } from "antd-mobile";
 import End from "../../view/End";
+import SkeletonScreen from "../../view/SkeletonScreen";
 interface IProps {
   children?: ReactNode;
   CarouselList: any[];
 }
 
-const Comics: FC<IProps> = ({ CarouselList }) => {
+const Comics: FC<IProps> = ({ CarouselList = [] }) => {
   const [Project, setProjectList] = useState([]);
   const [isCartoon, SetIsCarToon] = useState<number>(1);
+  const [show, setIsShow] = useState(false);
+  useEffect(() => {
+    setIsShow(true);
+  }, [CarouselList]);
   function ClicikType(index: number) {
     SetIsCarToon(index);
     (async () => {
@@ -32,14 +37,14 @@ const Comics: FC<IProps> = ({ CarouselList }) => {
   useEffect(() => {
     (async () => {
       const res = await ProjectList(isCartoon);
-      console.log(res.list);
+
       setProjectList(res.list);
     })();
   }, []);
   useEffect(() => {
     (async () => {
       const res = await ProjectList(isCartoon);
-      console.log(res.list);
+
       setProjectList(res.list);
     })();
   }, [isCartoon]);
@@ -69,100 +74,114 @@ const Comics: FC<IProps> = ({ CarouselList }) => {
   const swipe = isCartoon ? -1 : 1;
 
   return (
-    <ComicsWrapperStyled>
-      <motion.div
-        key={isCartoon}
-        custom={swipe}
-        variants={variants}
-        initial="enter"
-        animate="center"
-        exit="exit"
-        transition={{
-          x: { type: "spring", stiffness: 300, damping: 30 },
-          opacity: { duration: 0.2 },
-        }}
-        style={{ width: "100%" }}
-      >
-        <div className="Select">
-          {isCartoon == 1 ? (
-            <div className="common" onClick={() => ClicikType(2)}>
-              <div className="ContentIcon">
-                <SvgIcon name="CheckCircle" size={55} />
-              </div>
-              <div className="ContentTitle">
-                <span className="Comics">漫画</span>
-              </div>
-            </div>
-          ) : (
-            <div className="common" onClick={() => ClicikType(1)}>
-              <span className="Comics">漫画</span>
-            </div>
-          )}
+    <>
+      {show ? (
+        <>
+          {" "}
+          <ComicsWrapperStyled>
+            <motion.div
+              key={isCartoon}
+              custom={swipe}
+              variants={variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{
+                x: { type: "spring", stiffness: 300, damping: 30 },
+                opacity: { duration: 0.2 },
+              }}
+              style={{ width: "100%" }}
+            >
+              <div className="Select">
+                {isCartoon == 1 ? (
+                  <div className="common" onClick={() => ClicikType(2)}>
+                    <div className="ContentIcon">
+                      <SvgIcon name="CheckCircle" size={55} />
+                    </div>
+                    <div className="ContentTitle">
+                      <span className="Comics">漫画</span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="common" onClick={() => ClicikType(1)}>
+                    <span className="Comics">漫画</span>
+                  </div>
+                )}
 
-          {isCartoon == 2 ? (
-            <div className="common" onClick={() => ClicikType(1)}>
-              <div className="ContentIcon">
-                <SvgIcon name="CheckCircle" size={55} />
+                {isCartoon == 2 ? (
+                  <div className="common" onClick={() => ClicikType(1)}>
+                    <div className="ContentIcon">
+                      <SvgIcon name="CheckCircle" size={55} />
+                    </div>
+                    <div className="ContentTitle">
+                      <span className="Comics">动漫</span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="common" onClick={() => ClicikType(2)}>
+                    <span className="Comics">动漫</span>
+                  </div>
+                )}
               </div>
-              <div className="ContentTitle">
-                <span className="Comics">动漫</span>
+              {/* 轮播图 */}
+              <div className="carousel">
+                <Swiper className="Swiper" loop autoplay>
+                  {CarouselList?.map((color: any, index: number) => (
+                    <Swiper.Item key={index}>
+                      <div className="Swiper" style={{ background: color }}>
+                        <img src={color.img_url} alt="" className="imag" />
+                      </div>
+                    </Swiper.Item>
+                  ))}
+                </Swiper>
               </div>
-            </div>
-          ) : (
-            <div className="common" onClick={() => ClicikType(2)}>
-              <span className="Comics">动漫</span>
-            </div>
-          )}
-        </div>
-        {/* 轮播图 */}
-        <div className="carousel">
-          <Swiper className="Swiper" loop autoplay>
-            {CarouselList?.map((color: any, index: number) => (
-              <Swiper.Item key={index}>
-                <div className="Swiper" style={{ background: color }}>
-                  <img src={color.img_url} alt="" className="imag" />
-                </div>
-              </Swiper.Item>
-            ))}
-          </Swiper>
-        </div>
-        {/* 四选择项 */}
-        <Select isCartoon={isCartoon} />
-        {/* 多重选择 */}
-        <Chapter isCartoon={isCartoon} />
-        {/* 公告提示 */}
-        <Notify />
-        {isCartoon == 1 ? (
-          <>
-            <List isCartoon={isCartoon} />
-            {Project.map((item: any, index: number) => {
-              return (
-                <FloorComponents
-                  isCartoon={isCartoon}
-                  key={index}
-                  item={item}
-                />
-              );
-            })}
-          </>
-        ) : (
-          <>
-            <List isCartoon={isCartoon} />
-            {Project.map((item: any, index: number) => {
-              return (
-                <FloorComponents
-                  isCartoon={isCartoon}
-                  key={index}
-                  item={item}
-                />
-              );
-            })}
-          </>
-        )}
+              {/* 四选择项 */}
+              <Select isCartoon={isCartoon} />
+              {/* 多重选择 */}
 
-        <End isCartoon={isCartoon} />
-      </motion.div>
-    </ComicsWrapperStyled>
+              <Chapter isCartoon={isCartoon}>
+                <Notify />
+              </Chapter>
+              {/* 公告提示 */}
+
+              {isCartoon == 1 ? (
+                <>
+                  <List isCartoon={isCartoon} />
+                  {Project.map((item: any, index: number) => {
+                    return (
+                      <FloorComponents
+                        isCartoon={isCartoon}
+                        key={index}
+                        item={item}
+                      />
+                    );
+                  })}
+                </>
+              ) : (
+                <>
+                  <List isCartoon={isCartoon} />
+                  {Project.map((item: any, index: number) => {
+                    return (
+                      <FloorComponents
+                        isCartoon={isCartoon}
+                        key={index}
+                        item={item}
+                      />
+                    );
+                  })}
+                </>
+              )}
+
+              <End isCartoon={isCartoon} />
+            </motion.div>
+          </ComicsWrapperStyled>
+        </>
+      ) : (
+        <>
+          <SkeletonScreen />
+        </>
+      )}
+    </>
   );
 };
 

@@ -12,6 +12,7 @@ interface IProps {
   left?: string;
   middle?: string;
   onClickA?: any;
+  isCartoon?: any;
 }
 
 const NavBar: FC<IProps> = ({
@@ -19,6 +20,7 @@ const NavBar: FC<IProps> = ({
   left = "左边",
   middle = "中间类容",
   onClickA,
+  isCartoon = 1,
 }) => {
   const navigate = useNavigate();
   return (
@@ -43,7 +45,7 @@ const NavBar: FC<IProps> = ({
                 &nbsp;
                 <span
                   onClick={() => {
-                    navigate("/rank");
+                    navigate(`/rank?isCartoon=${isCartoon}`);
                   }}
                 >
                   更多

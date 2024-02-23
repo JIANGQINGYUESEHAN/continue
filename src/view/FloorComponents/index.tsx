@@ -11,6 +11,7 @@ import {
   CategoryList,
   CategoryListNextPage,
 } from "../../service/static/common";
+import SkeletonItem from "../SkeletonItem";
 
 interface IProps {
   children?: ReactNode;
@@ -50,11 +51,14 @@ const FloorComponents: FC<IProps> = ({ isCartoon, item }) => {
         <div
           style={{
             width: "100%",
-            height: "50px",
-            marginBottom: "30px",
+            height: "180px",
+            display: "flex",
+            flexWrap: "wrap",
           }}
         >
-          <Skeleton.Paragraph lineCount={3} animated />
+          <SkeletonItem />
+          <SkeletonItem />
+          <SkeletonItem />
         </div>
       );
     }
@@ -72,7 +76,7 @@ const FloorComponents: FC<IProps> = ({ isCartoon, item }) => {
 
   return (
     <FloorComponentsWrapper>
-      <NavBar left={item.title} onClickA={ClickFeedKey} />
+      <NavBar left={item.title} onClickA={ClickFeedKey} isCartoon={isCartoon} />
       <div
         className={isCartoon === 1 || isCartoon === 5 ? "Content" : "ContentA"}
       >

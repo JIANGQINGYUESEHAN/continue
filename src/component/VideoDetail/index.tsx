@@ -400,7 +400,11 @@ const VideoDetail: FC<IProps> = ({ query, info }) => {
                   </Swiper>
                 </div>
               </div>
-              <NavBar left="更多" onClickA={ClickFeedKey} />
+              <NavBar
+                left="更多"
+                onClickA={ClickFeedKey}
+                isCartoon={isCartoon}
+              />
               <div className="ContentA">
                 {OtherDetail.map((item: any, index: number) => {
                   return (

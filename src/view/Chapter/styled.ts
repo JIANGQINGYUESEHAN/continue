@@ -3,37 +3,55 @@ import styled from "styled-components";
 const ChapterWrapper = styled.div`
   .content {
     width: 100%;
-    height: 60px; // 设定高度
-    padding: 0 10px; // 增加两边的间隔
-    overflow: hidden;
+    height: 36px;
+    display: flex;
+    padding: 0px 8px;
+    overflow-x: auto; /* 允许水平滚动 */
+    flex-wrap: nowrap;
+    align-items: center;
+    box-sizing: border-box;
+    margin: 10px;
+    /* 隐藏滚动条的样式 */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    .leftUl {
+      list-style: none;
+      height: 100%;
+      min-width: 70px;
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      margin: 0px 10px;
+      color: black;
+      font-size: 16px; /* 应该是font-size而不是color */
+      text-align: center;
 
-    .type {
-      width: 100%;
-      height: 60px; // 设定高度
-      overflow: hidden; // 隐藏溢出的内容
-      display: flex;
-      justify-content: flex-start; // 开始位置对齐
-      align-items: center;
-
-      .ul {
-        width: 100%;
-        .list {
-          min-width: 60px; // 最小宽度，根据内容调整
-          height: 30px; // 高度
-          background-color: #f2f2f2; // 设置为灰色背景
-          margin-right: 10px; // 项目间距
-          border-radius: 15px; // 圆角
-          text-align: center;
-          line-height: 30px; // 行高与高度相同，使文字垂直居中
-          color: #333; // 文字颜色
-          flex-shrink: 0; // 防止压缩
-          &.active {
-            background-color: #ff3a4d; // 激活状态的背景色
-            color: white; // 激活状态的文字颜色
-          }
-        }
-      }
+      line-height: 36px;
+      font-weight: 500;
+      white-space: nowrap; /* 防止文本换行 */
     }
+    .selected {
+      color: white;
+      background-color: red;
+    }
+  }
+
+  .content::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+  }
+  .Content {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    margin: 0px 7px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .ContentA {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    flex-wrap: wrap;
+    margin-top: 10px;
   }
 `;
 

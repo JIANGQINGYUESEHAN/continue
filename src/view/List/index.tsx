@@ -12,6 +12,7 @@ import {
 } from "../../service/static/common";
 import NavBar from "../NavBar";
 import SvgIcon from "../../component/SvgIcon";
+import SkeletonItem from "../SkeletonItem";
 
 const tabs = [
   {
@@ -108,7 +109,7 @@ const List: FC<IProps> = ({ isCartoon }) => {
   const swipe = isCartoon ? -1 : 1;
   return (
     <ListWrapper>
-      <NavBar left="排行榜" onClickA={ClickFeedKey} />
+      <NavBar left="排行榜" onClickA={ClickFeedKey} isCartoon={isCartoon} />
       <div className="SelectAA">
         {selected == 0 ? (
           <div className="common" onClick={() => ClicikTypeA(0)}>
@@ -189,17 +190,14 @@ const List: FC<IProps> = ({ isCartoon }) => {
                   <div
                     style={{
                       width: "100%",
-                      height: "50px",
+                      height: "180px",
+                      display: "flex",
+                      flexWrap: "wrap",
                     }}
                   >
-                    <div
-                      style={{
-                        width: "100%",
-                        height: "50px",
-                      }}
-                    >
-                      <Skeleton.Paragraph lineCount={5} animated />
-                    </div>
+                    <SkeletonItem />
+                    <SkeletonItem />
+                    <SkeletonItem />
                   </div>
                 ) : (
                   <>
@@ -223,10 +221,14 @@ const List: FC<IProps> = ({ isCartoon }) => {
                   <div
                     style={{
                       width: "100%",
-                      height: "100px",
+                      height: "180px",
+                      display: "flex",
+                      flexWrap: "wrap",
                     }}
                   >
-                    <Skeleton.Paragraph lineCount={5} animated />
+                    <SkeletonItem />
+                    <SkeletonItem />
+                    <SkeletonItem />
                   </div>
                 ) : (
                   <>

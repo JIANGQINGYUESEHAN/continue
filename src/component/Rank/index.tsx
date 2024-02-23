@@ -17,6 +17,7 @@ import { InfiniteScroll, Skeleton } from "antd-mobile";
 import NovelsAndComics from "../../view/NovelsAndComics";
 
 import VideoItemA from "../../view/VideoItemA";
+import SkeletonItem from "../../view/SkeletonItem";
 
 interface IProps {
   children?: ReactNode;
@@ -179,10 +180,13 @@ const Rank: FC<IProps> = ({ query }) => {
           <div
             style={{
               width: "100%",
-              height: "100px",
+              height: "180px",
+              display: "flex",
+              flexWrap: "wrap",
             }}
           >
-            <Skeleton.Paragraph lineCount={5} animated />
+            <SkeletonItem />
+            <SkeletonItem />
           </div>
         ) : (
           <div className="right">

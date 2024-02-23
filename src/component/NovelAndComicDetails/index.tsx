@@ -386,7 +386,11 @@ const NovelAndComicDetails: FC<IProps> = ({ query, info }) => {
                 </div>
               )}
             </div>
-            <NavBar left="猜你喜欢" onClickA={ClickFeedKey} />
+            <NavBar
+              left="猜你喜欢"
+              onClickA={ClickFeedKey}
+              isCartoon={isCartoon}
+            />
             <div className="Content">
               {OtherDetail.map((item: any, index: number) => {
                 return (

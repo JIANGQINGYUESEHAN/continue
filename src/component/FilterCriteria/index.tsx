@@ -37,7 +37,6 @@ const FilterCriteria: FC<IProps> = ({ query }) => {
   //第二层
   const [CategoryIndex, setCategoryIndex] = useState(0);
 
-  console.log(CategoryIndex);
   const [Category, setCategory] = useState();
 
   function ClicikType(index: number) {
