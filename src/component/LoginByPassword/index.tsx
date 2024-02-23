@@ -14,6 +14,7 @@ import { Toast } from "antd-mobile";
 import BaseAction from "../../store/action/BaseAction";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 interface IProps {
   children?: ReactNode;
 }
@@ -29,7 +30,7 @@ type FieldType = {
   TestCode?: string;
 };
 const LoginByPassword: FC<IProps> = () => {
-  const [IsPassword, SetIsPassword] = useState(true);
+  const [IsPassword, SetIsPassword] = useState(1);
 
   const Navigate = useNavigate();
   const [num, setNum] = useState(60);
@@ -125,6 +126,30 @@ const LoginByPassword: FC<IProps> = () => {
     Dispatch(rea);
     Navigate("/user");
   };
+
+  const variants = {
+    enter: (direction: any) => {
+      return {
+        x: direction > 0 ? 1000 : -1000,
+        opacity: 0,
+      };
+    },
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction: any) => {
+      return {
+        zIndex: 0,
+        x: direction < 0 ? 1000 : -1000,
+        opacity: 0,
+      };
+    },
+  };
+
+  // 切换方向
+  const swipe = IsPassword ? -1 : 1;
   return (
     <LoginByPasswordWrapper>
       <div className="header">
@@ -137,161 +162,176 @@ const LoginByPassword: FC<IProps> = () => {
         <div
           className="left"
           onClick={() => {
-            SetIsPassword(true);
+            SetIsPassword(1);
           }}
         >
           <span>账号登录</span>
-          {IsPassword == true && <span className="active"></span>}
+          {IsPassword == 1 && <span className="active"></span>}
         </div>
         <div
           className="right"
           onClick={() => {
-            SetIsPassword(false);
+            SetIsPassword(2);
           }}
         >
           <span>手机号登录</span>
-          {IsPassword == false && <span className="active"></span>}
+          {IsPassword == 2 && <span className="active"></span>}
         </div>
       </div>
+      <motion.div
+        key={IsPassword}
+        custom={swipe}
+        variants={variants}
+        initial="enter"
+        animate="center"
+        exit="exit"
+        transition={{
+          x: { type: "spring", stiffness: 300, damping: 30 },
+          opacity: { duration: 0.2 },
+        }}
+        style={{ width: "100%" }}
+      >
+        {IsPassword == 1 ? (
+          <>
+            <div className="Content">
+              <Form
+                requiredMark={false}
+                name="basic"
+                labelCol={{ span: 8 }}
+                wrapperCol={{ span: 16 }}
+                style={{ maxWidth: 400 }}
+                initialValues={{ remember: true }}
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
+                autoComplete="off"
+                className="Form"
+              >
+                <Form.Item<FieldType>
+                  label="账号"
+                  name="username"
+                  rules={[
+                    { required: true, message: "请输入正确的用户账号!" },
+                    ({}) => ({
+                      validator(_, value) {
+                        if (!value || /\d{12}/.test(value)) {
+                          return Promise.resolve();
+                        }
+                        return Promise.reject(
+                          new Error("请输入正确的用户账号!")
+                        );
+                      },
+                    }),
+                  ]}
+                >
+                  <Input
+                    size="large"
+                    style={{ width: "300px", height: " 50px" }}
+                  />
+                </Form.Item>
 
-      {IsPassword ? (
-        <>
-          <div className="Content">
-            <Form
-              requiredMark={false}
-              name="basic"
-              labelCol={{ span: 8 }}
-              wrapperCol={{ span: 16 }}
-              style={{ maxWidth: 400 }}
-              initialValues={{ remember: true }}
-              onFinish={onFinish}
-              onFinishFailed={onFinishFailed}
-              autoComplete="off"
-              className="Form"
-            >
-              <Form.Item<FieldType>
-                label="账号"
-                name="username"
-                rules={[
-                  { required: true, message: "请输入正确的用户账号!" },
-                  ({}) => ({
-                    validator(_, value) {
-                      if (!value || /\d{12}/.test(value)) {
-                        return Promise.resolve();
-                      }
-                      return Promise.reject(new Error("请输入正确的用户账号!"));
-                    },
-                  }),
-                ]}
-              >
-                <Input
-                  size="large"
-                  style={{ width: "300px", height: " 50px" }}
-                />
-              </Form.Item>
-
-              <Form.Item<FieldType>
-                label="密码"
-                name="password"
-                rules={[
-                  { required: true, message: "请输入正确的密码!" },
-                  ({}) => ({
-                    validator(_, value) {
-                      if (!value || /^[a-zA-Z0-9]{8}$/.test(value)) {
-                        return Promise.resolve();
-                      }
-                      return Promise.reject(new Error("请输入正确的密码"));
-                    },
-                  }),
-                ]}
-              >
-                <Input.Password
-                  size="large"
-                  style={{ width: "300px", height: " 50px" }}
-                />
-              </Form.Item>
-              <button className="Submit" type="submit">
-                登录
-              </button>
-            </Form>
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="Content">
-            <Form
-              requiredMark={false}
-              name="basic"
-              labelCol={{ span: 8 }}
-              wrapperCol={{ span: 16 }}
-              style={{ maxWidth: 600 }}
-              initialValues={{ remember: true }}
-              onFinish={onFinish}
-              onFinishFailed={onFinishFailed}
-              autoComplete="off"
-              className="Form"
-            >
-              <Form.Item<FieldType>
-                label="手机号"
-                name="username"
-                rules={[
-                  { required: true, message: "请输入正确的手机号!" },
-                  ({}) => ({
-                    validator(_, value) {
-                      if (!value || /^1[3-9]\d{9}$/.test(value)) {
-                        return Promise.resolve();
-                      }
-                      return Promise.reject(new Error("请输入正确的手机号"));
-                    },
-                  }),
-                ]}
-              >
-                <Input
-                  size="large"
-                  style={{
-                    width: "300px",
-                    height: " 50px",
-                    backgroundColor: "rgb(246, 248, 255)",
-                  }}
-                  onChange={(e) => setPhoneNumber(e.target.value)}
-                />
-              </Form.Item>
-
-              <Form.Item<FieldType>
-                label="验证码"
-                name="TestCode"
-                className="Input"
-                rules={[
-                  { required: true, message: "请输入正确的验证码!" },
-                  ({}) => ({
-                    validator(_, value) {
-                      if (!value || /^\d{6}$/.test(value)) {
-                        return Promise.resolve();
-                      }
-                      return Promise.reject(new Error("请输入正确的验证码!"));
-                    },
-                  }),
-                ]}
-              >
-                <Input
-                  size="large"
-                  style={{
-                    width: "300px",
-                    height: "50px",
-                    backgroundColor: "rgb(246, 248, 255)",
-                  }}
-                />
-              </Form.Item>
-              <button className="Submit" type="submit">
-                立即绑定
-              </button>
-            </Form>
-            <div className="SendCode" onClick={handleClick}>
-              <span>{btnText}</span>
+                <Form.Item<FieldType>
+                  label="密码"
+                  name="password"
+                  rules={[
+                    { required: true, message: "请输入正确的密码!" },
+                    ({}) => ({
+                      validator(_, value) {
+                        if (!value || /^[a-zA-Z0-9]{8}$/.test(value)) {
+                          return Promise.resolve();
+                        }
+                        return Promise.reject(new Error("请输入正确的密码"));
+                      },
+                    }),
+                  ]}
+                >
+                  <Input.Password
+                    size="large"
+                    style={{ width: "300px", height: " 50px" }}
+                  />
+                </Form.Item>
+                <button className="Submit" type="submit">
+                  登录
+                </button>
+              </Form>
             </div>
-          </div>
-        </>
-      )}
+          </>
+        ) : (
+          <>
+            <div className="Content">
+              <Form
+                requiredMark={false}
+                name="basic"
+                labelCol={{ span: 8 }}
+                wrapperCol={{ span: 16 }}
+                style={{ maxWidth: 600 }}
+                initialValues={{ remember: true }}
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
+                autoComplete="off"
+                className="Form"
+              >
+                <Form.Item<FieldType>
+                  label="手机号"
+                  name="username"
+                  rules={[
+                    { required: true, message: "请输入正确的手机号!" },
+                    ({}) => ({
+                      validator(_, value) {
+                        if (!value || /^1[3-9]\d{9}$/.test(value)) {
+                          return Promise.resolve();
+                        }
+                        return Promise.reject(new Error("请输入正确的手机号"));
+                      },
+                    }),
+                  ]}
+                >
+                  <Input
+                    size="large"
+                    style={{
+                      width: "300px",
+                      height: " 50px",
+                      backgroundColor: "rgb(246, 248, 255)",
+                    }}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                  />
+                </Form.Item>
+
+                <Form.Item<FieldType>
+                  label="验证码"
+                  name="TestCode"
+                  className="Input"
+                  rules={[
+                    { required: true, message: "请输入正确的验证码!" },
+                    ({}) => ({
+                      validator(_, value) {
+                        if (!value || /^\d{6}$/.test(value)) {
+                          return Promise.resolve();
+                        }
+                        return Promise.reject(new Error("请输入正确的验证码!"));
+                      },
+                    }),
+                  ]}
+                >
+                  <Input
+                    size="large"
+                    style={{
+                      width: "300px",
+                      height: "50px",
+                      backgroundColor: "rgb(246, 248, 255)",
+                    }}
+                  />
+                </Form.Item>
+                <button className="Submit" type="submit">
+                  立即绑定
+                </button>
+              </Form>
+              <div className="SendCode" onClick={handleClick}>
+                <span>{btnText}</span>
+              </div>
+            </div>
+          </>
+        )}
+      </motion.div>
     </LoginByPasswordWrapper>
   );
 };

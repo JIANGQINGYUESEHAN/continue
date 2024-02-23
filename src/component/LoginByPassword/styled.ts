@@ -76,16 +76,17 @@ const LoginByPasswordWrapper = styled.div`
     }
   }
   .Content {
-    width: 94%;
+    width: 91%;
     height: 400px;
     background: linear-gradient(to bottom, white, rgba(255, 255, 255, 0));
-    border-radius: 10px;
+
     position: relative;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     justify-content: center; /* 水平居中 */
     padding: 20px;
+    top: -94px;
     .SendCode {
       width: 100px;
       height: 40px;

@@ -38,6 +38,7 @@ const Novel: FC<IProps> = ({ CarouselList }) => {
     // console.log(index);
     SetIsNovelCategoryIndex(index);
   }
+
   return (
     <NovelWrapper>
       {CategoryListAllNovel.length == 0 ? (

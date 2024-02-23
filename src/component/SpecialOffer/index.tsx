@@ -146,7 +146,7 @@ const SpecialOffer: FC<IProps> = (props) => {
         style={{ width: "100%" }}
       >
         <div className="Vip">
-          {IsVip ? (
+          {IsVip == 1 ? (
             VipList.length === 0 ? (
               <Skeleton.Paragraph lineCount={5} animated />
             ) : (
