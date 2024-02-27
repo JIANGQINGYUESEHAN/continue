@@ -14,6 +14,8 @@ import Notify from "../../view/Notify";
 import { Swiper } from "antd-mobile";
 import End from "../../view/End";
 import SkeletonScreen from "../../view/SkeletonScreen";
+
+import select from "../../assets/svg/selectA.svg";
 interface IProps {
   children?: ReactNode;
   CarouselList: any[];
@@ -92,37 +94,45 @@ const Comics: FC<IProps> = ({ CarouselList = [] }) => {
               }}
               style={{ width: "100%" }}
             >
-              <div className="Select">
-                {isCartoon == 1 ? (
-                  <div className="common" onClick={() => ClicikType(2)}>
-                    <div className="ContentIcon">
-                      <SvgIcon name="CheckCircle" size={55} />
+              <div className="ContentAAA">
+                <div className="Select">
+                  {isCartoon == 1 ? (
+                    <div className="common" onClick={() => ClicikType(2)}>
+                      <div className="ContentTitle">
+                        <span className="Comics">漫画</span>
+                      </div>
+                      <div className="ContentIcon">
+                        <SvgIcon name="CheckCircle" size={45} />
+                      </div>
                     </div>
-                    <div className="ContentTitle">
+                  ) : (
+                    <div className="common" onClick={() => ClicikType(1)}>
                       <span className="Comics">漫画</span>
                     </div>
-                  </div>
-                ) : (
-                  <div className="common" onClick={() => ClicikType(1)}>
-                    <span className="Comics">漫画</span>
-                  </div>
-                )}
+                  )}
 
-                {isCartoon == 2 ? (
-                  <div className="common" onClick={() => ClicikType(1)}>
-                    <div className="ContentIcon">
-                      <SvgIcon name="CheckCircle" size={55} />
+                  {isCartoon == 2 ? (
+                    <div className="common" onClick={() => ClicikType(1)}>
+                      <div className="ContentIcon">
+                        <SvgIcon name="CheckCircle" size={45} />
+                      </div>
+                      <div className="ContentTitle">
+                        <span className="Comics">动漫</span>
+                      </div>
                     </div>
-                    <div className="ContentTitle">
+                  ) : (
+                    <div className="common" onClick={() => ClicikType(2)}>
                       <span className="Comics">动漫</span>
                     </div>
+                  )}
+                </div>
+                <div className="SelectAA">
+                  <div className="ContentIconA">
+                    <img src={select} alt="" className="img" />
                   </div>
-                ) : (
-                  <div className="common" onClick={() => ClicikType(2)}>
-                    <span className="Comics">动漫</span>
-                  </div>
-                )}
+                </div>
               </div>
+
               {/* 轮播图 */}
               <div className="carousel">
                 <Swiper className="Swiper" loop autoplay>

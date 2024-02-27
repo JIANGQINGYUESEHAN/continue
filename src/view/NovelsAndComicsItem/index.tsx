@@ -3,7 +3,7 @@ import { memo } from "react";
 import type { FC, ReactNode } from "react";
 import NovelsAndComicsItemWrapper from "./styled";
 import SvgIcon from "../../component/SvgIcon/index";
-import { EyeFill } from "antd-mobile-icons";
+
 import { useNavigate } from "react-router-dom";
 
 interface IProps {
@@ -53,9 +53,7 @@ const NovelsAndComicsItem: FC<IProps> = ({ item, isCartoon }) => {
         <div className="ItemInfo">
           <div className="ItemName">{item.title}</div>
           <div className="VisitNum">
-            <span>
-              <EyeFill /> {item.view_count}
-            </span>
+            <span>{item.view_count}人气</span>
           </div>
         </div>
       </div>

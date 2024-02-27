@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, memo, ReactNode, FC, useEffect } from "react";
-import { Skeleton, TabBar } from "antd-mobile";
+
 import { AnimatePresence, motion } from "framer-motion";
 import ListWrapper from "./styled";
 import NovelsAndComicsItem from "../NovelsAndComicsItem";
@@ -13,29 +13,7 @@ import {
 import NavBar from "../NavBar";
 import SvgIcon from "../../component/SvgIcon";
 import SkeletonItem from "../SkeletonItem";
-
-const tabs = [
-  {
-    key: "1",
-    title: "最新榜",
-    content: "这是首页的内容",
-  },
-  {
-    key: "2",
-    title: "阅览榜",
-    content: "这是待办的内容",
-  },
-  {
-    key: "3",
-    title: "收藏榜",
-    content: "这是消息的内容",
-  },
-  {
-    key: "4",
-    title: "推荐榜",
-    content: "这是个人中心的内容",
-  },
-];
+import Boder from "../boder";
 
 interface IProps {
   children?: ReactNode;
@@ -246,6 +224,7 @@ const List: FC<IProps> = ({ isCartoon }) => {
               </div>
             </>
           )}
+          <Boder />
         </motion.div>
       </AnimatePresence>
     </ListWrapper>

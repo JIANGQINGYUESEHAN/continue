@@ -6,12 +6,13 @@ import FloorComponentsWrapper from "./styled";
 import NavBar from "../NavBar";
 import NovelsAndComics from "../NovelsAndComics";
 import VideoItem from "../VideoItem";
-import { Skeleton } from "antd-mobile";
+
 import {
   CategoryList,
   CategoryListNextPage,
 } from "../../service/static/common";
 import SkeletonItem from "../SkeletonItem";
+import Boder from "../boder";
 
 interface IProps {
   children?: ReactNode;
@@ -82,6 +83,7 @@ const FloorComponents: FC<IProps> = ({ isCartoon, item }) => {
       >
         {renderContent()}
       </div>
+      <Boder />
     </FloorComponentsWrapper>
   );
 };

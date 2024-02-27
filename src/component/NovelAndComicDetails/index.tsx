@@ -147,7 +147,7 @@ const NovelAndComicDetails: FC<IProps> = ({ query, info }) => {
   useEffect(() => {
     (async () => {
       const res = await GetDetailsAboutNovelsAndComics(resource_id);
-      console.log(res);
+      // console.log(res);
       setItem(res);
       setSwiperArray(res.book_section_list);
       //获取相同的

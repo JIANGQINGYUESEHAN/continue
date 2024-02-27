@@ -9,6 +9,7 @@ import SkeletonItem from "../SkeletonItem";
 
 import { AnimatePresence, motion } from "framer-motion";
 import NovelsAndComics from "../NovelsAndComics";
+import Boder from "../boder";
 
 interface IProps {
   children?: ReactNode;
@@ -162,6 +163,8 @@ const Chapter: FC<IProps> = ({ isCartoon = 1, children }) => {
               </div>
             </>
           )}
+
+          <Boder />
         </motion.div>
       </AnimatePresence>
     </ChapterWrapper>

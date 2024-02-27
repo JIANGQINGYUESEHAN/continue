@@ -3,53 +3,74 @@ import styled from "styled-components";
 const ComicsWrapperStyled = styled.div`
   overflow: hidden;
   min-height: 100vh;
-  background: url(https://lanhu-dds-backend.oss-cn-beijing.aliyuncs.com/merge_image/imgs/2ec00cf1db6f4ed397b3167d105929b4_mergeImage.png)
-    100% no-repeat;
-  background-size: 100% 100%;
+  background: url("https://lanhu-dds-backend.oss-cn-beijing.aliyuncs.com/merge_image/imgs/2ec00cf1db6f4ed397b3167d105929b4_mergeImage.png")
+    no-repeat;
+  background-size: 100% 20vh; /* 设置背景图片宽度为100%，高度自动调整 */
+  background-position: top; /* 背景图片顶部对齐 */
+
+  /* 在此设置背景颜色 */
   width: 100%;
-  position: absolute;
+  position: relative;
   left: 0;
   top: 0;
   box-sizing: border-box;
-  position: relative;
   margin-bottom: 40px;
-  position: relative;
-  overflow: hidden; /* 防止过渡期间内容溢出 */
 
-  .Select {
-    padding: 20px 20px;
-    display: flex;
+  .ContentAAA {
     width: 100%;
     height: 95px;
-    .common {
-      width: 60px;
-      height: 60px;
-      margin-right: 10px;
-      text-align: center;
-      line-height: 60px;
-      position: relative;
+    display: flex;
+    justify-content: space-between;
+    .Select {
+      padding: 20px 20px;
+      display: flex;
+      width: 100%;
+      height: 95px;
+      .common {
+        width: 60px;
+        height: 60px;
+        margin-right: 10px;
+        text-align: center;
+        line-height: 60px;
+        position: relative;
 
-      .Comics {
-        font-size: 20px;
-        color: RGBA(121, 119, 120, 1);
-      }
-      .ContentTitle {
-        width: 100%;
-        height: 100%;
         .Comics {
-          font-size: 30px;
-          font-weight: bolder;
-          color: black;
-          z-index: 9;
+          font-size: 20px;
+          color: RGBA(121, 119, 120, 1);
+        }
+        .ContentTitle {
+          width: 100%;
+          height: 100%;
+          .Comics {
+            font-size: 30px;
+            font-weight: bolder;
+            color: black;
+            z-index: 9999 !important;
+          }
+        }
+        .ContentIcon {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 27px;
+          left: 0px;
+          z-index: 0;
         }
       }
-      .ContentIcon {
-        width: 100%;
+    }
+    .SelectAA {
+      width: 110px;
+      height: 100%;
+      .ContentIconA {
+        width: 140px;
         height: 100%;
-        position: absolute;
-        top: 27px;
-        left: 0px;
-        z-index: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .img {
+          width: 20px;
+          height: 20px;
+        }
       }
     }
   }

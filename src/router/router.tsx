@@ -75,16 +75,7 @@ const routers = [
       title: "排名",
     },
   },
-  {
-    path: "/classification",
-    name: "Classification",
-    component: lazy(() => {
-      return import("../component/Classification");
-    }),
-    meta: {
-      title: "分类",
-    },
-  },
+
   {
     path: "/specialOffer",
     name: "SpecialOffer",

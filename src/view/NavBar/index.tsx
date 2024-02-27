@@ -3,9 +3,10 @@ import { memo } from "react";
 import type { FC, ReactNode } from "react";
 import NavbarWrapper from "./styled";
 import SvgIcon from "../../component/SvgIcon";
-import { LeftOutline, RedoOutline, RightOutline } from "antd-mobile-icons";
+import { LeftOutline } from "antd-mobile-icons";
 import { useNavigate } from "react-router-dom";
-
+import right from "../../assets/svg/right.svg";
+import flash from "../../assets/svg/flash.svg";
 interface IProps {
   children?: ReactNode;
   IsShowChildren?: boolean;
@@ -38,7 +39,7 @@ const NavBar: FC<IProps> = ({
             <div className="right">
               <div className="iconCircle">
                 <span onClick={onClickA}> 换一换</span>
-                <RedoOutline />
+                <img src={flash} alt="" className="imag" />
               </div>
 
               <div className="iconRight">
@@ -50,7 +51,7 @@ const NavBar: FC<IProps> = ({
                 >
                   更多
                 </span>
-                <RightOutline />
+                <img src={right} alt="" className="imag" />
               </div>
             </div>
           </>

@@ -13,7 +13,7 @@ import {
   GetComicRankingData,
   ProjectList,
 } from "../../service/static/common";
-import { InfiniteScroll, Skeleton } from "antd-mobile";
+import { InfiniteScroll } from "antd-mobile";
 import NovelsAndComics from "../../view/NovelsAndComics";
 
 import VideoItemA from "../../view/VideoItemA";
@@ -28,13 +28,13 @@ const Rank: FC<IProps> = ({ query }) => {
   const { isCartoon } = query;
   // console.log(isCartoon);
 
-  const [isCartoonA, SetIsCarToon] = useState<number>(1);
+  const [isCartoonA, SetIsCarToon] = useState<number>(0);
   const [feedKey, SetfeedKey] = useState("");
   const [hasMore, setHasMore] = useState(true);
   const [selected, setSelected] = useState<number>(0);
   const [ProjectListA, setProjectList] = useState<any>([]);
   const [List, Setlist] = useState([]);
-  const [Category, setCategory] = useState();
+  const [Category, setCategory] = useState("DS");
   async function loadMore() {
     const res = await CategoryListNextPage(
       isCartoon,
@@ -53,6 +53,8 @@ const Rank: FC<IProps> = ({ query }) => {
   const handleClick = (index: number) => {
     const a = ProjectListA[index].code;
     setCategory(a);
+    console.log(a);
+
     setSelected(index);
   };
 
@@ -63,7 +65,7 @@ const Rank: FC<IProps> = ({ query }) => {
       setProjectList(res.list);
 
       //初始化数据
-      const rea = await GetComicRankingData(isCartoon, 20, selected);
+      const rea = await GetComicRankingData(isCartoon, 20, isCartoonA);
       Setlist(rea.list);
       // //点击时记录下一页的字符串
       SetfeedKey(rea.feed_key);
@@ -76,11 +78,13 @@ const Rank: FC<IProps> = ({ query }) => {
       const res = await CategoryListNextPage(
         isCartoon,
         20,
-        selected!,
+        isCartoonA,
         Category!,
         feedKey
       );
-      // console.log(res);
+      console.log(res);
+      console.log(isCartoon, isCartoonA, Category);
+
       Setlist(res.list);
       // //点击时记录下一页的字符串
       SetfeedKey(res.feed_key);
@@ -103,64 +107,78 @@ const Rank: FC<IProps> = ({ query }) => {
     <RankWrapper>
       <NavBar IsShowChildren={false} middle="排行榜" />
       <div className="Select">
-        {isCartoonA == 1 ? (
-          <div className="common" onClick={() => ClicikType(1)}>
+        {isCartoonA == 0 ? (
+          <div className="common">
             <div className="ContentIcon">
-              <SvgIcon name="CheckCircle" size={55} />
+              <SvgIcon name="start" size={60} />
+            </div>
+            <div className="ContentIconPath">
+              <SvgIcon name="path" size={60} color="red" />
             </div>
             <div className="ContentTitle">
               <span className="Comics">人气榜</span>
             </div>
           </div>
         ) : (
-          <div className="common" onClick={() => ClicikType(1)}>
+          <div className="common" onClick={() => ClicikType(0)}>
             <span className="Comics">人气榜</span>
           </div>
         )}
 
-        {isCartoonA == 2 ? (
-          <div className="common" onClick={() => ClicikType(2)}>
+        {isCartoonA == 1 ? (
+          <div className="common">
             <div className="ContentIcon">
-              <SvgIcon name="CheckCircle" size={55} />
+              <SvgIcon name="start" size={60} />
+            </div>
+            <div className="ContentIconPath">
+              <SvgIcon name="path" size={60} color="red" />
             </div>
             <div className="ContentTitle">
               <span className="Comics">推荐榜</span>
             </div>
           </div>
         ) : (
-          <div className="common" onClick={() => ClicikType(2)}>
+          <div className="common" onClick={() => ClicikType(1)}>
             <span className="Comics">推荐榜</span>
           </div>
         )}
-        {isCartoonA == 3 ? (
-          <div className="common" onClick={() => ClicikType(3)}>
+        {isCartoonA == 2 ? (
+          <div className="common">
             <div className="ContentIcon">
-              <SvgIcon name="CheckCircle" size={55} />
+              <SvgIcon name="start" size={60} />
+            </div>
+            <div className="ContentIconPath">
+              <SvgIcon name="path" size={60} color="red" />
             </div>
             <div className="ContentTitle">
               <span className="Comics">收藏榜</span>
             </div>
           </div>
         ) : (
-          <div className="common" onClick={() => ClicikType(3)}>
+          <div className="common" onClick={() => ClicikType(2)}>
             <span className="Comics">收藏榜</span>
           </div>
         )}
-        {isCartoonA == 4 ? (
-          <div className="common" onClick={() => ClicikType(4)}>
+
+        {isCartoonA == 3 ? (
+          <div className="common">
             <div className="ContentIcon">
-              <SvgIcon name="CheckCircle" size={55} />
+              <SvgIcon name="start" size={60} />
+            </div>
+            <div className="ContentIconPath">
+              <SvgIcon name="path" size={60} color="red" />
             </div>
             <div className="ContentTitle">
-              <span className="Comics"> 今日榜</span>
+              <span className="Comics">今日榜</span>
             </div>
           </div>
         ) : (
-          <div className="common" onClick={() => ClicikType(4)}>
+          <div className="common" onClick={() => ClicikType(3)}>
             <span className="Comics">今日榜</span>
           </div>
         )}
       </div>
+
       <div className="content">
         <div className="left">
           {ProjectListA.map((text: any, index: number) => (
@@ -175,54 +193,56 @@ const Rank: FC<IProps> = ({ query }) => {
             </div>
           ))}
         </div>
-
-        {List.length == 0 ? (
-          <div
-            style={{
-              width: "100%",
-              height: "180px",
-              display: "flex",
-              flexWrap: "wrap",
-            }}
-          >
-            <SkeletonItem />
-            <SkeletonItem />
-          </div>
-        ) : (
-          <div className="right">
-            {isCartoon == 5 || isCartoon == 1 ? (
-              <div className="Content">
-                {List.map((item: any, index: any) => {
-                  return (
-                    <NovelsAndComics
-                      isCartoon={isCartoon}
-                      key={index}
-                      item={item}
-                    />
-                  );
-                })}
-                <InfiniteScroll
-                  loadMore={loadMore}
-                  hasMore={hasMore}
-                  threshold={10}
-                />
-              </div>
-            ) : (
-              <div className="ContentA">
-                {List.map((item: any, index: any) => {
-                  return (
-                    <VideoItemA isCartoon={isCartoon} key={index} item={item} />
-                  );
-                })}
-                <InfiniteScroll
-                  loadMore={loadMore}
-                  hasMore={hasMore}
-                  threshold={10}
-                />
-              </div>
-            )}
-          </div>
-        )}
+        <div className="all">
+          {List.length == 0 ? (
+            <div
+              style={{
+                width: "100%",
+                height: "180px",
+                display: "flex",
+                flexWrap: "wrap",
+                alignContent: "space-around",
+                justifyContent: "space-around",
+              }}
+            >
+              <SkeletonItem />
+              <SkeletonItem />
+            </div>
+          ) : (
+            <div className="right">
+              {isCartoon == 5 || isCartoon == 1 ? (
+                <div className="Content">
+                  {List.map((item: any, index: any) => {
+                    return (
+                      <NovelsAndComics
+                        isCartoon={isCartoon}
+                        key={index}
+                        item={item}
+                      />
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className="ContentA">
+                  {List.map((item: any, index: any) => {
+                    return (
+                      <VideoItemA
+                        isCartoon={isCartoon}
+                        key={index}
+                        item={item}
+                      />
+                    );
+                  })}
+                </div>
+              )}
+              <InfiniteScroll
+                loadMore={loadMore}
+                hasMore={hasMore}
+                threshold={10}
+              />
+            </div>
+          )}
+        </div>
       </div>
     </RankWrapper>
   );

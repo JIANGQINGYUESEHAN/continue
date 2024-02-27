@@ -16,7 +16,7 @@ const NotifyWrapper = styled.div`
     display: flex;
     color: black;
     border-radius: 8px;
-    background-color: #ccc;
+    background-color: rgb(250, 250, 250);
     .left {
       height: 100%;
       flex: 1;

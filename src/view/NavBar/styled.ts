@@ -62,13 +62,24 @@ const NavbarWrapper = styled.div`
 
         font-size: 12px;
         color: RGBA(110, 110, 110, 1);
+        display: flex;
+        align-items: center;
+        .imag {
+          width: 12px;
+          height: 12px;
+        }
       }
       .iconRight {
         flex: 1;
         height: 40px;
-
+        display: flex;
+        align-items: center;
         font-size: 12px;
         color: RGBA(110, 110, 110, 1);
+        .imag {
+          width: 12px;
+          height: 12px;
+        }
       }
     }
   }

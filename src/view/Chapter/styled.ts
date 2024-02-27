@@ -3,7 +3,7 @@ import styled from "styled-components";
 const ChapterWrapper = styled.div`
   .content {
     width: 100%;
-    height: 36px;
+    height: 30px;
     display: flex;
     padding: 0px 8px;
     overflow-x: auto; /* 允许水平滚动 */
@@ -18,20 +18,20 @@ const ChapterWrapper = styled.div`
       list-style: none;
       height: 100%;
       min-width: 70px;
-      border: 1px solid #ccc;
+
       border-radius: 20px;
       margin: 0px 10px;
-      color: black;
+      color: rgb(167, 167, 167);
       font-size: 16px; /* 应该是font-size而不是color */
       text-align: center;
 
-      line-height: 36px;
+      line-height: 30px;
       font-weight: 500;
       white-space: nowrap; /* 防止文本换行 */
     }
     .selected {
-      color: white;
-      background-color: red;
+      color: rgb(255, 50, 124);
+      background-color: rgb(255, 226, 242);
     }
   }
 

@@ -2,16 +2,16 @@ import styled from "styled-components";
 
 const RankWrapper = styled.div`
   .Select {
-    padding: 10px 0px;
+    padding: 20px 20px;
     display: flex;
     width: 100%;
-    height: 70px;
-    justify-content: center;
+    height: 60px;
     align-items: center;
+    justify-content: center;
     .common {
-      width: 90px;
+      width: 60px;
       height: 60px;
-      margin-right: 10px;
+      margin-right: 20px;
       text-align: center;
       line-height: 60px;
       position: relative;
@@ -34,8 +34,16 @@ const RankWrapper = styled.div`
         width: 100%;
         height: 100%;
         position: absolute;
-        top: 27px;
-        left: 0px;
+        top: -7px;
+        left: 4px;
+        z-index: 0;
+      }
+      .ContentIconPath {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 20px;
+        left: 4px;
         z-index: 0;
       }
     }
@@ -49,40 +57,66 @@ const RankWrapper = styled.div`
     .left {
       min-width: 80px;
       height: 100px;
+      background-color: white;
       .leftUl {
         list-style: none;
-        height: 40px;
-        width: 100%;
-        background-color: aliceblue;
+        height: 30px;
+        width: 60px;
+        background-color: white;
         border-radius: 20px;
         margin: 10px 0px;
         color: black;
         color: 20px;
         text-align: center;
-        line-height: 40px;
+        line-height: 30px;
         font-weight: 500;
       }
       .selected {
         color: white;
-        background-color: red;
+        background-color: rgb(255, 20, 102);
       }
     }
-  }
-  .Content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    margin: 0px 7px;
-    flex-wrap: wrap;
-  }
-  .ContentA {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    margin: 0px 7px;
-    flex-wrap: wrap;
+
+    .all {
+      width: 100%;
+      height: 90vh;
+      background-color: rgb(248, 247, 246);
+      .Content {
+        display: flex;
+        align-content: flex-start;
+        justify-content: flex-start;
+        width: 100%;
+
+        flex-wrap: wrap;
+      }
+      .ContentA {
+        display: flex;
+        align-content: flex-start;
+        justify-content: flex-start;
+        width: 100%;
+        margin: 0px 7px;
+        flex-wrap: wrap;
+      }
+      .Content,
+      .ContentA {
+        display: flex;
+        align-content: flex-start;
+        justify-content: flex-start;
+        width: 100%;
+        margin: 0px 7px;
+        flex-wrap: wrap;
+      }
+
+      .Content > *:nth-child(odd),
+      .ContentA > *:nth-child(odd) {
+        margin: 10px; /* 在奇数元素右侧添加间隔 */
+      }
+
+      .Content > *:nth-child(even),
+      .ContentA > *:nth-child(even) {
+        margin: 10; /* 在偶数元素右侧不添加间隔 */
+      }
+    }
   }
 `;
 export default RankWrapper;
