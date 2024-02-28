@@ -18,6 +18,7 @@ import NovelsAndComics from "../../view/NovelsAndComics";
 
 import VideoItemA from "../../view/VideoItemA";
 import SkeletonItem from "../../view/SkeletonItem";
+import RankItem from "../../view/RankItem";
 
 interface IProps {
   children?: ReactNode;
@@ -210,38 +211,20 @@ const Rank: FC<IProps> = ({ query }) => {
             </div>
           ) : (
             <div className="right">
-              {isCartoon == 5 || isCartoon == 1 ? (
-                <div className="Content">
-                  {List.map((item: any, index: any) => {
-                    return (
-                      <NovelsAndComics
-                        isCartoon={isCartoon}
-                        key={index}
-                        item={item}
-                      />
-                    );
-                  })}
-                </div>
-              ) : (
-                <div className="ContentA">
-                  {List.map((item: any, index: any) => {
-                    return (
-                      <VideoItemA
-                        isCartoon={isCartoon}
-                        key={index}
-                        item={item}
-                      />
-                    );
-                  })}
-                </div>
-              )}
-              <InfiniteScroll
-                loadMore={loadMore}
-                hasMore={hasMore}
-                threshold={10}
-              />
+              <div className="Content">
+                {List.map((item: any, index: any) => {
+                  return (
+                    <RankItem key={index} isCartoon={isCartoon} item={item} />
+                  );
+                })}
+              </div>
             </div>
           )}
+          <InfiniteScroll
+            loadMore={loadMore}
+            hasMore={hasMore}
+            threshold={10}
+          />
         </div>
       </div>
     </RankWrapper>

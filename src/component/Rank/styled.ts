@@ -53,7 +53,6 @@ const RankWrapper = styled.div`
     height: auto;
     display: flex;
 
-    padding: 0px 10px;
     .left {
       min-width: 80px;
       height: 100px;
@@ -82,39 +81,12 @@ const RankWrapper = styled.div`
       height: 90vh;
       background-color: rgb(248, 247, 246);
       .Content {
+        overflow: hidden;
         display: flex;
         align-content: flex-start;
         justify-content: flex-start;
         width: 100%;
-
         flex-wrap: wrap;
-      }
-      .ContentA {
-        display: flex;
-        align-content: flex-start;
-        justify-content: flex-start;
-        width: 100%;
-        margin: 0px 7px;
-        flex-wrap: wrap;
-      }
-      .Content,
-      .ContentA {
-        display: flex;
-        align-content: flex-start;
-        justify-content: flex-start;
-        width: 100%;
-        margin: 0px 7px;
-        flex-wrap: wrap;
-      }
-
-      .Content > *:nth-child(odd),
-      .ContentA > *:nth-child(odd) {
-        margin: 10px; /* 在奇数元素右侧添加间隔 */
-      }
-
-      .Content > *:nth-child(even),
-      .ContentA > *:nth-child(even) {
-        margin: 10; /* 在偶数元素右侧不添加间隔 */
       }
     }
   }
