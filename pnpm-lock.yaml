@@ -29,6 +29,9 @@ dependencies:
   '@types/qs':
     specifier: ^6.9.10
     version: registry.npmmirror.com/@types/qs@6.9.10
+  '@types/react-slick':
+    specifier: ^0.23.13
+    version: registry.npmmirror.com/@types/react-slick@0.23.13
   '@types/redux-logger':
     specifier: ^3.0.12
     version: registry.npmmirror.com/@types/redux-logger@3.0.12
@@ -86,6 +89,9 @@ dependencies:
   react-router-dom:
     specifier: ^6.20.1
     version: registry.npmmirror.com/react-router-dom@6.20.1(react-dom@18.2.0)(react@18.2.0)
+  react-slick:
+    specifier: ^0.30.2
+    version: registry.npmmirror.com/react-slick@0.30.2(react-dom@18.2.0)(react@18.2.0)
   react-swipeable-views:
     specifier: ^0.14.0
     version: registry.npmmirror.com/react-swipeable-views@0.14.0(react@18.2.0)
@@ -1551,6 +1557,14 @@ packages:
     dependencies:
       '@types/react': registry.npmmirror.com/@types/react@18.2.37
 
+  registry.npmmirror.com/@types/react-slick@0.23.13:
+    resolution: {integrity: sha512-bNZfDhe/L8t5OQzIyhrRhBr/61pfBcWaYJoq6UDqFtv5LMwfg4NsVDD2J8N01JqdAdxLjOt66OZEp6PX+dGs/A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/react-slick/-/react-slick-0.23.13.tgz}
+    name: '@types/react-slick'
+    version: 0.23.13
+    dependencies:
+      '@types/react': registry.npmmirror.com/@types/react@18.2.37
+    dev: false
+
   registry.npmmirror.com/@types/react-transition-group@4.4.10:
     resolution: {integrity: sha512-hT/+s0VQs2ojCX823m60m5f0sL5idt9SO6Tj6Dg+rdphGPIeJbJ6CxvBYkgkGKrYeDjvIpKTR38UzmtHJOGW3Q==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/react-transition-group/-/react-transition-group-4.4.10.tgz}
     name: '@types/react-transition-group'
@@ -2818,6 +2832,12 @@ packages:
     engines: {node: '>= 4'}
     dev: false
 
+  registry.npmmirror.com/enquire.js@2.1.6:
+    resolution: {integrity: sha512-/KujNpO+PT63F7Hlpu4h3pE3TokKRHN26JYmQpPyjkRD/N57R7bPDNojMXdi7uveAKjYB7yQnartCxZnFWr0Xw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/enquire.js/-/enquire.js-2.1.6.tgz}
+    name: enquire.js
+    version: 2.1.6
+    dev: false
+
   registry.npmmirror.com/entities@1.1.2:
     resolution: {integrity: sha512-f2LZMYl1Fzu7YSBKg+RoROelpOaNrcGmE9AZubeDfrCEia483oW4MI4VyFd5VNHIgQ/7qm1I0wUHK1eJnn2y2w==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/entities/-/entities-1.1.2.tgz}
     name: entities
@@ -3922,6 +3942,12 @@ packages:
     resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/lodash-es/-/lodash-es-4.17.21.tgz}
     name: lodash-es
     version: 4.17.21
+    dev: false
+
+  registry.npmmirror.com/lodash.debounce@4.0.8:
+    resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz}
+    name: lodash.debounce
+    version: 4.0.8
     dev: false
 
   registry.npmmirror.com/lodash.isplainobject@4.0.6:
@@ -5315,6 +5341,24 @@ packages:
     dependencies:
       '@remix-run/router': registry.npmmirror.com/@remix-run/router@1.13.1
       react: registry.npmmirror.com/react@18.2.0
+    dev: false
+
+  registry.npmmirror.com/react-slick@0.30.2(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-XvQJi7mRHuiU3b9irsqS9SGIgftIfdV5/tNcURTb5LdIokRA5kIIx3l4rlq2XYHfxcSntXapoRg/GxaVOM1yfg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/react-slick/-/react-slick-0.30.2.tgz}
+    id: registry.npmmirror.com/react-slick/0.30.2
+    name: react-slick
+    version: 0.30.2
+    peerDependencies:
+      react: ^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^0.14.0 || ^15.0.1 || ^16.0.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      classnames: registry.npmmirror.com/classnames@2.5.1
+      enquire.js: registry.npmmirror.com/enquire.js@2.1.6
+      json2mq: registry.npmmirror.com/json2mq@0.2.0
+      lodash.debounce: registry.npmmirror.com/lodash.debounce@4.0.8
+      react: registry.npmmirror.com/react@18.2.0
+      react-dom: registry.npmmirror.com/react-dom@18.2.0(react@18.2.0)
+      resize-observer-polyfill: registry.npmmirror.com/resize-observer-polyfill@1.5.1
     dev: false
 
   registry.npmmirror.com/react-swipeable-views-core@0.14.0:

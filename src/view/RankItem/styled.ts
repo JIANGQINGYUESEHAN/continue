@@ -2,19 +2,19 @@ import styled from "styled-components";
 
 const RankItemWrapper = styled.div`
   .content {
-    width: 32vw;
+    width: 30vw;
     height: 240px;
     position: relative;
-    margin: 0.2rem 0.4rem;
+    margin: 0.2rem 0.1rem;
     display: flex;
     flex-direction: column;
-
+    font-size: 12px;
     .image {
-      width: 32vw;
+      width: 30vw;
       height: 150px;
       position: relative;
       .over {
-        width: 32vw;
+        width: 30vw;
         height: 40px;
         /* background-color: black; */
         position: absolute;
@@ -30,7 +30,7 @@ const RankItemWrapper = styled.div`
       }
     }
     .middle {
-      width: 32vw;
+      width: 30vw;
       height: 90px;
       position: relative;
 
@@ -66,11 +66,10 @@ const RankItemWrapper = styled.div`
           border-radius: 6px;
         }
         .LabelItemA {
-          margin-right: 8px;
-          width: 80px;
+          width: 60px;
           height: 25px;
           background-color: white;
-
+          font-size: 12px;
           color: rgb(255, 56, 141);
           border: 1px solid rgb(255, 56, 141);
           text-align: center;
@@ -78,7 +77,7 @@ const RankItemWrapper = styled.div`
         }
       }
       .collect {
-        width: 200px;
+        width: 140px;
         height: 30px;
         font-size: 14px;
         padding: 0px 4px;
@@ -87,7 +86,7 @@ const RankItemWrapper = styled.div`
         align-items: center;
         margin-top: 2px;
         .LabelItem {
-          margin-right: 8px;
+          margin-right: 4px;
           width: 50px;
           height: 25px;
           background-color: rgb(255, 56, 141);

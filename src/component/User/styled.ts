@@ -3,12 +3,18 @@ import styled from "styled-components";
 const UserWrapper = styled.div`
   overflow: hidden;
   min-height: 100vh;
-  background: url(https://lanhu-dds-backend.oss-cn-beijing.aliyuncs.com/merge_image/imgs/2ec00cf1db6f4ed397b3167d105929b4_mergeImage.png)
-    100% no-repeat;
-  background-size: cover;
-  background-position: center center;
+  background: url("https://lanhu-dds-backend.oss-cn-beijing.aliyuncs.com/merge_image/imgs/2ec00cf1db6f4ed397b3167d105929b4_mergeImage.png")
+    no-repeat;
+  background-size: 100% 40vh; /* 设置背景图片宽度为100%，高度自动调整 */
+  background-position: top; /* 背景图片顶部对齐 */
+
+  /* 在此设置背景颜色 */
   width: 100%;
+  position: relative;
+  left: 0;
+  top: 0;
   box-sizing: border-box;
+  margin-bottom: 40px;
 
   .content {
     display: flex;
@@ -227,7 +233,7 @@ const UserWrapper = styled.div`
       /* background-color: red; */
       .big {
         height: 1.8rem !important;
-        width: 1.4rem !important;
+        width: 1.3rem !important;
         margin: 4px 4px;
         position: relative;
         .item {
@@ -273,13 +279,16 @@ const UserWrapper = styled.div`
         }
       }
       .big:nth-child(7) {
-        background-color: yellow;
+        /* 设置div的高度和宽度 */
         height: 1.6rem !important;
         width: 2.9rem !important;
-        margin: 0px 4px;
-        background-image: url(https://mzsmsm03.com/static/images/decoration/signin-item-big.png);
+        /* 设置背景图片 */
+        background-image: url("https://mzsmsm03.com/static/images/decoration/signin-item-big.png");
+        /* 覆盖并保持图片宽高比 */
         background-size: cover;
+        /* 使图片始终居中 */
         background-position: center center;
+        /* 不重复背景图片 */
         background-repeat: no-repeat;
         .day {
           width: 100%;

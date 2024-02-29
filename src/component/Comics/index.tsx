@@ -16,6 +16,7 @@ import End from "../../view/End";
 import SkeletonScreen from "../../view/SkeletonScreen";
 
 import select from "../../assets/svg/selectA.svg";
+import EveyUpdate from "../../view/EveyUpdate";
 interface IProps {
   children?: ReactNode;
   CarouselList: any[];
@@ -79,7 +80,6 @@ const Comics: FC<IProps> = ({ CarouselList = [] }) => {
     <>
       {show ? (
         <>
-          {" "}
           <ComicsWrapperStyled>
             <motion.div
               key={isCartoon}
@@ -153,7 +153,12 @@ const Comics: FC<IProps> = ({ CarouselList = [] }) => {
                 <Notify />
               </Chapter>
               {/* 公告提示 */}
-
+              {Project.map((item: any, index: number) => {
+                return (
+                  <EveyUpdate isCartoon={isCartoon} key={index} item={item} />
+                );
+              })}
+              {/* <EveyUpdate isCartoon={isCartoon} /> */}
               {isCartoon == 1 ? (
                 <>
                   <List isCartoon={isCartoon} />

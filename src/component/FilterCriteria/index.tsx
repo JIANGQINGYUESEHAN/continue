@@ -12,9 +12,10 @@ import {
   GetComicRankingData,
   ProjectList,
 } from "../../service/static/common";
-import VideoItem from "../../view/VideoItem";
+
 import { InfiniteScroll, Skeleton } from "antd-mobile";
-import NovelsAndComics from "../../view/NovelsAndComics";
+
+import RankItem from "../../view/RankItem";
 
 interface IProps {
   children?: ReactNode;
@@ -287,27 +288,11 @@ const FilterCriteria: FC<IProps> = ({ query }) => {
         </div>
       ) : (
         <div className="right">
-          {isDetail == 5 || isDetail == 1 ? (
-            <div className="Content">
-              {List.map((item: any, index: any) => {
-                return (
-                  <NovelsAndComics
-                    key={index}
-                    item={item}
-                    isCartoon={isDetail}
-                  />
-                );
-              })}
-            </div>
-          ) : (
-            <div className="ContentA">
-              {List.map((item: any, index: any) => {
-                return (
-                  <VideoItem key={index} item={item} isCartoon={isDetail} />
-                );
-              })}
-            </div>
-          )}
+          <div className="Content">
+            {List.map((item: any, index: any) => {
+              return <RankItem key={index} item={item} isCartoon={isDetail} />;
+            })}
+          </div>
         </div>
       )}
       <InfiniteScroll loadMore={loadMore} hasMore={hasMore} threshold={10} />

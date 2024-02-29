@@ -92,7 +92,7 @@ const List: FC<IProps> = ({ isCartoon }) => {
         {selected == 0 ? (
           <div className="common" onClick={() => ClicikTypeA(0)}>
             <div className="ContentIcon">
-              <SvgIcon name="CheckCircle" size={55} />
+              <SvgIcon name="CheckCircle" size={45} />
             </div>
             <div className="ContentTitle">
               <span className="Comics">人气榜</span>
@@ -107,7 +107,7 @@ const List: FC<IProps> = ({ isCartoon }) => {
         {selected == 1 ? (
           <div className="common" onClick={() => ClicikTypeA(1)}>
             <div className="ContentIcon">
-              <SvgIcon name="CheckCircle" size={55} />
+              <SvgIcon name="CheckCircle" size={45} />
             </div>
             <div className="ContentTitle">
               <span className="Comics">推荐榜</span>
@@ -121,7 +121,7 @@ const List: FC<IProps> = ({ isCartoon }) => {
         {selected == 2 ? (
           <div className="common" onClick={() => ClicikTypeA(2)}>
             <div className="ContentIcon">
-              <SvgIcon name="CheckCircle" size={55} />
+              <SvgIcon name="CheckCircle" size={45} />
             </div>
             <div className="ContentTitle">
               <span className="Comics">收藏榜</span>
@@ -135,7 +135,7 @@ const List: FC<IProps> = ({ isCartoon }) => {
         {selected == 3 ? (
           <div className="common" onClick={() => ClicikTypeA(3)}>
             <div className="ContentIcon">
-              <SvgIcon name="CheckCircle" size={55} />
+              <SvgIcon name="CheckCircle" size={45} />
             </div>
             <div className="ContentTitle">
               <span className="Comics"> 今日榜</span>

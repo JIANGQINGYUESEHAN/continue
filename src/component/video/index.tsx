@@ -83,7 +83,7 @@ const Video: FC<IProps> = ({ CarouselList }) => {
           {isCartoon == 3 ? (
             <div className="common" onClick={() => ClicikType(4)}>
               <div className="ContentIcon">
-                <SvgIcon name="CheckCircle" size={55} />
+                <SvgIcon name="CheckCircle" size={45} />
               </div>
               <div className="ContentTitle">
                 <span className="Comics">视频</span>
@@ -98,7 +98,7 @@ const Video: FC<IProps> = ({ CarouselList }) => {
           {isCartoon == 4 ? (
             <div className="common" onClick={() => ClicikType(3)}>
               <div className="ContentIcon">
-                <SvgIcon name="CheckCircle" size={55} />
+                <SvgIcon name="CheckCircle" size={45} />
               </div>
               <div className="ContentTitle">
                 <span className="Comics">黑料</span>

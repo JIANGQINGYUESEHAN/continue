@@ -129,7 +129,7 @@ const FixPassword: FC<IProps> = (props) => {
             />
           </Form.Item>
           <button className="Submit" type="submit">
-            登录
+            修改密码
           </button>
         </Form>
       </div>

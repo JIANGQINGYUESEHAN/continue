@@ -27,6 +27,7 @@ const Set: FC<IProps> = () => {
           </div>
           <span className="text">修改密码</span>
         </div>
+        <div className="left"> </div>
       </div>
       <div
         className="feature-list"

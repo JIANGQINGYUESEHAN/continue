@@ -5,6 +5,7 @@ import RankItemWrapper from "./styled";
 import { useNavigate } from "react-router-dom";
 import {
   GetDetailsAboutNovelsAndComics,
+  GetVideoDetails,
   gethandleCollect,
 } from "../../service/static/common";
 import { Toast } from "antd-mobile";
@@ -27,40 +28,50 @@ const RankItem: FC<IProps> = ({ isCartoon, item }) => {
         if (res.labels.length !== 0) {
           setLabels(res.labels[0]);
         }
+      } else {
+        const res = await GetVideoDetails(item.resource_id);
+
+        setDetail(res);
+        if (res.labels.length !== 0) {
+          setLabels(res.labels[0]);
+        }
       }
     })();
   }, []);
   //收藏
-  async function Collect(item: any) {
+  async function Collect() {
     const resourceId = detail.resource_id;
     console.log(resourceId);
+    const collectStatus = detail.collect_status;
+    console.log(collectStatus);
+    if (isCartoon == 1 || isCartoon == 5) {
+      if (collectStatus == 2) {
+        //收藏
 
-    if (item.collect_status == 2) {
-      //收藏
+        const res = await gethandleCollect(1, resourceId);
+        console.log(res);
 
-      const res = await gethandleCollect(1, resourceId);
+        if (res.msg == "请求成功") {
+          Toast.show({
+            icon: "success",
+            content: "收藏成功",
+          });
+        }
+      } else {
+        const res = await gethandleCollect(2, resourceId);
 
-      if (res.msg == "请求成功") {
-        Toast.show({
-          icon: "success",
-          content: "收藏成功",
-        });
+        if (res.msg == "请求成功") {
+          Toast.show({
+            icon: "success",
+            content: "取消收藏成功",
+          });
+        }
       }
-    } else {
-      const res = await gethandleCollect(2, resourceId);
+      // //切换
+      const res = await GetDetailsAboutNovelsAndComics(resourceId);
       console.log(res);
-
-      if (res.msg == "请求成功") {
-        Toast.show({
-          icon: "success",
-          content: "取消收藏成功",
-        });
-      }
+      setDetail(res);
     }
-    //切换
-    const res = await GetDetailsAboutNovelsAndComics(resourceId);
-    console.log(res);
-    setDetail(res);
   }
   const navigate = useNavigate();
   return (
@@ -91,8 +102,8 @@ const RankItem: FC<IProps> = ({ isCartoon, item }) => {
           </div>
           <div className="collect">
             <div className="LabelItem" onClick={Collect}>
-              {detail?.collect_status == 2 && <span>收藏</span>}
-              {detail?.collect_status == 1 && <span>已收藏</span>}
+              {detail?.collect_status == 1 && <span>收藏</span>}
+              {detail?.collect_status == 2 && <span>已收藏</span>}
             </div>
           </div>
         </div>

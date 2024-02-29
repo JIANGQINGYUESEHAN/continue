@@ -10,6 +10,8 @@ import SkeletonItem from "../SkeletonItem";
 import { AnimatePresence, motion } from "framer-motion";
 import NovelsAndComics from "../NovelsAndComics";
 import Boder from "../boder";
+import SvgIcon from "../../component/SvgIcon";
+import NavBar from "../NavBar";
 
 interface IProps {
   children?: ReactNode;
@@ -86,6 +88,62 @@ const Chapter: FC<IProps> = ({ isCartoon = 1, children }) => {
         ))}
       </div>
       {children}
+      {(isCartoon == 3 || isCartoon == 4) && (
+        // 只有当isCartoon不是3也不是4时才会渲染这里的内容
+        <>
+          <NavBar left="最近更新" isCartoon={isCartoon} />
+          <div className="detail">
+            <div className="top">
+              <div className="imageTop">
+                <div className="videoImag">
+                  <img
+                    src="https://www.cooer.cc/uploads/arctimg/20230802/1690943123276..jpg"
+                    alt=""
+                    className="img"
+                  />
+                </div>
+              </div>
+              <div className="detailTop">
+                <div className="firstFloor">
+                  <div className="counters">
+                    <div className="counter">
+                      <span className="icon">
+                        <SvgIcon name="eyes" />
+                      </span>
+                      <span className="number">333</span>
+                    </div>
+                    <div className="counter">
+                      <span className="icon">
+                        <SvgIcon name="dianzanIcon" />
+                      </span>
+                      <span className="number">111</span>
+                    </div>
+                    <div className="counter">
+                      <span className="icon">
+                        <SvgIcon name="love" />
+                      </span>
+                      <span className="number">777</span>
+                    </div>
+                  </div>
+                </div>
+                <span className="titleAuthorA">上线时间：2022nian</span>
+                <span className="titleAuthor">作者：hahha</span>
+                <span className="title">迷哦书</span>
+              </div>
+            </div>
+            <div className="middle">
+              <div className="Label">
+                <div className="LabelItem">
+                  <span>sss</span>
+                </div>
+              </div>
+              <div className="Collect">
+                <SvgIcon name="dianzan" size={100} />
+              </div>
+            </div>
+          </div>
+        </>
+      )}
       <AnimatePresence mode="wait">
         <motion.div
           key={CategoryIndex}

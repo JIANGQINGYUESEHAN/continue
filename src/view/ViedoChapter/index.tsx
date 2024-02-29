@@ -7,6 +7,7 @@ import NavBar from "../NavBar";
 import VideoItem from "../VideoItem";
 import { GetComicRankingData } from "../../service/static/common";
 import { Skeleton } from "antd-mobile";
+import Boder from "../boder";
 
 interface IProps {
   children?: ReactNode;
@@ -21,7 +22,6 @@ const VideoChapter: FC<IProps> = ({ isCartoon }) => {
       // console.log(111);
 
       const res = await GetComicRankingData(isCartoon!, 20, 0);
-      console.log(res);
 
       //保存下一页的标识
       // setFeedKey(res.feed_key);
@@ -108,6 +108,7 @@ const VideoChapter: FC<IProps> = ({ isCartoon }) => {
           </>
         )}
       </div>
+      <Boder />
     </VideoChapterWrapper>
   );
 };

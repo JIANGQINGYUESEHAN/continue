@@ -5,13 +5,13 @@ const EndWrapper = styled.div`
   .button-group {
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: 35px;
   }
 
   .button {
     border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
+    padding: 15px 30px;
+    border-radius: 25px;
     font-size: 14px;
     cursor: pointer;
     outline: none;

@@ -306,7 +306,7 @@ const User: FC<IProps> = (props) => {
                   </div>
                   <h2 className="title">您的账号密码:</h2>
                   <div className="input-field">
-                    <span>{info.password}</span>
+                    <span>{info.password || null}</span>
                   </div>
                   <div className="buttons">
                     <div

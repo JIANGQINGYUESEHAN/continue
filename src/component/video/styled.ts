@@ -3,20 +3,23 @@ import styled from "styled-components";
 const VideoWrapper = styled.div`
   overflow: hidden;
   min-height: 100vh;
-  background: url(https://lanhu-dds-backend.oss-cn-beijing.aliyuncs.com/merge_image/imgs/2ec00cf1db6f4ed397b3167d105929b4_mergeImage.png)
-    100% no-repeat;
-  background-size: 100% 100%;
+  background: url("https://lanhu-dds-backend.oss-cn-beijing.aliyuncs.com/merge_image/imgs/2ec00cf1db6f4ed397b3167d105929b4_mergeImage.png")
+    no-repeat;
+  background-size: 100% 40vh; /* 设置背景图片宽度为100%，高度自动调整 */
+  background-position: top; /* 背景图片顶部对齐 */
+
+  /* 在此设置背景颜色 */
   width: 100%;
-  position: absolute;
+  position: relative;
   left: 0;
   top: 0;
   box-sizing: border-box;
-  position: relative;
+  margin-bottom: 40px;
   .Select {
-    padding: 2px 20px;
+    padding: 5px 20px;
     display: flex;
     width: 100%;
-    height: 80px;
+    height: 70px;
     .common {
       width: 60px;
       height: 60px;
@@ -26,17 +29,17 @@ const VideoWrapper = styled.div`
       position: relative;
 
       .Comics {
-        font-size: 20px;
+        font-size: 16px;
         color: RGBA(121, 119, 120, 1);
       }
       .ContentTitle {
         width: 100%;
         height: 100%;
         .Comics {
-          font-size: 30px;
+          font-size: 20px;
           font-weight: bolder;
           color: black;
-          z-index: 9;
+          z-index: 9999 !important;
         }
       }
       .ContentIcon {

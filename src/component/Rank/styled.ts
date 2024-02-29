@@ -8,6 +8,7 @@ const RankWrapper = styled.div`
     height: 60px;
     align-items: center;
     justify-content: center;
+    margin-bottom: 10px;
     .common {
       width: 60px;
       height: 60px;

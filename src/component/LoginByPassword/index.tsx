@@ -31,7 +31,6 @@ type FieldType = {
 };
 const LoginByPassword: FC<IProps> = () => {
   const [IsPassword, SetIsPassword] = useState(1);
-
   const Navigate = useNavigate();
   const [num, setNum] = useState(60);
   const [phoneNumber, setPhoneNumber] = useState("");

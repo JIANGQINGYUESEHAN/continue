@@ -83,8 +83,8 @@ const Rank: FC<IProps> = ({ query }) => {
         Category!,
         feedKey
       );
-      console.log(res);
-      console.log(isCartoon, isCartoonA, Category);
+      // console.log(res);
+      // console.log(isCartoon, isCartoonA, Category);
 
       Setlist(res.list);
       // //点击时记录下一页的字符串
