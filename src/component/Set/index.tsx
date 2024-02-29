@@ -27,7 +27,11 @@ const Set: FC<IProps> = () => {
           </div>
           <span className="text">修改密码</span>
         </div>
-        <div className="left"> </div>
+        <div className="right">
+          <div className="icon">
+            <SvgIcon name="left" size={20} />
+          </div>
+        </div>
       </div>
       <div
         className="feature-list"
@@ -40,6 +44,11 @@ const Set: FC<IProps> = () => {
             <SvgIcon name="person" size={25} />
           </div>
           <span className="text">修改用户信息</span>
+        </div>
+        <div className="right">
+          <div className="icon">
+            <SvgIcon name="left" size={20} />
+          </div>
         </div>
       </div>
     </SetWrapper>
