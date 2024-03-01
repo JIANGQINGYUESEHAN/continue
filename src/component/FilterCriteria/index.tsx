@@ -13,9 +13,10 @@ import {
   ProjectList,
 } from "../../service/static/common";
 
-import { InfiniteScroll, Skeleton } from "antd-mobile";
+import { InfiniteScroll } from "antd-mobile";
 
 import RankItem from "../../view/RankItem";
+import SkeletonItem from "../../view/SkeletonItem";
 
 interface IProps {
   children?: ReactNode;
@@ -222,7 +223,7 @@ const FilterCriteria: FC<IProps> = ({ query }) => {
         {selected == 0 ? (
           <div className="common" onClick={() => ClicikTypeA(0)}>
             <div className="ContentIcon">
-              <SvgIcon name="CheckCircle" size={55} />
+              <SvgIcon name="CheckCircle" size={45} />
             </div>
             <div className="ContentTitle">
               <span className="Comics">人气榜</span>
@@ -237,7 +238,7 @@ const FilterCriteria: FC<IProps> = ({ query }) => {
         {selected == 1 ? (
           <div className="common" onClick={() => ClicikTypeA(1)}>
             <div className="ContentIcon">
-              <SvgIcon name="CheckCircle" size={55} />
+              <SvgIcon name="CheckCircle" size={45} />
             </div>
             <div className="ContentTitle">
               <span className="Comics">推荐榜</span>
@@ -251,7 +252,7 @@ const FilterCriteria: FC<IProps> = ({ query }) => {
         {selected == 2 ? (
           <div className="common" onClick={() => ClicikTypeA(2)}>
             <div className="ContentIcon">
-              <SvgIcon name="CheckCircle" size={55} />
+              <SvgIcon name="CheckCircle" size={45} />
             </div>
             <div className="ContentTitle">
               <span className="Comics">收藏榜</span>
@@ -265,7 +266,7 @@ const FilterCriteria: FC<IProps> = ({ query }) => {
         {selected == 3 ? (
           <div className="common" onClick={() => ClicikTypeA(3)}>
             <div className="ContentIcon">
-              <SvgIcon name="CheckCircle" size={55} />
+              <SvgIcon name="CheckCircle" size={45} />
             </div>
             <div className="ContentTitle">
               <span className="Comics"> 今日榜</span>
@@ -281,10 +282,14 @@ const FilterCriteria: FC<IProps> = ({ query }) => {
         <div
           style={{
             width: "100%",
-            height: "100px",
+            height: "180px",
+            display: "flex",
+            flexWrap: "wrap",
           }}
         >
-          <Skeleton.Paragraph lineCount={4} animated />
+          <SkeletonItem />
+          <SkeletonItem />
+          <SkeletonItem />
         </div>
       ) : (
         <div className="right">

@@ -5,7 +5,7 @@ const NovelsWrapper = styled.div`
     position: relative;
     width: 30vw;
     margin: 5px;
-    height: 180px;
+    height: 160px;
     border-radius: 4px;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -14,13 +14,13 @@ const NovelsWrapper = styled.div`
     .product-image {
       position: relative;
       width: 100%;
-      height: 130px;
+      height: 120px;
       border-radius: 2px;
       position: relative;
       overflow: hidden;
 
       .image {
-        width: 120px;
+        width: 30vw;
         height: 100%;
       }
     }
@@ -43,7 +43,7 @@ const NovelsWrapper = styled.div`
       right: -85px;
       bottom: 35px;
       width: 40px;
-      height: 40px;
+      height: 30px;
       .ItemNum {
         font-size: 10px;
         color: RGBA(255, 0, 0, 1);
@@ -54,17 +54,18 @@ const NovelsWrapper = styled.div`
       }
     }
     .ItemInfo {
-      width: 100%;
+      width: 30vw;
       height: 50px;
-      /* background-color: red; */
+
+      box-sizing: border-box;
 
       position: relative;
-      top: -40px;
+      top: -30px;
       display: flex;
       flex-direction: column;
       .ItemName {
         width: 100%;
-        flex: 1;
+        flex: 3;
         /* background-color: #ffd77e; */
 
         line-height: 25px;
@@ -77,10 +78,10 @@ const NovelsWrapper = styled.div`
       }
       .VisitNum {
         width: 100%;
-        flex: 1;
+        flex: 2;
         /* background-color: #ffd77e; */
-        line-height: 25px;
-        padding: 0px 8px;
+        line-height: 4px;
+        padding: 0px 4px;
         color: rgb(181, 184, 192);
       }
     }

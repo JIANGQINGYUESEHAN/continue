@@ -16,6 +16,7 @@ const FilterCriteriaWrapper = styled.div`
       text-align: center;
       line-height: 60px;
       position: relative;
+      margin-bottom: 5px;
 
       .Comics {
         font-size: 16px;
@@ -50,16 +51,15 @@ const FilterCriteriaWrapper = styled.div`
     }
   }
   .SelectAA {
-    padding: 10px 0px;
     display: flex;
     width: 100%;
-    height: 70px;
-    justify-content: center;
+    height: 60px;
+    justify-content: space-around;
     align-items: center;
     margin-bottom: 4px;
 
     .common {
-      width: 90px;
+      width: 60px;
       height: 60px;
       margin-right: 10px;
       text-align: center;
@@ -67,14 +67,14 @@ const FilterCriteriaWrapper = styled.div`
       position: relative;
 
       .Comics {
-        font-size: 16px;
+        font-size: 14px;
         color: RGBA(121, 119, 120, 1);
       }
       .ContentTitle {
         width: 100%;
         height: 100%;
         .Comics {
-          font-size: 20px;
+          font-size: 18px;
           font-weight: bolder;
           color: black;
           z-index: 9;
@@ -84,7 +84,7 @@ const FilterCriteriaWrapper = styled.div`
         width: 100%;
         height: 100%;
         position: absolute;
-        top: 27px;
+        top: 22px;
         left: 0px;
         z-index: 0;
       }
@@ -92,6 +92,7 @@ const FilterCriteriaWrapper = styled.div`
   }
 
   .content {
+    margin-top: 4px;
     width: 100%;
     height: 30px;
     display: flex;

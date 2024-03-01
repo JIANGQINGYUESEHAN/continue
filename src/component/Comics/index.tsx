@@ -102,7 +102,7 @@ const Comics: FC<IProps> = ({ CarouselList = [] }) => {
                         <span className="Comics">漫画</span>
                       </div>
                       <div className="ContentIcon">
-                        <SvgIcon name="CheckCircle" size={45} />
+                        <SvgIcon name="CheckCircle" size={40} />
                       </div>
                     </div>
                   ) : (
@@ -114,7 +114,7 @@ const Comics: FC<IProps> = ({ CarouselList = [] }) => {
                   {isCartoon == 2 ? (
                     <div className="common" onClick={() => ClicikType(1)}>
                       <div className="ContentIcon">
-                        <SvgIcon name="CheckCircle" size={45} />
+                        <SvgIcon name="CheckCircle" size={40} />
                       </div>
                       <div className="ContentTitle">
                         <span className="Comics">动漫</span>

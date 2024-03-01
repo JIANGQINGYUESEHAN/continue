@@ -19,8 +19,6 @@ const NovelsAndComics: FC<IProps> = ({ isCartoon, item }) => {
       <div
         className="product-item"
         onClick={() => {
-          console.log(11111);
-
           navigate(
             `/NovelAndComicDetail?isCartoon=${isCartoon}&resource_id=${item.resource_id}`
           );

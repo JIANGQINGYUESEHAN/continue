@@ -6,8 +6,9 @@ import VideoChapterWrapper from "./styled";
 import NavBar from "../NavBar";
 import VideoItem from "../VideoItem";
 import { GetComicRankingData } from "../../service/static/common";
-import { Skeleton } from "antd-mobile";
+
 import Boder from "../boder";
+import SkeletonItem from "../SkeletonItem";
 
 interface IProps {
   children?: ReactNode;
@@ -93,10 +94,14 @@ const VideoChapter: FC<IProps> = ({ isCartoon }) => {
           <div
             style={{
               width: "100%",
-              height: "100px",
+              height: "180px",
+              display: "flex",
+              flexWrap: "wrap",
             }}
           >
-            <Skeleton.Paragraph lineCount={5} animated />
+            <SkeletonItem />
+            <SkeletonItem />
+            <SkeletonItem />
           </div>
         ) : (
           <>

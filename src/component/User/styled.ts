@@ -103,7 +103,8 @@ const UserWrapper = styled.div`
           .FireIcon {
             width: 100px;
             height: 60px;
-            /* background-color: rgb(255, 235, 238); */
+
+            background-color: rgb(255, 235, 238);
             text-align: center;
             padding-top: 8px;
             .firenum {
@@ -160,36 +161,53 @@ const UserWrapper = styled.div`
         .category-item {
           display: flex;
           align-items: center; // 确保垂直居中
-          justify-content: flex-start; // 如果你希望图标和文字靠左对齐
+          justify-content: space-between; // 如果你希望图标和文字靠左对齐
           width: 100%;
           height: 60px;
           padding-left: 20px;
 
-          .icon {
-            position: relative;
-            font-size: 50rpx;
-            padding-right: 10px;
+          .left {
+            display: flex;
+            .icon {
+              position: relative;
+              font-size: 50rpx;
+              padding-right: 10px;
 
-            &::before {
-              content: "";
-              position: absolute;
-              left: 0; // 如果icon是固定宽度，可以改为确切的百分比或距离
-              top: 50%;
-              width: 20rpx;
-              height: 20rpx;
-              background-color: #ccc;
-              border-radius: 50%;
-              transform: translate(
-                0,
-                -50%
-              ); // 如果left为0，translate只需要处理垂直偏移
+              &::before {
+                content: "";
+                position: absolute;
+                left: 0; // 如果icon是固定宽度，可以改为确切的百分比或距离
+                top: 50%;
+                width: 20rpx;
+                height: 20rpx;
+                background-color: #ccc;
+                border-radius: 50%;
+                transform: translate(
+                  0,
+                  -50%
+                ); // 如果left为0，translate只需要处理垂直偏移
+              }
+            }
+
+            .title {
+              color: rgb(99, 99, 99);
+              font-size: 18px;
+              // 如果需要，可以增加 margin-left 来给icon和文字之间增加一些间距
             }
           }
+          .right {
+            width: 100px;
+            height: 100%;
 
-          .title {
-            color: rgb(99, 99, 99);
-            font-size: 18px;
-            // 如果需要，可以增加 margin-left 来给icon和文字之间增加一些间距
+            .icon {
+              // 假设图标背景是灰色的
+              width: 100%;
+              height: 50px;
+              display: flex;
+              justify-content: right;
+              align-items: center;
+              padding-right: 20px;
+            }
           }
         }
       }

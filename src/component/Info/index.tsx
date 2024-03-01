@@ -14,16 +14,19 @@ interface IProps {
 
 const Info: FC<IProps> = () => {
   const navigate = useNavigate();
+  const [List, setList] = useState([]);
   const back = () => {
     navigate(-1);
   };
   const right = (
-    <div className="icon">
+    <div className="icon" onClick={clear}>
       <SvgIcon name="clear" size={20} />
     </div>
   );
+  function clear() {
+    setList([]);
+  }
 
-  const [List, setList] = useState([]);
   useEffect(() => {
     (async () => {
       const res = await GetUserNews();
@@ -41,9 +44,16 @@ const Info: FC<IProps> = () => {
           <div className="feature-list" key={index}>
             <div className="feature-item">
               <div className="icon">
-                <SvgIcon name="infocopy" size={30} />
+                <SvgIcon name="infocopy" size={40} />
               </div>
-              <span className="text">{item.title}</span>
+              <div className="info">
+                <div className="top">
+                  <h4 className="h4">系统消息</h4>
+                </div>
+                <div className="bottom">
+                  <span>{item.title}</span>
+                </div>
+              </div>
             </div>
           </div>
         );

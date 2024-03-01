@@ -214,7 +214,9 @@ const Rank: FC<IProps> = ({ query }) => {
               <div className="Content">
                 {List.map((item: any, index: any) => {
                   return (
-                    <RankItem key={index} isCartoon={isCartoon} item={item} />
+                    <div className="ItemContent" key={index}>
+                      <RankItem isCartoon={isCartoon} item={item} />
+                    </div>
                   );
                 })}
               </div>

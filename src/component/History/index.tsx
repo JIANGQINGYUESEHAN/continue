@@ -199,7 +199,6 @@ const History: FC<IProps> = () => {
         )}
         <InfiniteScroll loadMore={loadMore} hasMore={hasMore} threshold={10} />
       </motion.div>
-      <InfiniteScroll loadMore={loadMore} hasMore={hasMore} threshold={10} />
     </HistoryWrapper>
   );
 };

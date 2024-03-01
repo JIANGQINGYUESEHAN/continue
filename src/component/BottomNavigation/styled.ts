@@ -12,7 +12,7 @@ const BottomNavigationWrapper = styled.div`
     bottom: 0; /* 把元素放置在视窗的底部 */
     left: 0; /* 把元素放置在视窗的左侧 */
     width: 100%; /* 元素宽度为100%，以填充屏幕宽度 */
-    height: 80px; /* 元素高度为60像素 */
+    height: 60px; /* 元素高度为60像素 */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -28,7 +28,7 @@ const BottomNavigationWrapper = styled.div`
       align-items: center;
       justify-content: center;
 
-      font-size: 16px;
+      font-size: 14px;
       font-weight: 300;
       position: relative;
     }

@@ -200,8 +200,16 @@ const User: FC<IProps> = (props) => {
                     }
                   }}
                 >
-                  <div className="icon">{item.SelectIcon}</div>
-                  <div className="title">{item.name}</div>
+                  <div className="left">
+                    <div className="icon">{item.SelectIcon}</div>
+                    <div className="title">{item.name}</div>
+                  </div>
+
+                  <div className="right">
+                    <div className="icon">
+                      <SvgIcon name="left" size={16} />
+                    </div>
+                  </div>
                 </div>
               );
             })}
@@ -335,6 +343,7 @@ const User: FC<IProps> = (props) => {
     </UserWrapper>
   );
 };
+
 const mapStateToProps = (state: any) => state.base;
 const mapDispatchToProps = action.Base;
 export default connect(mapStateToProps, mapDispatchToProps)(memo(User));

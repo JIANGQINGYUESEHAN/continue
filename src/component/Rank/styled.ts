@@ -88,6 +88,9 @@ const RankWrapper = styled.div`
         justify-content: flex-start;
         width: 100%;
         flex-wrap: wrap;
+        .ItemContent {
+          margin: 0.4em 1.4em;
+        }
       }
     }
   }
