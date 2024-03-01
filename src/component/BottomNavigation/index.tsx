@@ -72,7 +72,6 @@ const BottomNavigation: FC<IProps> = () => {
     },
     {
       id: 5,
-
       UnSelectIcon: <SvgIcon name="MyBlank" size={35} />,
       SelectIcon: <SvgIcon name="my" size={35} />,
       path: "/user",
