@@ -14,9 +14,7 @@ import {
   ProjectList,
 } from "../../service/static/common";
 import { InfiniteScroll } from "antd-mobile";
-import NovelsAndComics from "../../view/NovelsAndComics";
 
-import VideoItemA from "../../view/VideoItemA";
 import SkeletonItem from "../../view/SkeletonItem";
 import RankItem from "../../view/RankItem";
 

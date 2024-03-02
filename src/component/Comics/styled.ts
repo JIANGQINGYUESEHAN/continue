@@ -61,12 +61,17 @@ const ComicsWrapperStyled = styled.div`
     .SelectAA {
       width: 110px;
       height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9;
       .ContentIconA {
-        width: 140px;
-        height: 100%;
+        width: 40px;
+        height: 40px;
         display: flex;
         justify-content: center;
         align-items: center;
+
         .img {
           width: 20px;
           height: 20px;

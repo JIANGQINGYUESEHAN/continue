@@ -9,6 +9,17 @@ const VipInfoWrapper = styled.div`
     position: relative; /* 为了定位价格标签 */
     width: 320px;
     height: 80px;
+    .imag {
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      left: 0px;
+      top: -14px;
+      .img {
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
 
   .vip-title {

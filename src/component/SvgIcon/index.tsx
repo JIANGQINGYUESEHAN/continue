@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useMemo } from "react";
 
 type SvgIconProps = {
@@ -7,6 +8,7 @@ type SvgIconProps = {
   color?: string;
   prefix?: string;
   name: string;
+  ClicK?: any;
 };
 
 /**
@@ -26,6 +28,7 @@ export default function SvgIcon({
   prefix = "icon",
   width,
   height,
+  ClicK,
 }: SvgIconProps) {
   const symbolId = useMemo(() => `#${prefix}-${name}`, [prefix, name]);
 
@@ -39,6 +42,7 @@ export default function SvgIcon({
       width={finalWidth}
       height={finalHeight}
       fill={color}
+      onClick={ClicK}
     >
       <use href={symbolId} fill={color} />
     </svg>

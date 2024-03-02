@@ -15,14 +15,15 @@ import { Swiper } from "antd-mobile";
 import End from "../../view/End";
 import SkeletonScreen from "../../view/SkeletonScreen";
 
-import select from "../../assets/svg/selectA.svg";
 import EveyUpdate from "../../view/EveyUpdate";
+import { useNavigate } from "react-router-dom";
 interface IProps {
   children?: ReactNode;
   CarouselList: any[];
 }
 
 const Comics: FC<IProps> = ({ CarouselList = [] }) => {
+  const navigate = useNavigate();
   const [Project, setProjectList] = useState([]);
   const [isCartoon, SetIsCarToon] = useState<number>(1);
   const [show, setIsShow] = useState(false);
@@ -75,7 +76,11 @@ const Comics: FC<IProps> = ({ CarouselList = [] }) => {
 
   // 切换方向
   const swipe = isCartoon ? -1 : 1;
+  const handleIconClick = () => {
+    console.log(111);
 
+    // navigate(`/search?isCartoon=${isCartoon}`);
+  };
   return (
     <>
       {show ? (
@@ -126,9 +131,14 @@ const Comics: FC<IProps> = ({ CarouselList = [] }) => {
                     </div>
                   )}
                 </div>
-                <div className="SelectAA">
-                  <div className="ContentIconA">
-                    <img src={select} alt="" className="img" />
+                <div className="SelectAA" onClick={handleIconClick}>
+                  <div
+                    className="ContentIconA"
+                    onClick={() => {
+                      navigate(`/search?isCartoon=${isCartoon}`);
+                    }}
+                  >
+                    <SvgIcon name="selectA" size={25} />
                   </div>
                 </div>
               </div>

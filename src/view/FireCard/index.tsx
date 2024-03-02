@@ -2,7 +2,7 @@
 import { memo } from "react";
 import type { FC, ReactNode } from "react";
 import FireCardWrapper from "./styled";
-
+import king from "../../assets/img/king.png";
 interface IProps {
   children?: ReactNode;
   isActive: boolean;
@@ -14,6 +14,11 @@ interface IProps {
 const FireCard: FC<IProps> = ({ isActive, Index, onClick, item }) => {
   return (
     <FireCardWrapper>
+      {isActive == true && (
+        <div className="imag">
+          <img src={king} alt="" className="img" />
+        </div>
+      )}
       <div
         className={isActive == true ? `coupon active` : "coupon"}
         onClick={() => onClick(Index)}

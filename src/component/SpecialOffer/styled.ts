@@ -74,7 +74,7 @@ const SpecialOfferWrapper = styled.div`
       .active {
         width: 20px;
         height: 4px;
-        background-color: red;
+        background-color: rgb(255, 69, 155);
         border-radius: 4px;
       }
     }
@@ -90,7 +90,7 @@ const SpecialOfferWrapper = styled.div`
       .active {
         width: 20px;
         height: 4px;
-        background-color: red;
+        background-color: rgb(255, 69, 155);
         border-radius: 4px;
       }
     }

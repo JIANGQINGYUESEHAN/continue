@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const FireCardWrapper = styled.div`
+  position: relative;
   .coupon {
     margin: 10px;
     border: 1px solid #f90;
@@ -9,6 +10,7 @@ const FireCardWrapper = styled.div`
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     width: 150px; // 根据实际宽度调整
     background-color: rgb(242, 244, 245);
+
     .couponHeader {
       color: black;
       padding: 10px;
@@ -73,6 +75,17 @@ const FireCardWrapper = styled.div`
   }
   .active {
     background-color: rgb(255, 248, 237);
+  }
+  .imag {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 0px;
+    top: -10px;
+    .img {
+      width: 100%;
+      height: 100%;
+    }
   }
 `;
 export default FireCardWrapper;

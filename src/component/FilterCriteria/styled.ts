@@ -1,6 +1,9 @@
 import { styled } from "styled-components";
 
 const FilterCriteriaWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* 确保父元素有一个定义的高度 */
   overflow: hidden;
   .Select {
     padding: 20px 20px;
@@ -129,22 +132,28 @@ const FilterCriteriaWrapper = styled.div`
   .content::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera*/
   }
-  .Content {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
+
+  .contentbg {
     width: 100%;
-    margin: 0px 7px;
-    flex-wrap: wrap;
-    height: auto;
-  }
-  .ContentA {
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    width: 100%;
-    margin: 0px 7px;
-    flex-wrap: wrap;
+    min-height: 76vh;
+    background-color: rgb(242, 244, 245);
+    .Content {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      width: 100%;
+      margin: 0px 7px;
+      flex-wrap: wrap;
+      height: auto;
+    }
+    .ContentA {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      width: 100%;
+      margin: 0px 7px;
+      flex-wrap: wrap;
+    }
   }
 `;
 export default FilterCriteriaWrapper;

@@ -2,7 +2,7 @@
 import { memo } from "react";
 import type { FC, ReactNode } from "react";
 import VipInfoWrapper from "./styled";
-
+import king from "../../assets/img/king.png";
 interface IProps {
   children?: ReactNode;
   isActive: boolean;
@@ -18,6 +18,11 @@ const VipInfo: FC<IProps> = ({ isActive, Index, onClick, item }) => {
         onClick={() => onClick(Index)}
         className={isActive == true ? `vip-card active` : "vip-card"}
       >
+        {isActive == true && (
+          <div className="imag">
+            <img src={king} alt="" className="img" />
+          </div>
+        )}
         <div className="vip-title">{item.title}</div>
         <div className="vip-price">
           <span className="current-price">￥{item!.discount_price}</span>

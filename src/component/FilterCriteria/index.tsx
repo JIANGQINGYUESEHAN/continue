@@ -278,29 +278,33 @@ const FilterCriteria: FC<IProps> = ({ query }) => {
           </div>
         )}
       </div>
-      {List.length == 0 ? (
-        <div
-          style={{
-            width: "100%",
-            height: "180px",
-            display: "flex",
-            flexWrap: "wrap",
-          }}
-        >
-          <SkeletonItem />
-          <SkeletonItem />
-          <SkeletonItem />
-        </div>
-      ) : (
-        <div className="right">
-          <div className="Content">
-            {List.map((item: any, index: any) => {
-              return <RankItem key={index} item={item} isCartoon={isDetail} />;
-            })}
+      <div className="contentbg">
+        {List.length == 0 ? (
+          <div
+            style={{
+              width: "100%",
+              height: "180px",
+              display: "flex",
+              flexWrap: "wrap",
+            }}
+          >
+            <SkeletonItem />
+            <SkeletonItem />
+            <SkeletonItem />
           </div>
-        </div>
-      )}
-      <InfiniteScroll loadMore={loadMore} hasMore={hasMore} threshold={10} />
+        ) : (
+          <div className="right">
+            <div className="Content">
+              {List.map((item: any, index: any) => {
+                return (
+                  <RankItem key={index} item={item} isCartoon={isDetail} />
+                );
+              })}
+            </div>
+          </div>
+        )}
+        <InfiniteScroll loadMore={loadMore} hasMore={hasMore} threshold={10} />
+      </div>
     </FilterCriteriaWrapper>
   );
 };

@@ -229,6 +229,16 @@ const routers = [
       title: "小说和详情",
     },
   },
+  {
+    path: "/search",
+    name: "search",
+    component: lazy(() => {
+      return import("../component/Search");
+    }),
+    meta: {
+      title: "搜索",
+    },
+  },
 ];
 
 export default routers;

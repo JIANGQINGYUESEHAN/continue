@@ -17,6 +17,7 @@ import action from "../../store/action";
 import Select from "../../view/Select";
 import { motion } from "framer-motion";
 import Chapter from "../../view/Chapter";
+import { useNavigate } from "react-router-dom";
 
 interface IProps {
   children?: ReactNode;
@@ -24,6 +25,7 @@ interface IProps {
 }
 
 const Video: FC<IProps> = ({ CarouselList }) => {
+  const navigate = useNavigate();
   const [isCartoon, SetIsCarToon] = useState<number>(3);
   const [Project, setProjectList] = useState([]);
   function ClicikType(index: number) {
@@ -79,36 +81,48 @@ const Video: FC<IProps> = ({ CarouselList }) => {
         }}
         style={{ width: "100%" }}
       >
-        <div className="Select">
-          {isCartoon == 3 ? (
-            <div className="common" onClick={() => ClicikType(4)}>
-              <div className="ContentIcon">
-                <SvgIcon name="CheckCircle" size={40} />
+        <div className="ContentAAA">
+          <div className="Select">
+            {isCartoon == 3 ? (
+              <div className="common" onClick={() => ClicikType(3)}>
+                <div className="ContentTitle">
+                  <span className="Comics">漫画</span>
+                </div>
+                <div className="ContentIcon">
+                  <SvgIcon name="CheckCircle" size={40} />
+                </div>
               </div>
-              <div className="ContentTitle">
-                <span className="Comics">视频</span>
+            ) : (
+              <div className="common" onClick={() => ClicikType(4)}>
+                <span className="Comics">漫画</span>
               </div>
-            </div>
-          ) : (
-            <div className="common" onClick={() => ClicikType(3)}>
-              <span className="Comics">视频</span>
-            </div>
-          )}
+            )}
 
-          {isCartoon == 4 ? (
-            <div className="common" onClick={() => ClicikType(3)}>
-              <div className="ContentIcon">
-                <SvgIcon name="CheckCircle" size={40} />
+            {isCartoon == 4 ? (
+              <div className="common" onClick={() => ClicikType(4)}>
+                <div className="ContentIcon">
+                  <SvgIcon name="CheckCircle" size={40} />
+                </div>
+                <div className="ContentTitle">
+                  <span className="Comics">动漫</span>
+                </div>
               </div>
-              <div className="ContentTitle">
-                <span className="Comics">黑料</span>
+            ) : (
+              <div className="common" onClick={() => ClicikType(3)}>
+                <span className="Comics">动漫</span>
               </div>
+            )}
+          </div>
+          <div className="SelectAA">
+            <div
+              className="ContentIconA"
+              onClick={() => {
+                navigate(`/search?isCartoon=${isCartoon}`);
+              }}
+            >
+              <SvgIcon name="selectA" size={25} />
             </div>
-          ) : (
-            <div className="common" onClick={() => ClicikType(4)}>
-              <span className="Comics">黑料</span>
-            </div>
-          )}
+          </div>
         </div>
         <div className="carousel">
           <Swiper className="Swiper" loop autoplay>

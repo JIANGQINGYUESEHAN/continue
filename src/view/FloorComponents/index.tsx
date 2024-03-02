@@ -13,6 +13,7 @@ import {
 } from "../../service/static/common";
 import SkeletonItem from "../SkeletonItem";
 import Boder from "../boder";
+import RankItem from "../RankItem";
 
 interface IProps {
   children?: ReactNode;
@@ -67,7 +68,8 @@ const FloorComponents: FC<IProps> = ({ isCartoon, item }) => {
     return Detail.map((item, index) => {
       if (isCartoon === 1 || isCartoon === 5) {
         return (
-          <NovelsAndComics key={index} item={item} isCartoon={isCartoon} />
+          <RankItem key={index} item={item} isCartoon={isCartoon} />
+          /*  <NovelsAndComics key={index} item={item} isCartoon={isCartoon} /> */
         );
       } else {
         return <VideoItem key={index} item={item} isCartoon={isCartoon} />;

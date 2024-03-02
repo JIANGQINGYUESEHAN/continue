@@ -7,7 +7,7 @@ const RankWrapper = styled.div`
     width: 100%;
     height: 60px;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     margin-bottom: 10px;
     .common {
       width: 60px;
@@ -58,6 +58,11 @@ const RankWrapper = styled.div`
       min-width: 80px;
       height: 100px;
       background-color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* 修正为 align-items 来在交叉轴上居中 */
+      justify-content: center; /* 在主轴上居中 */
+
       .leftUl {
         list-style: none;
         height: 30px;
@@ -79,7 +84,7 @@ const RankWrapper = styled.div`
 
     .all {
       width: 100%;
-      height: 90vh;
+      min-height: 85vh;
       background-color: rgb(248, 247, 246);
       .Content {
         overflow: hidden;

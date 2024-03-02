@@ -15,40 +15,66 @@ const VideoWrapper = styled.div`
   top: 0;
   box-sizing: border-box;
   margin-bottom: 40px;
-  .Select {
-    padding: 5px 20px;
-    display: flex;
+  .ContentAAA {
     width: 100%;
     height: 70px;
-    .common {
-      width: 60px;
-      height: 60px;
-      margin-right: 10px;
-      text-align: center;
-      line-height: 60px;
-      position: relative;
+    display: flex;
+    justify-content: space-between;
+    .Select {
+      padding: 5px 20px;
+      display: flex;
+      width: 100%;
+      height: 70px;
+      .common {
+        width: 60px;
+        height: 60px;
+        margin-right: 10px;
+        text-align: center;
+        line-height: 60px;
+        position: relative;
 
-      .Comics {
-        font-size: 16px;
-        color: RGBA(121, 119, 120, 1);
-      }
-      .ContentTitle {
-        width: 100%;
-        height: 100%;
         .Comics {
-          font-size: 20px;
-          font-weight: bolder;
-          color: black;
-          z-index: 9999 !important;
+          font-size: 16px;
+          color: RGBA(121, 119, 120, 1);
+        }
+        .ContentTitle {
+          width: 100%;
+          height: 100%;
+          .Comics {
+            font-size: 20px;
+            font-weight: bolder;
+            color: black;
+            z-index: 9999 !important;
+          }
+        }
+        .ContentIcon {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 27px;
+          left: 0px;
+          z-index: 0;
         }
       }
-      .ContentIcon {
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 27px;
-        left: 0px;
-        z-index: 0;
+    }
+    .SelectAA {
+      width: 110px;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9;
+      .ContentIconA {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .img {
+          width: 20px;
+          height: 20px;
+        }
       }
     }
   }
