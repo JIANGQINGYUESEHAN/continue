@@ -5,7 +5,7 @@ import type { FC, ReactNode } from "react";
 import VideoDetailWrapper from "./styled";
 import NavBar from "../../view/NavBar";
 import SvgIcon from "../SvgIcon";
-import { Skeleton, Swiper, Toast } from "antd-mobile";
+import { Skeleton, Toast } from "antd-mobile";
 import { WithRouter } from "../../router";
 import { connect } from "react-redux";
 import action from "../../store/action";
@@ -44,6 +44,7 @@ const VideoDetail: FC<IProps> = ({ query, info }) => {
 
   const [feedKey, setFeedKey] = useState("");
   const [IshandleFullScreenPlay] = useState(false);
+
   //获取视频的信息
   useEffect(() => {
     (async () => {
@@ -200,26 +201,6 @@ const VideoDetail: FC<IProps> = ({ query, info }) => {
     // console.log(res.video_url);
     setDetailUrl(res.video_url);
   }
-  //横屏
-  // const handleFullScreenPlay = () => {
-  //   const video = videoRef.current;
-  //   if (video) {
-  //     if (video.requestFullscreen) {
-  //       video.requestFullscreen();
-  //     } else if (video.webkitRequestFullscreen) {
-  //       // Safari
-  //       video.webkitRequestFullscreen();
-  //     } else if (video.msRequestFullscreen) {
-  //       // IE11
-  //       video.msRequestFullscreen();
-  //     }
-
-  //     // 添加横屏效果的CSS变换，根据实际情况调整
-  //     // video.style.transform = "rotate(90deg) scale(2)"; // 示例：旋转90度并缩放
-  //     // 注意：缩放比例(scale)根据视频与视口的尺寸比例进行调整
-  //   }
-  //   console.log(111);
-  // };
 
   async function Collect(item: any) {
     console.log(item.collect_status);
@@ -361,45 +342,32 @@ const VideoDetail: FC<IProps> = ({ query, info }) => {
                   </div>
                 </div>
               </div>
+
               <div className="content">
-                <div className="type">
-                  <Swiper
-                    autoplay={false}
-                    slideSize={20} // 根据视觉效果调整，保证两边有间隔
-                    trackOffset={10} // 两边的间隔
-                    indicator={() => null}
-                    className="ul"
-                  >
-                    {VideoEpisodeList.map((item: any, index: number) => {
-                      return (
-                        <Swiper.Item
-                          key={index}
-                          onClick={() => ClickIndex(index)}
-                        >
-                          <li
-                            className={`list ${
-                              Index === index ? "active" : ""
-                            }`}
-                          >
-                            {item.access_type == 2 && (
-                              <div className="vip">
-                                <SvgIcon name="VIPDetail" size={24} />
-                              </div>
-                            )}
-                            {item.access_type == 3 && (
-                              <div className="vipA">
-                                <SvgIcon name="detailNumber" size={30} />
-                                <span className="a">2</span>
-                              </div>
-                            )}
-                            <span className="title">{index}</span>
-                          </li>
-                        </Swiper.Item>
-                      );
-                    })}
-                  </Swiper>
-                </div>
+                {VideoEpisodeList.map((item: any, index: number) => {
+                  return (
+                    <div
+                      onClick={() => ClickIndex(index)}
+                      className={`leftUl${Index === index ? " selected" : ""}`}
+                      key={index}
+                    >
+                      {item.access_type == 2 && (
+                        <div className="vip">
+                          <SvgIcon name="VIPDetail" size={24} />
+                        </div>
+                      )}
+                      {item.access_type == 3 && (
+                        <div className="vipA">
+                          <SvgIcon name="detailNumber" size={30} />
+                          <span className="a">2</span>
+                        </div>
+                      )}
+                      <span className="title">{index}</span>
+                    </div>
+                  );
+                })}
               </div>
+
               <NavBar
                 left="更多"
                 onClickA={ClickFeedKey}

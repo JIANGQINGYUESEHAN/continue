@@ -84,32 +84,32 @@ const Video: FC<IProps> = ({ CarouselList }) => {
         <div className="ContentAAA">
           <div className="Select">
             {isCartoon == 3 ? (
-              <div className="common" onClick={() => ClicikType(3)}>
+              <div className="common" onClick={() => ClicikType(4)}>
                 <div className="ContentTitle">
-                  <span className="Comics">漫画</span>
+                  <span className="Comics">视频</span>
                 </div>
                 <div className="ContentIcon">
                   <SvgIcon name="CheckCircle" size={40} />
                 </div>
               </div>
             ) : (
-              <div className="common" onClick={() => ClicikType(4)}>
-                <span className="Comics">漫画</span>
+              <div className="common" onClick={() => ClicikType(3)}>
+                <span className="Comics">视频</span>
               </div>
             )}
 
             {isCartoon == 4 ? (
-              <div className="common" onClick={() => ClicikType(4)}>
+              <div className="common" onClick={() => ClicikType(3)}>
                 <div className="ContentIcon">
                   <SvgIcon name="CheckCircle" size={40} />
                 </div>
                 <div className="ContentTitle">
-                  <span className="Comics">动漫</span>
+                  <span className="Comics">黑料</span>
                 </div>
               </div>
             ) : (
-              <div className="common" onClick={() => ClicikType(3)}>
-                <span className="Comics">动漫</span>
+              <div className="common" onClick={() => ClicikType(4)}>
+                <span className="Comics">黑料</span>
               </div>
             )}
           </div>
@@ -120,7 +120,7 @@ const Video: FC<IProps> = ({ CarouselList }) => {
                 navigate(`/search?isCartoon=${isCartoon}`);
               }}
             >
-              <SvgIcon name="selectA" size={25} />
+              <SvgIcon name="selectA" />
             </div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { memo, useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import type { FC, ReactNode } from "react";
 import EverUpdateWrapper from "./styled";
 import NavBar from "../NavBar";
@@ -24,7 +24,7 @@ const EverUpdate: FC<IProps> = ({ isCartoon, item }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await CategoryList(isCartoon!, 20, 1, item.code);
+      const res = await CategoryList(isCartoon!, 20, 0, item.code);
 
       setDetail(res.list);
       setFeedKey(res.feed_key);
@@ -36,7 +36,7 @@ const EverUpdate: FC<IProps> = ({ isCartoon, item }) => {
     const res = await CategoryListNextPage(
       isCartoon!,
       20,
-      1,
+      0,
       item.code,
       feedKey
     );

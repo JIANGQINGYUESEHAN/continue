@@ -59,6 +59,7 @@ class HYRequest {
           localStorage.removeItem("KpToken");
           //清除原有的secret
           localStorage.removeItem("secret");
+          alert("请重新刷新");
           // navigate("/loginPassword");
         } else {
           return data;

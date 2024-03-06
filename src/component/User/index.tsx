@@ -258,7 +258,7 @@ const User: FC<IProps> = (props) => {
               className="bigger"
             >
               <div className="content">
-                {SignIn.map((item: any, index: any) => {
+                {SignIn?.map((item: any, index: any) => {
                   return (
                     <div className="big" key={index}>
                       <div className="item">

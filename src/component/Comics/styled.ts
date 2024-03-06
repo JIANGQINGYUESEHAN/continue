@@ -5,7 +5,7 @@ const ComicsWrapperStyled = styled.div`
   min-height: 100vh;
   background: url("https://lanhu-dds-backend.oss-cn-beijing.aliyuncs.com/merge_image/imgs/2ec00cf1db6f4ed397b3167d105929b4_mergeImage.png")
     no-repeat;
-  background-size: 100% 40vh; /* 设置背景图片宽度为100%，高度自动调整 */
+  background-size: 100% 20vh; /* 设置背景图片宽度为100%，高度自动调整 */
   background-position: top; /* 背景图片顶部对齐 */
 
   /* 在此设置背景颜色 */
@@ -15,6 +15,7 @@ const ComicsWrapperStyled = styled.div`
   top: 0;
   box-sizing: border-box;
   margin-bottom: 40px;
+  z-index: 0;
 
   .ContentAAA {
     width: 100%;
@@ -26,8 +27,9 @@ const ComicsWrapperStyled = styled.div`
       display: flex;
       width: 100%;
       height: 70px;
+      z-index: 9;
       .common {
-        width: 60px;
+        width: 40px;
         height: 60px;
         margin-right: 10px;
         text-align: center;
@@ -37,10 +39,12 @@ const ComicsWrapperStyled = styled.div`
         .Comics {
           font-size: 16px;
           color: RGBA(121, 119, 120, 1);
+          z-index: 4;
         }
         .ContentTitle {
           width: 100%;
           height: 100%;
+          z-index: 3;
           .Comics {
             font-size: 20px;
             font-weight: bolder;
@@ -52,9 +56,9 @@ const ComicsWrapperStyled = styled.div`
           width: 100%;
           height: 100%;
           position: absolute;
-          top: 27px;
+          top: 22px;
           left: 0px;
-          z-index: 0;
+          z-index: -1;
         }
       }
     }
@@ -62,7 +66,9 @@ const ComicsWrapperStyled = styled.div`
       width: 110px;
       height: 100%;
       display: flex;
-      justify-content: center;
+      justify-content: right;
+      padding-right: 10px;
+      box-sizing: border-box;
       align-items: center;
       z-index: 9;
       .ContentIconA {
@@ -71,7 +77,7 @@ const ComicsWrapperStyled = styled.div`
         display: flex;
         justify-content: center;
         align-items: center;
-
+        z-index: 9;
         .img {
           width: 20px;
           height: 20px;

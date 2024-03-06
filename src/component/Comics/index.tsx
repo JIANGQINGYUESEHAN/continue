@@ -17,6 +17,7 @@ import SkeletonScreen from "../../view/SkeletonScreen";
 
 import EveyUpdate from "../../view/EveyUpdate";
 import { useNavigate } from "react-router-dom";
+import Other from "../../view/Other";
 interface IProps {
   children?: ReactNode;
   CarouselList: any[];
@@ -138,7 +139,7 @@ const Comics: FC<IProps> = ({ CarouselList = [] }) => {
                       navigate(`/search?isCartoon=${isCartoon}`);
                     }}
                   >
-                    <SvgIcon name="selectA" size={25} />
+                    <SvgIcon name="selectA" />
                   </div>
                 </div>
               </div>
@@ -162,6 +163,7 @@ const Comics: FC<IProps> = ({ CarouselList = [] }) => {
               <Chapter isCartoon={isCartoon}>
                 <Notify />
               </Chapter>
+              <Other isCartoon={isCartoon} />
               {/* 公告提示 */}
               {Project.map((item: any, index: number) => {
                 return (

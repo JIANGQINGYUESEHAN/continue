@@ -21,6 +21,7 @@ const Notify: FC<IProps> = ({ InfoList }) => {
           <div className="icon">
             <SvgIcon name="sound" size={25} />
           </div>
+          <div className="border"></div>
         </div>
         <div className="right">
           <div className="right">

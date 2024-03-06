@@ -21,6 +21,20 @@ const NotifyWrapper = styled.div`
       height: 100%;
       flex: 1;
       line-height: 40px;
+      position: relative;
+
+      .border {
+        position: absolute;
+        width: 2px;
+        height: 20px;
+        top: 50%;
+
+        transform: translateY(-50%);
+        background-color: rgb(178, 178, 178);
+
+        right: 0px;
+        z-index: 3;
+      }
       .icon {
         display: flex; /* 开启 flex 布局 */
         justify-content: center; /* 水平居中 */
@@ -30,8 +44,9 @@ const NotifyWrapper = styled.div`
       }
     }
     .right {
-      flex: 5;
+      flex: 7;
       overflow: hidden;
+
       height: 100%;
       @keyframes marquee {
         0% {
@@ -48,7 +63,7 @@ const NotifyWrapper = styled.div`
         display: inline-block;
         white-space: nowrap; /* 确保文本不换行 */
 
-        animation: marquee 10s linear infinite; /* 应用动画 */
+        animation: marquee 15s linear infinite; /* 应用动画 */
       }
     }
   }

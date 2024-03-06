@@ -39,6 +39,7 @@ const NavBar: FC<IProps> = ({
             <div className="right">
               <div className="iconCircle">
                 <span onClick={onClickA}> 换一换</span>
+                &nbsp;
                 <img src={flash} alt="" className="imag" />
               </div>
 

@@ -11,7 +11,7 @@ const ListWrapper = styled.div`
     margin-bottom: 4px;
 
     .common {
-      width: 90px;
+      width: 100px;
       height: 60px;
       margin-right: 10px;
       text-align: center;
@@ -21,24 +21,26 @@ const ListWrapper = styled.div`
       .Comics {
         font-size: 16px;
         color: RGBA(121, 119, 120, 1);
+        z-index: 4;
       }
       .ContentTitle {
         width: 100%;
         height: 100%;
+        z-index: 3;
         .Comics {
           font-size: 20px;
           font-weight: bolder;
           color: black;
-          z-index: 9;
+          z-index: 9999 !important;
         }
       }
       .ContentIcon {
         width: 100%;
         height: 100%;
         position: absolute;
-        top: 27px;
+        top: 20px;
         left: 0px;
-        z-index: 0;
+        z-index: -1;
       }
     }
   }

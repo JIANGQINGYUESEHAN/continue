@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import QueryString from "qs";
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import {
   Routes,
   useLocation,
@@ -22,7 +22,24 @@ const Element = function (props: any) {
   const navigate = useNavigate();
   const obj = { query, params, location, navigate };
   document.title = title;
+  useEffect(() => {
+    document.title = title;
 
+    const token = localStorage.getItem("KpToken");
+    const isFirstEntry = localStorage.getItem("isFirstEntry") === null;
+
+    if (isFirstEntry) {
+      // 如果是第一次进入应用
+      localStorage.setItem("isFirstEntry", "false"); // 设置标记，表示用户已经访问过
+
+      navigate("/home"); // 如果 token 不存在，则跳转到 /home
+    } else {
+      // 如果不是第一次进入应用
+      if (!token) {
+        navigate("/loginPassword"); // 如果 token 不存在，则跳转到登录页面
+      }
+    }
+  }, [navigate, title]);
   return <Component {...obj} />;
 };
 

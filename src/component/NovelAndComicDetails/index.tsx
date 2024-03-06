@@ -6,7 +6,7 @@ import type { FC, ReactNode } from "react";
 import NovelAndComicDetailsWrapper from "./styled";
 import NavBar from "../../view/NavBar";
 import SvgIcon from "../SvgIcon";
-import { Skeleton, Swiper, Toast } from "antd-mobile";
+import { Skeleton, Toast } from "antd-mobile";
 import NovelsAndComics from "../../view/NovelsAndComics";
 import { WithRouter } from "../../router";
 import {
@@ -346,45 +346,28 @@ const NovelAndComicDetails: FC<IProps> = ({ query, info }) => {
               )}
             </div>
             <div className="content">
-              {isDetail == 1 && (
-                <div className="type">
-                  <Swiper
-                    autoplay={false}
-                    slideSize={20} // 根据视觉效果调整，保证两边有间隔
-                    trackOffset={10} // 两边的间隔
-                    indicator={() => null}
-                    className="ul"
+              {SwiperArray.map((item: any, index: number) => {
+                return (
+                  <div
+                    onClick={() => ClickIndex(index)}
+                    className={`leftUl${Index === index ? " selected" : ""}`}
+                    key={index}
                   >
-                    {SwiperArray.map((item: any, index: number) => {
-                      return (
-                        <Swiper.Item
-                          key={index}
-                          onClick={() => ClickIndex(index)}
-                        >
-                          <li
-                            className={`list ${
-                              Index === index ? "active" : ""
-                            }`}
-                          >
-                            {item.access_type == 2 && (
-                              <div className="vip">
-                                <SvgIcon name="VIPDetail" size={24} />
-                              </div>
-                            )}
-                            {item.access_type == 3 && (
-                              <div className="vipA">
-                                <SvgIcon name="detailNumber" size={30} />
-                                <span className="a">2</span>
-                              </div>
-                            )}
-                            <span className="title">{index}</span>
-                          </li>
-                        </Swiper.Item>
-                      );
-                    })}
-                  </Swiper>
-                </div>
-              )}
+                    {item.access_type == 2 && (
+                      <div className="vip">
+                        <SvgIcon name="VIPDetail" size={24} />
+                      </div>
+                    )}
+                    {item.access_type == 3 && (
+                      <div className="vipA">
+                        <SvgIcon name="detailNumber" size={30} />
+                        <span className="a">2</span>
+                      </div>
+                    )}
+                    <span className="title">{index + 1}</span>
+                  </div>
+                );
+              })}
             </div>
             <NavBar
               left="猜你喜欢"

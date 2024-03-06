@@ -43,7 +43,7 @@ const VideoDetailWrapper = styled.div`
     }
     .detail {
       width: 100%;
-      height: 230px;
+      height: 210px;
 
       .top {
         width: 100%;
@@ -186,69 +186,66 @@ const VideoDetailWrapper = styled.div`
     }
     .content {
       width: 100%;
-      height: 60px; // 设定高度
-      padding: 0 10px; // 增加两边的间隔
-      overflow: hidden;
-      margin-bottom: 10px;
+      height: 70px;
+      display: flex;
+      padding: 0 8px;
+      overflow-x: auto; /* 允许水平滚动 */
+      align-items: center;
+      box-sizing: border-box;
+      margin: 0 10px;
+      .leftUl {
+        list-style: none;
+        height: 100%;
+        min-width: 70px; /* 使用min-width而不是width，确保元素不会被压缩 */
+        border-radius: 10px;
+        margin-right: 10px;
+        background-color: rgb(242, 242, 242);
+        color: rgb(167, 167, 167);
+        font-size: 16px;
+        text-align: center;
+        line-height: 70px; /* 更新行高以匹配容器高度，保证文字垂直居中 */
+        font-weight: 500;
+        white-space: nowrap;
+        position: relative;
+        border: 1px solid #ccc;
 
-      .type {
-        width: 100%;
-        height: 60px; // 设定高度
-        overflow: hidden; // 隐藏溢出的内容
-        display: flex;
-        align-items: flex-start;
-        justify-content: flex-start;
-        .ul {
-          width: 100%;
-          display: flex;
-          align-items: flex-start;
-          justify-content: flex-start;
+        .vip {
+          position: absolute;
+          top: -20px;
+          right: 4px;
+          .a {
+            position: absolute;
+            top: -15px;
+            right: 5px;
+            font-size: 10px;
+          }
+        }
+        .vipA {
+          position: absolute;
 
-          .list {
-            min-width: 60px; // 最小宽度，根据内容调整
-            height: 60px; // 高度
-            background-color: #f2f2f2; // 设置为灰色背景
-            margin-right: 10px; // 项目间距
-            border-radius: 10px; // 圆角
-            text-align: center;
-            line-height: 60px; // 行高与高度相同，使文字垂直居中
-            color: #333; // 文字颜色
-            flex-shrink: 0; // 防止压缩
-            position: relative;
-            &.active {
-              background-color: #ff3a4d; // 激活状态的背景色
-              color: white; // 激活状态的文字颜色
-            }
-            .vip {
-              position: absolute;
-              top: -15px;
-              right: 5px;
-              .a {
-                position: absolute;
-                top: -15px;
-                right: 5px;
-                font-size: 10px;
-              }
-            }
-            .vipA {
-              position: absolute;
-              top: -10px;
-              right: 7px;
-              .a {
-                position: absolute;
-                top: -12px;
-                right: 18px;
-                font-size: 10px;
-              }
-            }
+          top: -16px;
+          right: 4px;
+          .a {
+            position: absolute;
+            top: -10px;
+            right: 18px;
+            font-size: 10px;
           }
         }
       }
+
+      .selected {
+        color: rgb(255, 50, 124);
+        background-color: rgb(255, 226, 242);
+      }
+    }
+    .content::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera*/
     }
     .ContentA {
       display: flex;
-      align-items: center;
-
+      align-items: flex-start;
+      align-items: flex-start;
       width: 100%;
       flex-wrap: wrap;
     }

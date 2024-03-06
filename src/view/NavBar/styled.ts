@@ -57,23 +57,24 @@ const NavbarWrapper = styled.div`
       text-align: center;
       display: flex;
       .iconCircle {
-        flex: 1;
+        flex: 3;
         height: 40px;
-
         font-size: 12px;
         color: RGBA(110, 110, 110, 1);
         display: flex;
         align-items: center;
+        justify-content: center;
         .imag {
           width: 12px;
           height: 12px;
         }
       }
       .iconRight {
-        flex: 1;
+        flex: 2;
         height: 40px;
         display: flex;
         align-items: center;
+        justify-content: right;
         font-size: 12px;
         color: RGBA(110, 110, 110, 1);
         .imag {

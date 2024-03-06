@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { memo, useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import type { FC, ReactNode } from "react";
 import RankItemWrapper from "./styled";
 import { useNavigate } from "react-router-dom";

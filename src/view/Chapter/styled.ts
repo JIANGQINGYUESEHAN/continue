@@ -24,7 +24,7 @@ const ChapterWrapper = styled.div`
       color: rgb(167, 167, 167);
       font-size: 16px; /* 应该是font-size而不是color */
       text-align: center;
-
+      background-color: rgb(239, 239, 239);
       line-height: 30px;
       font-weight: 500;
       white-space: nowrap; /* 防止文本换行 */
